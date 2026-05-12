@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Lovers Run</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA INICIAL -->
+    <section class="start-screen">
+
+        <img src="logo.png" alt="Logo do jogo" class="logo">
+
+        <h1>FUTURE LOVERS RUN</h1>
+
+        <p>
+            Um jogo retrô inspirado na era disco futurista da rainha do pop.
+            Corra contra o tempo e leve a estrela até a arena da Confessions Tour.
+        </p>
+
+        <button onclick="showStory()">
+            ENTER GAME
+        </button>
+
+    </section>
+
+    <!-- STORYBOARD -->
+    <section class="story-screen hidden" id="story">
+
+        <h2>MISSION MODE</h2>
+
+        <img src="intro.gif" alt="GIF do jogo" class="gif">
+
+        <p>
+            A grande noite chegou.
+            A estrela precisa atravessar a cidade neon montada em seu cavalo
+            para chegar até a arena principal da Confessions Tour.
+        </p>
+
+        <p>
+            Salte sobre obstáculos, sobreviva aos 60 desafios
+            e complete sua jornada antes que o show comece.
+        </p>
+
+        <button onclick="startGame()">
+            START RIDE
+        </button>
+
+    </section>
+
+    <!-- JOGO -->
+    <section class="game-screen hidden" id="game">
+
+        <h2>OBSTÁCULOS: <span id="score">0</span>/60</h2>
+
+        <div class="game-area">
+
+            <div class="madonna"></div>
+
+            <div class="obstacle"></div>
+
+        </div>
+
+        <p class="tip">
+            Aperte ESPAÇO para pular
+        </p>
+
+    </section>
+
+    <!-- FINAL -->
+    <section class="end-screen hidden" id="end">
+
+        <h1>SHOW TIME!</h1>
+
+        <p>
+            Você conseguiu levar a estrela até a arena.
+            O show da Confessions Tour pode começar!
+        </p>
+
+        <h2>THANK YOU PLAYER</h2>
+
+    </section>
+
+<script>
+
+const startScreen = document.querySelector(".start-screen");
+const storyScreen = document.querySelector("#story");
+const gameScreen = document.querySelector("#game");
+const endScreen = document.querySelector("#end");
+
+const madonna = document.querySelector(".madonna");
+const obstacle = document.querySelector(".obstacle");
+
+let score = 0;
+let speed = 2;
+
+function showStory() {
+    startScreen.classList.add("hidden");
+    storyScreen.classList.remove("hidden");
+}
+
+function startGame() {
+
+    storyScreen.classList.add("hidden");
+    gameScreen.classList.remove("hidden");
+
+    document.addEventListener("keydown", jump);
+
+    let gameLoop = setInterval(() => {
+
+        let madonnaTop =
+            parseInt(window.getComputedStyle(madonna).getPropertyValue("bottom"));
+
+        let obstacleLeft =
+            parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+
+        if (obstacleLeft < 120 && obstacleLeft > 50 && madonnaTop < 80) {
+
+            alert("GAME OVER");
+
+            location.reload();
+
+        }
+
+        if (obstacleLeft < 0) {
+
+            score++;
+
+            document.getElementById("score").innerText = score;
+
+            speed += 0.1;
+
+            obstacle.style.animationDuration = speed > 6
+                ? "1s"
+                : `${2 - speed * 0.1}s`;
+
+        }
+
+        if (score >= 60) {
+
+            clearInterval(gameLoop);
+
+            gameScreen.classList.add("hidden");
+
+            endScreen.classList.remove("hidden");
+
+        }
+
+    }, 10);
+}
+
+function jump() {
+
+    if (madonna.classList != "jump") {
+
+        madonna.classList.add("jump");
+
+        setTimeout(() => {
+            madonna.classList.remove("jump");
+        }, 500);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
