@@ -18,7 +18,7 @@
 
     <section class="start-screen">
 
-        <!-- ESPAÇO PARA LOGO PNG -->
+        <!-- LOGO PNG -->
         <img src="logo.png" class="logo">
 
         <button onclick="showIntro()">
@@ -35,8 +35,8 @@
         <h2>ABOUT THE GAME</h2>
 
         <p>
-            The Confessions Tour: Jump Game é um jogo retrô
-            inspirado nos clássicos videogames arcade dos anos 80 e 90.
+            The Confessions Tour: Jump Game é um jogo retrô inspirado
+            nos clássicos videogames arcade dos anos 80 e 90.
             O objetivo é levar a estrela pop até a arena principal
             da Confessions Tour montada em seu cavalo.
         </p>
@@ -53,23 +53,23 @@
         <div class="features-box">
 
             <div class="feature">
-                🎮 Pixel Art 16-bit
+                PIXEL ART 16-BIT
             </div>
 
             <div class="feature">
-                🐎 Gameplay inspirado no Dino Game
+                GAMEPLAY ESTILO DINO GAME
             </div>
 
             <div class="feature">
-                ⚡ 60 obstáculos progressivos
+                60 OBSTÁCULOS PROGRESSIVOS
             </div>
 
             <div class="feature">
-                🎵 Trilha sonora disco retrô
+                VISUAL ARCADE RETRÔ
             </div>
 
             <div class="feature">
-                🕹️ Visual inspirado em arcades antigos
+                TRILHA SONORA DISCO
             </div>
 
         </div>
@@ -98,7 +98,7 @@
 
         <h2>MISSION MODE</h2>
 
-        <!-- ESPAÇO PARA GIF -->
+        <!-- GIF -->
         <img src="intro.gif" class="story-gif">
 
         <p>
@@ -109,8 +109,8 @@
         </p>
 
         <p>
-            Salte os obstáculos usando a tecla ESPAÇO
-            e complete os 60 desafios.
+            Use a tecla ESPAÇO para saltar
+            e sobreviva aos 60 obstáculos.
         </p>
 
         <button onclick="startGame()">
@@ -158,12 +158,12 @@
 
         <h1>SHOW TIME!</h1>
 
-        <!-- ESPAÇO PARA GIF -->
+        <!-- GIF -->
         <img src="final.gif" class="final-gif">
 
         <p>
-            Você conseguiu levar a estrela até a arena.
-            O show da Confessions Tour pode começar.
+            Você conseguiu levar a estrela
+            até a arena principal.
         </p>
 
         <h2>
@@ -175,8 +175,6 @@
 
 
 <script>
-
-const startScreen = document.querySelector(".start-screen");
 
 const storyScreen = document.getElementById("story");
 
@@ -195,12 +193,7 @@ let speed = 2;
 
 function showIntro() {
 
-    window.scrollTo({
-
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-
-    });
+    document.querySelector(".start-screen").style.display = "none";
 
     storyScreen.classList.remove("hidden");
 
@@ -218,17 +211,21 @@ function startGame() {
     let gameLoop = setInterval(() => {
 
         let madonnaBottom =
-            parseInt(window.getComputedStyle(madonna)
-            .getPropertyValue("bottom"));
+            parseInt(
+                window.getComputedStyle(madonna)
+                .getPropertyValue("bottom")
+            );
 
         let obstacleLeft =
-            parseInt(window.getComputedStyle(obstacle)
-            .getPropertyValue("left"));
+            parseInt(
+                window.getComputedStyle(obstacle)
+                .getPropertyValue("left")
+            );
 
         if (
 
             obstacleLeft < 180 &&
-            obstacleLeft > 60 &&
+            obstacleLeft > 50 &&
             madonnaBottom < 100
 
         ) {
@@ -249,7 +246,7 @@ function startGame() {
 
             obstacle.style.animationDuration =
             speed > 6
-            ? "0.8s"
+            ? "0.7s"
             : `${2 - speed * 0.1}s`;
 
         }
