@@ -1,47 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>The Confessions Tour: Jump Game</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
     <!-- TELA INICIAL -->
+
     <section class="start-screen">
 
-        <img src="logo.png" alt="Logo do jogo" class="logo">
+        <!-- ESPAÇO PARA LOGO PNG -->
+        <img src="logo.png" class="logo">
 
-        <h1>JUMP GAME</h1>
-
-        <p>
-            Um jogo retrô inspirado na era disco futurista da rainha do pop.
-            Corra contra o tempo e leve a estrela até a arena da Confessions Tour.
-        </p>
-
-        <button onclick="showStory()">
-            ENTER GAME
+        <button onclick="showIntro()">
+            PRESS START
         </button>
 
     </section>
 
+
+    <!-- SOBRE O JOGO -->
+
+    <section class="about-section">
+
+        <h2>ABOUT THE GAME</h2>
+
+        <p>
+            The Confessions Tour: Jump Game é um jogo retrô
+            inspirado nos clássicos videogames arcade dos anos 80 e 90.
+            O objetivo é levar a estrela pop até a arena principal
+            da Confessions Tour montada em seu cavalo.
+        </p>
+
+    </section>
+
+
+    <!-- CARACTERÍSTICAS -->
+
+    <section class="features-section">
+
+        <h2>GAME FEATURES</h2>
+
+        <div class="features-box">
+
+            <div class="feature">
+                🎮 Pixel Art 16-bit
+            </div>
+
+            <div class="feature">
+                🐎 Gameplay inspirado no Dino Game
+            </div>
+
+            <div class="feature">
+                ⚡ 60 obstáculos progressivos
+            </div>
+
+            <div class="feature">
+                🎵 Trilha sonora disco retrô
+            </div>
+
+            <div class="feature">
+                🕹️ Visual inspirado em arcades antigos
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTÕES -->
+
+    <section class="buttons-section">
+
+        <button class="menu-button">
+            JOGAR AGORA
+        </button>
+
+        <button class="menu-button">
+            DOWNLOAD
+        </button>
+
+    </section>
+
+
     <!-- STORYBOARD -->
+
     <section class="story-screen hidden" id="story">
 
         <h2>MISSION MODE</h2>
 
-        <img src="intro.gif" alt="GIF do jogo" class="gif">
+        <!-- ESPAÇO PARA GIF -->
+        <img src="intro.gif" class="story-gif">
 
         <p>
             A grande noite chegou.
-            A estrela precisa atravessar a cidade neon montada em seu cavalo
-            para chegar até a arena principal da Confessions Tour.
+            A estrela precisa atravessar a cidade
+            e sobreviver aos obstáculos para chegar
+            até a arena da Confessions Tour.
         </p>
 
         <p>
-            Salte sobre obstáculos, sobreviva aos 60 desafios
-            e complete sua jornada antes que o show comece.
+            Salte os obstáculos usando a tecla ESPAÇO
+            e complete os 60 desafios.
         </p>
 
         <button onclick="startGame()">
@@ -50,75 +119,119 @@
 
     </section>
 
+
     <!-- JOGO -->
+
     <section class="game-screen hidden" id="game">
 
-        <h2>OBSTÁCULOS: <span id="score">0</span>/60</h2>
+        <h2>
+            OBSTÁCULOS:
+            <span id="score">0</span>/60
+        </h2>
 
         <div class="game-area">
 
-            <div class="madonna"></div>
+            <!-- PERSONAGEM -->
+
+            <div class="madonna-horse">
+
+                <img src="madonna-horse-pixel.png">
+
+            </div>
+
+            <!-- OBSTÁCULO -->
 
             <div class="obstacle"></div>
 
         </div>
 
         <p class="tip">
-            Aperte ESPAÇO para pular
+            APERTE ESPAÇO PARA PULAR
         </p>
 
     </section>
 
+
     <!-- FINAL -->
+
     <section class="end-screen hidden" id="end">
 
         <h1>SHOW TIME!</h1>
 
-        <img src="final.gif" alt="GIF final" class="final-gif">
-        
+        <!-- ESPAÇO PARA GIF -->
+        <img src="final.gif" class="final-gif">
+
         <p>
             Você conseguiu levar a estrela até a arena.
-            O show da Confessions Tour pode começar!
+            O show da Confessions Tour pode começar.
         </p>
 
-        <h2>THANK YOU PLAYER</h2>
+        <h2>
+            THANK YOU PLAYER
+        </h2>
 
     </section>
+
+
 
 <script>
 
 const startScreen = document.querySelector(".start-screen");
-const storyScreen = document.querySelector("#story");
-const gameScreen = document.querySelector("#game");
-const endScreen = document.querySelector("#end");
 
-const madonna = document.querySelector(".madonna");
+const storyScreen = document.getElementById("story");
+
+const gameScreen = document.getElementById("game");
+
+const endScreen = document.getElementById("end");
+
+const madonna = document.querySelector(".madonna-horse");
+
 const obstacle = document.querySelector(".obstacle");
 
 let score = 0;
+
 let speed = 2;
 
-function showStory() {
-    startScreen.classList.add("hidden");
+
+function showIntro() {
+
+    window.scrollTo({
+
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+
+    });
+
     storyScreen.classList.remove("hidden");
+
 }
+
 
 function startGame() {
 
     storyScreen.classList.add("hidden");
+
     gameScreen.classList.remove("hidden");
 
     document.addEventListener("keydown", jump);
 
     let gameLoop = setInterval(() => {
 
-        let madonnaTop =
-            parseInt(window.getComputedStyle(madonna).getPropertyValue("bottom"));
+        let madonnaBottom =
+            parseInt(window.getComputedStyle(madonna)
+            .getPropertyValue("bottom"));
 
         let obstacleLeft =
-            parseInt(window.getComputedStyle(obstacle).getPropertyValue("left"));
+            parseInt(window.getComputedStyle(obstacle)
+            .getPropertyValue("left"));
 
-        if (obstacleLeft < 120 && obstacleLeft > 50 && madonnaTop < 80) {
+        if (
+
+            obstacleLeft < 180 &&
+            obstacleLeft > 60 &&
+            madonnaBottom < 100
+
+        ) {
 
             alert("GAME OVER");
 
@@ -134,9 +247,10 @@ function startGame() {
 
             speed += 0.1;
 
-            obstacle.style.animationDuration = speed > 6
-                ? "1s"
-                : `${2 - speed * 0.1}s`;
+            obstacle.style.animationDuration =
+            speed > 6
+            ? "0.8s"
+            : `${2 - speed * 0.1}s`;
 
         }
 
@@ -151,16 +265,20 @@ function startGame() {
         }
 
     }, 10);
+
 }
+
 
 function jump() {
 
-    if (madonna.classList != "jump") {
+    if (!madonna.classList.contains("jump")) {
 
         madonna.classList.add("jump");
 
         setTimeout(() => {
+
             madonna.classList.remove("jump");
+
         }, 500);
 
     }
@@ -170,4 +288,5 @@ function jump() {
 </script>
 
 </body>
+
 </html>
