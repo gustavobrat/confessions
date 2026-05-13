@@ -294,8 +294,8 @@ body {
     height: 12px;
     background-color: #ffd700;
     position: absolute;
-    top: 12px; 
-    left: 6px;  
+    top: 12px;
+    left: 6px;
     border-radius: 4px;
     z-index: 9;
     box-shadow: inset -2px -2px 0 #d4b200, -1px 2px 0 rgba(0,0,0,0.4);
@@ -381,7 +381,9 @@ body {
 
 /* Obstáculo Dinâmico */
 #game-obstacle {
+    width: 24px;
     position: absolute;
+    border-radius: 4px;
     z-index: 6;
 }
 
@@ -398,7 +400,7 @@ body {
 
 .professor-specifications-panel h2 {
     font-size: 16px;
-    color: #00ffff !important; /* Força cor azul neon no título */
+    color: #00ffff !important; 
     margin-bottom: 20px;
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
 }
@@ -419,4 +421,21 @@ body {
 .spec-card strong {
     display: block;
     font-size: 13px;
-    color: #ff
+    color: #ff007f !important;
+    margin-bottom: 8px;
+}
+
+.spec-card p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #ffffff !important;
+}
+
+.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
+.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
+
+@keyframes glowEffect {
+    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); }
+    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); }
+}
