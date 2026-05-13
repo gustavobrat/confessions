@@ -56,12 +56,14 @@
             
             <!-- Arena de jogo com elementos de cenário integrados -->
             <div id="game-arena" onclick="triggerMadonnaJump()">
-                <!-- Elementos do cenário de fundo corrigidos -->
+                <!-- Elementos do cenário de fundo e prédios -->
                 <div class="pixel-moon"></div>
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
+                <div class="pixel-windows"></div>
+                <div id="pixel-stage-entrance"></div> <!-- Arena de Chegada no Final -->
 
-                <!-- Sprite Refinado Madonna (Com Capacete, Coque Loiro por Trás e Cavalo Animado) -->
+                <!-- Sprite Refinado Madonna (Capacete Menor, Cabelo Loiro Visível e Cavalo Detalhado) -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
                     <div class="pixel-hair-bun"></div>
@@ -142,14 +144,17 @@
         const scoreCounter = document.getElementById('score-counter');
         const speedIndicator = document.getElementById('speed-indicator');
         const bgAudio = document.getElementById('game-audio');
+        const stageEntrance = document.getElementById('pixel-stage-entrance');
 
         let currentScore = 0;
         let isCurrentlyJumping = false;
         let isDucking = false;
         let mainLoopInterval;
         let obstacleXPosition = 800;
+        let stageEntranceX = 850;
         let baseGameSpeed = 3.5; 
         let isGameRunning = false;
+        let hasReachedTarget = false;
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
@@ -163,14 +168,17 @@
             
             currentScore = 0;
             obstacleXPosition = 800;
+            stageEntranceX = 850;
             baseGameSpeed = 3.5;
             isGameRunning = true;
             isDucking = false;
+            hasReachedTarget = false;
             
             scoreCounter.innerText = currentScore;
             speedIndicator.innerText = "PISTA LIVRE";
             madonnaPlayer.style.bottom = "0px";
             gameObstacle.style.left = "800px";
+            stageEntrance.style.left = "850px";
             madonnaPlayer.className = "horse-gallop";
             
             clearInterval(mainLoopInterval);
@@ -239,6 +247,13 @@
         function runGameEngineTick() {
             if (!isGameRunning) return;
 
+            // Se atingiu 60 pontos, para os obstáculos e move a arena de show para a tela
+            if (hasReachedTarget) {
+                stageEntranceX -= 2.5;
+                stageEntrance.style.left = stageEntranceX + 'px';
+                return;
+            }
+
             obstacleXPosition -= baseGameSpeed;
 
             if (obstacleXPosition < -40) {
@@ -253,16 +268,25 @@
                 else if (currentScore > 12) speedIndicator.innerText = "CRESCENTE";
 
                 if (currentScore >= 60) {
-                    stopGameSession(true);
+                    hasReachedTarget = true;
+                    gameObstacle.style.left = "-200px";
+                    speedIndicator.innerText = "CHEGADA!";
+                    
+                    // Aguarda exatamente 2,5 segundos (2500ms) para renderizar a vitória sem cortes abruptos
+                    setTimeout(() => {
+                        stopGameSession(true);
+                    }, 2500);
                     return;
                 }
             }
 
-            gameObstacle.style.left = obstacleXPosition + 'px';
+            if (!hasReachedTarget) {
+                gameObstacle.style.left = obstacleXPosition + 'px';
+            }
 
             let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
             
-            if (obstacleXPosition > 85 && obstacleXPosition < 125 && playerCurrentBottom < 38 && !isDucking) {
+            if (!hasReachedTarget && obstacleXPosition > 85 && obstacleXPosition < 125 && playerCurrentBottom < 38 && !isDucking) {
                 alert("Obstáculo atingido! O percurso foi reiniciado para recalibrar o tempo.");
                 currentScore = 0;
                 baseGameSpeed = 3.5;
