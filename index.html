@@ -13,17 +13,18 @@
 </head>
 <body>
 
-    <!-- Trilha sonora em loop do jogo -->
+    <!-- Trilha sonora em loop do jogo (oculta do layout) -->
     <audio id="game-audio" loop>
         <source src="musica-retro-madonna.mp3" type="audio/mpeg">
     </audio>
 
     <!-- CONTAINER PRINCIPAL DO FLIPERAMA ARCADE -->
     <div class="arcade-cabinet">
-        
+
         <!-- ================= TELA 1: ENTRADA ULTRA MINIMALISTA ================= -->
         <section id="screen-start" class="game-screen active">
             <div class="logo-png-area mirror-glow">
+                <!-- Substitua o span pela tag <img> quando tiver o arquivo: <img src="logo.png" alt="Logo"> -->
                 <span class="placeholder-text">✦ LOGO DO JOGO (PNG) ✦</span>
             </div>
             <button class="btn-arcade-neon pulsate" onclick="changeToStoryScreen()">CLIQUE PARA JOGAR</button>
@@ -31,16 +32,16 @@
 
         <!-- ================= TELA 2: HISTÓRIA E OBJETIVOS (STORYBOARD 1) ================= -->
         <section id="screen-story" class="game-screen">
-            <div class="GP0vjs.gif">
-                <span class="placeholder-text">✦ [ GIF GIGANTE INTRODUTÓRIO DA HISTÓRIA ] ✦</span>
+            <!-- Container do GIF da História -->
+            <div class="gif-container screen-cyan-gif">
+                <img src="GP0vjs.gif" alt="Intro Storyboard" class="pixel-gif">
             </div>
-
+            
             <div class="story-textbox glass-panel box-expanded">
                 <p class="highlight-label">RUMO AO SHOW</p>
                 <p>Guie a rainha <span class="text-cyan">Madonna</span> em segurança até a grande arena da Confessions Tour de 2006.</p>
                 <p>Use as setas do teclado para desviar dos <strong>30 obstáculos</strong> eletrônicos ritmados na pista.</p>
             </div>
-            
             <button class="btn-arcade-neon cyan-theme" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
         </section>
 
@@ -56,6 +57,7 @@
                 <div class="pixel-moon"></div>
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
+                
                 <div id="pixel-arena-end">
                     <div class="arena-roof"></div>
                     <div class="arena-stage-lights"></div>
@@ -64,7 +66,7 @@
                 <!-- Sprite completo controlado pelas animações e agachamento global -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
-                    <div class="pixel-hair-bun"></div> 
+                    <div class="pixel-hair-bun"></div>
                     <div class="pixel-hair"></div>
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
@@ -72,7 +74,6 @@
                         <div class="pixel-mouth"></div>
                     </div>
                     <div class="pixel-suit"></div>
-                    
                     <div class="pixel-horse">
                         <div class="pixel-horse-mane"></div>
                         <div class="pixel-horse-head"></div>
@@ -90,20 +91,20 @@
 
         <!-- ================= TELA 4: VITÓRIA (STORYBOARD FINAL) ================= -->
         <section id="screen-victory" class="game-screen">
-            <div class="db80c5c3202e4fd3f07ca9a8f4c1ce1f.gif">
-                <span class="placeholder-text">✦ [ GIF DA PERFORMANCE FINAL ] ✦</span>
+            <!-- Container do GIF de Vitória -->
+            <div class="gif-container screen-pink-gif">
+                <img src="db80c5c3202e4fd3f07ca9a8f4c1ce1f.gif" alt="Final Performance" class="pixel-gif">
             </div>
 
             <h2 class="text-cyan header-title-big glow-cyan">STAGE CLEAR!</h2>
-            
             <div class="story-textbox glass-panel border-pink box-expanded">
                 <p class="highlight-label text-pink">MISSÃO CUMPRIDA</p>
                 <p>Seus reflexos foram impecáveis. A diva chegou perfeitamente ao palco principal e o espetáculo vai começar!</p>
                 <p>Muito obrigado por jogar e garantir o sucesso absoluto da turnê!</p>
             </div>
-            
             <button class="btn-arcade-neon" onclick="resetArcadeToMenu()">REINICIAR TURNÊ</button>
         </section>
+
     </div>
 
     <!-- ================= DOCUMENTAÇÃO DO PROFESSOR ================= -->
@@ -135,7 +136,6 @@
         const screenStory = document.getElementById('screen-story');
         const screenGame = document.getElementById('screen-game');
         const screenVictory = document.getElementById('screen-victory');
-
         const madonnaPlayer = document.getElementById('madonna-player');
         const gameObstacle = document.getElementById('game-obstacle');
         const arenaEnd = document.getElementById('pixel-arena-end');
@@ -149,9 +149,9 @@
         let mainLoopInterval;
         let obstacleXPosition = 800;
         let arenaXPosition = 900;
-        let baseGameSpeed = 3.5; 
+        let baseGameSpeed = 3.5;
         let isGameRunning = false;
-        let nextObstacleType = "low"; 
+        let nextObstacleType = "low";
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
@@ -181,7 +181,6 @@
             madonnaPlayer.style.transform = "scaleY(1)";
             
             applyObstacleStyle();
-            
             clearInterval(mainLoopInterval);
             mainLoopInterval = setInterval(runGameEngineTick, 10);
         }
@@ -195,10 +194,8 @@
             let upwardMotion = setInterval(() => {
                 if (verticalPosition >= 140) {
                     clearInterval(upwardMotion);
-                    
                     let downwardMotion = setInterval(() => {
                         let fallSpeed = isDucking ? 9 : 4.5;
-                        
                         if (verticalPosition <= 0) {
                             clearInterval(downwardMotion);
                             verticalPosition = 0;
@@ -218,7 +215,6 @@
 
         document.addEventListener('keydown', (e) => {
             if (!isGameRunning || currentScore >= 30) return;
-            
             if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 triggerMadonnaJump();
@@ -229,9 +225,9 @@
                     isDucking = true;
                     madonnaPlayer.classList.remove('horse-gallop');
                     madonnaPlayer.style.transformOrigin = "bottom center";
-                    madonnaPlayer.style.transform = "scaleY(0.55)"; 
+                    madonnaPlayer.style.transform = "scaleY(0.55)";
                 } else {
-                    isDucking = true; 
+                    isDucking = true;
                 }
             }
         });
@@ -250,7 +246,7 @@
             if (nextObstacleType === "high") {
                 gameObstacle.style.width = "30px";
                 gameObstacle.style.height = "40px";
-                gameObstacle.style.bottom = "75px"; 
+                gameObstacle.style.bottom = "75px";
                 gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
                 gameObstacle.style.boxShadow = "0 0 15px #00ffff";
             } else {
@@ -264,31 +260,29 @@
 
         function runGameEngineTick() {
             if (!isGameRunning) return;
-
+            
             if (currentScore < 30) {
                 obstacleXPosition -= baseGameSpeed;
-
                 if (obstacleXPosition < -40) {
                     obstacleXPosition = 800;
                     currentScore++;
                     scoreCounter.innerText = currentScore;
-                    
                     baseGameSpeed += 0.15;
                     
                     if (currentScore > 22) speedIndicator.innerText = "CRUCIAL!";
                     else if (currentScore > 14) speedIndicator.innerText = "ACELERADO";
                     else if (currentScore > 7) speedIndicator.innerText = "MÉDIO";
-
+                    
                     nextObstacleType = Math.random() > 0.4 ? "high" : "low";
                     applyObstacleStyle();
-
+                    
                     if (currentScore >= 30) {
                         gameObstacle.style.left = "-100px";
                         return;
                     }
                 }
                 gameObstacle.style.left = obstacleXPosition + 'px';
-
+                
                 let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
                 if (obstacleXPosition > 85 && obstacleXPosition < 125) {
                     if (nextObstacleType === "low" && playerCurrentBottom < 38) {
@@ -298,10 +292,8 @@
                     }
                 }
             } else {
-                // Cenário final da grande arena cinza se deslocando
                 arenaXPosition -= 3.5;
                 arenaEnd.style.right = (50 - arenaXPosition) + 'px';
-
                 if (arenaXPosition <= 440) {
                     isGameRunning = false;
                     madonnaPlayer.classList.remove('horse-gallop');
