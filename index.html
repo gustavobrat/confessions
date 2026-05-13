@@ -4,57 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Confessions Tour: Jump Game</title>
-    <!-- Importação das fontes para visual de fliperama moderno -->
+    <!-- Importação de fonte pixelada profissional -->
     <link rel="preconnect" href="googleapis.com">
     <link rel="preconnect" href="gstatic.com" crossorigin>
     <link href="googleapis.com" rel="stylesheet">
-    <!-- Arquivo de estilo externo -->
+    <!-- Vinculação com o arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Trilha sonora em loop -->
+    <!-- Trilha sonora em loop do jogo -->
     <audio id="game-audio" loop>
         <source src="musica-retro-madonna.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- CONTAINER PRINCIPAL DO FLIPERAMA ARCADE -->
     <div class="arcade-cabinet">
-        <!-- ================= TELA 1: ENTRADA DISCO CLUB ================= -->
+        
+        <!-- ================= TELA 1: ENTRADA ULTRA MINIMALISTA ================= -->
         <section id="screen-start" class="game-screen active">
-            <h1 class="game-main-title text-reflect">THE CONFESSIONS TOUR</h1>
-            <h2 class="game-sub-title text-cyan glow-purple">JUMP GAME</h2>
-            
+            <!-- Espaço exclusivo e limpo para o arquivo PNG da Logo -->
             <div class="logo-png-area mirror-glow">
-                <span class="placeholder-text">✦ INSIRA SUA LOGO PNG REFINADA AQUI ✦</span>
+                <span class="placeholder-text">✦ LOGO DO JOGO (PNG) ✦</span>
             </div>
             
             <button class="btn-arcade-neon pulsate" onclick="changeToStoryScreen()">CLIQUE PARA JOGAR</button>
         </section>
 
-        <!-- ================= TELA 2: HISTÓRIA E RECURSOS ================= -->
+        <!-- ================= TELA 2: HISTÓRIA E OBJETIVOS (STORYBOARD 1) ================= -->
         <section id="screen-story" class="game-screen">
-            <h2 class="text-pink header-title-big glow-pink">📜 DIÁRIO DE BORDO</h2>
-            
-            <div class="story-textbox glass-panel">
-                <p class="highlight-label">A GRANDE ESTREIA</p>
-                <p>Prepare-se para reviver o auge das pistas de 2006. Sua missão é conduzir a rainha <span class="text-cyan">Madonna</span> sã e salva até o centro do palco.</p>
-                <p>Galopando em alta velocidade, use toda sua concentração para saltar exatamente <strong>60 barreiras eletrônicas</strong> sincronizadas com a batida.</p>
+            <!-- Espaço Ampliado e Gigante para o GIF conforme solicitado -->
+            <div class="gif-header-box mirror-glow border-cyan-glow giant-gif">
+                <span class="placeholder-text">✦ [ GIF INTRODUTÓRIO DA HISTÓRIA ] ✦</span>
             </div>
 
-            <div class="features-box glass-panel border-cyan">
-                <h3>✨ RECURSOS DA SESSÃO</h3>
+            <div class="story-textbox glass-panel">
+                <p class="highlight-label">RUMO AO SHOW</p>
+                <p>Guie a rainha <span class="text-cyan">Madonna</span> em segurança até a grande arena da Confessions Tour de 2006.</p>
+                <p>Montada em seu cavalo, salte por <strong>60 obstáculos</strong> eletrônicos ritmados na pista.</p>
+            </div>
+
+            <div class="features-box glass-panel">
+                <h3>✨ RECURSOS ARCADE</h3>
                 <ul>
-                    <li>✦ Gráficos em pixel art vetorizados e compactos</li>
-                    <li>✦ Sintetizadores e batidas retro-pop em tempo real</li>
-                    <li>✦ Dificuldade adaptativa com aceleração milimétrica</li>
-                    <li>✦ Estética luxuosa inspirada nos lendários clubes de Londres</li>
+                    <li>✦ Gráficos em pixel art com traje de hipismo e capacete</li>
+                    <li>✦ Controles dinâmicos de corrida pelas setas do teclado</li>
+                    <li>✦ Aceleração milimétrica e gradual ao avançar</li>
                 </ul>
             </div>
             
-            <button class="btn-arcade-neon cyan-theme" onclick="startActiveGameplay()">INICIAR ESPETÁCULO 🕹️</button>
+            <button class="btn-arcade-neon cyan-theme" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
         </section>
 
-        <!-- ================= TELA 3: PISTA DE DANÇA ATIVA ================= -->
+        <!-- ================= TELA 3: PISTA DE CORRIDA ATIVA ================= -->
         <section id="screen-game" class="game-screen">
             <div class="game-hud">
                 <div class="hud-block">SINTONIA: <span id="score-counter" class="text-cyan">0</span><span class="hud-total">/60</span></div>
@@ -62,8 +64,9 @@
             </div>
             
             <div id="game-arena" onclick="triggerMadonnaJump()">
-                <!-- Nova Madonna Pixel Art (Compacta e com Galope Animado) -->
+                <!-- Nova Madonna Pixel Art Detalhada (Com Capacete e Cavalo Anatômico) -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
+                    <div class="pixel-helmet"></div>
                     <div class="pixel-hair"></div>
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
@@ -71,39 +74,66 @@
                         <div class="pixel-mouth"></div>
                     </div>
                     <div class="pixel-suit"></div>
+                    <!-- Cavalo detalhado com crina e patas separadas -->
                     <div class="pixel-horse">
+                        <div class="pixel-horse-mane"></div>
                         <div class="pixel-horse-head"></div>
+                        <div class="pixel-leg-front"></div>
+                        <div class="pixel-leg-back"></div>
                     </div>
                 </div>
                 
                 <div id="game-obstacle" style="left: 800px;"></div>
             </div>
             
-            <p class="controls-hint">Pressione <span class="text-cyan">[ESPAÇO]</span> ou <span class="text-cyan">[CLIQUE NA TELA]</span> para o salto.</p>
+            <p class="controls-hint">Use as teclas <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para agachar.</p>
             
-            <!-- Botão decorativo luxuoso -->
+            <!-- Botão de download puramente visual solicitado pelo professor -->
             <button class="btn-visual-only pink-glow-button">JOGAR AGORA / BAIXAR (VISUAL)</button>
         </section>
 
-        <!-- ================= TELA 4: VITÓRIA E AGRADECIMENTOS ================= -->
+        <!-- ================= TELA 4: VITÓRIA (STORYBOARD FINAL) ================= -->
         <section id="screen-victory" class="game-screen">
             <div class="gif-header-box mirror-glow border-pink-glow">
-                <span class="placeholder-text">✦ GIF DA PERFORMANCE AO VIVO ✦</span>
+                <span class="placeholder-text">✦ [ GIF DA PERFORMANCE FINAL ] ✦</span>
             </div>
 
             <h2 class="text-cyan header-title-big glow-cyan">STAGE CLEAR!</h2>
             
             <div class="story-textbox glass-panel border-pink">
-                <p class="highlight-label text-pink">SHOW HISTÓRICO CONCLUÍDO</p>
-                <p>Seu senso de ritmo e tempo de resposta foram impecáveis na pista de dança.</p>
-                <p>Os globos espelhados estão brilhando, as luzes de neon estão no máximo e a turnê foi um sucesso absoluto graças a você!</p>
+                <p class="highlight-label text-pink">MISSÃO CUMPRIDA</p>
+                <p>Seus reflexos foram impecáveis. A diva chegou perfeitamente ao palco principal e o espetáculo vai começar!</p>
+                <p>Muito obrigado por jogar e garantir o sucesso absoluto da turnê!</p>
             </div>
             
             <button class="btn-arcade-neon" onclick="resetArcadeToMenu()">REINICIAR TURNÊ</button>
         </section>
     </div>
 
-    <!-- Script de física gradual ajustado para jogabilidade humana -->
+    <!-- ================= DOCUMENTAÇÃO E ESPECIFICAÇÕES DO PROFESSOR (FORA DO JOGO) ================= -->
+    <footer class="professor-specifications-panel">
+        <h2>📋 DOCUMENTAÇÃO DO PROJETO - AVALIAÇÃO WEB</h2>
+        <div class="spec-grid">
+            <div class="spec-card">
+                <strong>📌 ATIVIDADE:</strong>
+                <p>Desafio de Recuperação de Programação WEB</p>
+            </div>
+            <div class="spec-card">
+                <strong>💯 VALOR:</strong>
+                <p>80 Pontos Legítimos</p>
+            </div>
+            <div class="spec-card">
+                <strong>🗓️ PRAZO MÁXIMO:</strong>
+                <p>13/05 (Fechamento de Notas do Bimestre)</p>
+            </div>
+            <div class="spec-card">
+                <strong>🛠️ CRITÉRIOS DE ENTREGA:</strong>
+                <p>Código HTML e CSS limpos, copiados na íntegra para envio em documento digital (Word/PDF).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de comandos baseados no clássico jogo do dinossauro do Google -->
     <script>
         const screenStart = document.getElementById('screen-start');
         const screenStory = document.getElementById('screen-story');
@@ -118,17 +148,16 @@
 
         let currentScore = 0;
         let isCurrentlyJumping = false;
+        let isDucking = false;
         let mainLoopInterval;
         let obstacleXPosition = 800;
-        
-        // Ajuste humano: O jogo começa consideravelmente mais calmo e controlado
         let baseGameSpeed = 3.5; 
         let isGameRunning = false;
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
             screenStory.classList.add('active');
-            bgAudio.play().catch(() => console.log("Áudio ativado pós-interação."));
+            bgAudio.play().catch(() => {});
         }
 
         function startActiveGameplay() {
@@ -139,37 +168,39 @@
             obstacleXPosition = 800;
             baseGameSpeed = 3.5;
             isGameRunning = true;
+            isDucking = false;
             
             scoreCounter.innerText = currentScore;
             speedIndicator.innerText = "PISTA LIVRE";
             madonnaPlayer.style.bottom = "0px";
             gameObstacle.style.left = "800px";
+            madonnaPlayer.className = "horse-gallop";
             
             clearInterval(mainLoopInterval);
             mainLoopInterval = setInterval(runGameEngineTick, 10);
         }
 
         function triggerMadonnaJump() {
-            if (isCurrentlyJumping || !isGameRunning) return;
+            if (isCurrentlyJumping || !isGameRunning || isDucking) return;
             isCurrentlyJumping = true;
-            
-            // Pausa temporariamente o efeito de galope vertical do cavalo durante o salto aéreo
             madonnaPlayer.classList.remove('horse-gallop');
             
             let verticalPosition = 0;
             let upwardMotion = setInterval(() => {
-                if (verticalPosition >= 135) {
+                if (verticalPosition >= 140) {
                     clearInterval(upwardMotion);
                     
                     let downwardMotion = setInterval(() => {
+                        // Se o jogador pressionar a Seta para Baixo durante o pulo, cai mais rápido (Mecânica do Dino)
+                        let fallSpeed = isDucking ? 9 : 4.5;
+                        
                         if (verticalPosition <= 0) {
                             clearInterval(downwardMotion);
                             verticalPosition = 0;
                             isCurrentlyJumping = false;
-                            // Devolve a animação de galope ao pousar na pista
-                            if(isGameRunning) madonnaPlayer.classList.add('horse-gallop');
+                            if(isGameRunning && !isDucking) madonnaPlayer.classList.add('horse-gallop');
                         } else {
-                            verticalPosition -= 4.5;
+                            verticalPosition -= fallSpeed;
                         }
                         madonnaPlayer.style.bottom = verticalPosition + 'px';
                     }, 10);
@@ -180,10 +211,33 @@
             }, 10);
         }
 
+        // Listener das setas do computador no estilo Jogo do Dino
         document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
+            if (!isGameRunning) return;
+            
+            if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 triggerMadonnaJump();
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (!isCurrentlyJumping) {
+                    isDucking = true;
+                    madonnaPlayer.style.transform = "scaleY(0.75)"; // Efeito visual de agachar
+                    madonnaPlayer.classList.remove('horse-gallop');
+                } else {
+                    isDucking = true; // Força queda rápida se estiver no ar
+                }
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowDown') {
+                isDucking = false;
+                madonnaPlayer.style.transform = "scaleY(1)";
+                if (isGameRunning && !isCurrentlyJumping) {
+                    madonnaPlayer.classList.add('horse-gallop');
+                }
             }
         });
 
@@ -197,7 +251,7 @@
                 currentScore++;
                 scoreCounter.innerText = currentScore;
                 
-                // Aceleração milimétrica e suave para ganho de ritmo realista
+                // Aceleração progressiva gradual refinada
                 baseGameSpeed += 0.18;
                 
                 if (currentScore > 45) speedIndicator.innerText = "OVERDRIVE!";
@@ -214,9 +268,9 @@
 
             let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
             
-            // Calibragem precisa para o novo tamanho menor do sprite
-            if (obstacleXPosition > 85 && obstacleXPosition < 115 && playerCurrentBottom < 38) {
-                alert("Ritmo interrompido! Vamos recalibrar as caixas de som e recomeçar a coreografia?");
+            // Verificação matemática precisa baseada nas dimensões do novo avatar completo
+            if (obstacleXPosition > 85 && obstacleXPosition < 125 && playerCurrentBottom < 38 && !isDucking) {
+                alert("Obstáculo atingido! O percurso foi reiniciado para recalibrar o tempo.");
                 currentScore = 0;
                 baseGameSpeed = 3.5;
                 obstacleXPosition = 800;
