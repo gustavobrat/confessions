@@ -47,7 +47,7 @@ body {
     display: flex;
 }
 
-/* ================= COMPONENTES VISUAIS E Gifs EXPANDIDOS ================= */
+/* ================= COMPONENTES VISUAIS E CONFIGURAÇÕES GERAIS ================= */
 .logo-png-area {
     width: 580px;
     height: 180px;
@@ -152,7 +152,7 @@ body {
     box-shadow: 0 0 30px #00ffff;
 }
 
-/* ================= ARENA COM CENÁRIO URBAN-DISCO CORRIGIDO ================= */
+/* ================= ARENA DE JOGO COM PREDIO E ARENA FINAL COBERTA ================= */
 #game-arena {
     width: 100%;
     height: 240px;
@@ -169,7 +169,7 @@ body {
     height: 40px;
     background-color: #ffffcc;
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 60px;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(255, 255, 204, 0.4);
@@ -181,58 +181,57 @@ body {
     height: 3px;
     background-color: #ffffff;
     position: absolute;
-    top: 35px;
+    top: 40px;
     left: 120px;
     box-shadow: 200px -10px #fff, 350px 30px #fff, 500px -20px #fff, 630px 15px #fff;
     z-index: 2;
 }
 
-/* Prédios estruturados nativamente no background */
 .pixel-skyline {
     width: 100%;
-    height: 110px;
+    height: 70px;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: #080512;
+    background-color: #07040f;
     clip-path: polygon(
-        0% 100%, 0% 50%, 6% 50%, 6% 30%, 14% 30%, 14% 60%, 20% 60%, 20% 20%, 28% 20%, 28% 70%, 
-        35% 70%, 35% 40%, 45% 40%, 45% 65%, 52% 65%, 52% 15%, 62% 15%, 62% 55%, 70% 55%, 70% 35%, 
-        80% 35%, 80% 75%, 88% 75%, 88% 25%, 96% 25%, 96% 100%
+        0% 100%, 0% 40%, 8% 40%, 8% 20%, 15% 20%, 15% 50%, 22% 50%, 22% 10%, 30% 10%, 30% 60%, 
+        38% 60%, 38% 30%, 48% 30%, 48% 55%, 55% 55%, 55% 5%, 65% 5%, 65% 45%, 72% 45%, 72% 25%, 
+        82% 25%, 82% 65%, 90% 65%, 90% 15%, 100% 15%, 100% 100%
     );
+    opacity: 0.6;
     z-index: 2;
 }
 
-/* Janelas de Neon piscantes nos prédios */
-.pixel-windows {
-    width: 100%;
-    height: 110px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 3;
-    background-image: radial-gradient(#00ffff 2px, transparent 3px);
-    background-size: 16px 20px;
-    opacity: 0.35;
-    clip-path: polygon(
-        0% 100%, 0% 50%, 6% 50%, 6% 30%, 14% 30%, 14% 60%, 20% 60%, 20% 20%, 28% 20%, 28% 70%, 
-        35% 70%, 35% 40%, 45% 40%, 45% 65%, 52% 65%, 52% 15%, 62% 15%, 62% 55%, 70% 55%, 70% 35%, 
-        80% 35%, 80% 75%, 88% 75%, 88% 25%, 96% 25%, 96% 100%
-    );
-}
-
-/* Grande Arena de Chegada (Aparece ao completar 60 pontos) */
-#pixel-stage-entrance {
+/* ARENA DE SHOW DO FINAL DO JOGO (Vem deslizando da direita) */
+#arena-destination {
     width: 180px;
     height: 160px;
-    background: linear-gradient(to top, #ff007f, transparent);
-    border-left: 4px solid #00ffff;
-    border-right: 4px solid #00ffff;
-    box-shadow: 0 0 25px #ff007f;
     position: absolute;
     bottom: 0;
-    left: 850px;
-    z-index: 4;
+    right: -300px; /* Inicia escondida */
+    z-index: 3;
+    transition: right 0.1s linear;
+}
+.arena-roof {
+    width: 180px;
+    height: 60px;
+    background: #ff007f;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+    box-shadow: 0 0 15px #ff007f;
+}
+.arena-lights {
+    width: 180px;
+    height: 10px;
+    background: #00ffff;
+    box-shadow: 0 0 10px #00ffff;
+}
+.arena-door {
+    width: 180px;
+    height: 90px;
+    background: #111126;
+    border-left: 6px solid #ff007f;
+    border-right: 6px solid #ff007f;
 }
 
 .game-hud {
@@ -258,14 +257,14 @@ body {
     border-radius: 4px;
 }
 
-/* ================= CORREÇÃO DO AVATAR PIXEL ART ADAPTADO ================= */
+/* ================= SPRITE MELHORADO: CAPACETE PEQUENO E CABELO SUPER VISÍVEL ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
     position: absolute;
     left: 90px;
     z-index: 10;
-    transition: transform 0.1s ease;
+    transition: transform 0.1s ease, bottom 0.02s linear;
 }
 
 .horse-gallop {
@@ -276,30 +275,33 @@ body {
     100% { transform: translateY(-5px) rotate(3deg); }
 }
 
-/* Capacete de Hipismo Miniaturizado e Ajustado */
-.pixel-helmet {
-    width: 18px;
-    height: 6px;
-    background-color: #0c0c0c;
-    position: absolute;
-    top: 5px;
-    left: 16px;
-    border-radius: 2px 2px 0 0;
-    z-index: 12;
-    box-shadow: 2px 1px 0 #333;
+/* Pose de Agachar do Teclado Seta Baixo */
+.ducking-pose {
+    transform: scaleY(0.6) translateY(25px);
 }
 
-/* Coque Loiro Robustecido e Altamente Visível na Nuca */
-.pixel-hair-bun {
-    width: 14px;
-    height: 14px;
+/* Capacete de Hipismo Miniatura (Deixa o cabelo livre) */
+.pixel-helmet-small {
+    width: 22px;
+    height: 5px;
+    background-color: #0a0a0a;
+    position: absolute;
+    top: 4px;
+    left: 13px;
+    z-index: 13;
+}
+
+/* Cabelo Loiro Amplo e Altamente Visível no Topo e Laterais */
+.pixel-hair-top {
+    width: 26px;
+    height: 12px;
     background-color: #ffd700;
     position: absolute;
-    top: 10px;
-    left: 5px; /* Recuado estrategicamente para destacar o penteado */
-    border-radius: 4px;
-    z-index: 9;
-    box-shadow: -2px 2px 0 #c2a300, inset -2px -2px 0 #e6c300;
+    top: 2px;
+    left: 11px;
+    border-radius: 5px 5px 0 0;
+    z-index: 12;
+    box-shadow: inset -3px 0 0 #d4b200, -2px 6px 0 #ffd700, 2px 6px 0 #ffd700;
 }
 
 /* Rosto Compacto */
@@ -308,7 +310,7 @@ body {
     height: 16px;
     background-color: #ffdbac;
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 15px;
     z-index: 11;
 }
@@ -337,12 +339,12 @@ body {
     height: 22px;
     background-color: #121212;
     position: absolute;
-    top: 26px;
+    top: 28px;
     left: 14px;
     border-top: 3px solid #ffffff;
 }
 
-/* Design Detalhado do Cavalo */
+/* Novo Design Detalhado do Cavalo */
 .pixel-horse {
     width: 56px;
     height: 28px;
@@ -379,16 +381,25 @@ body {
 .pixel-leg-back { left: 6px; }
 .pixel-leg-front { right: 10px; }
 
-/* Obstáculo Slim */
+/* OBSTÁCULOS CONFIGURADOS PELO SCRIPT */
 #game-obstacle {
     width: 24px;
-    height: 40px;
-    background: linear-gradient(to top, #ff007f, #9900ff);
     position: absolute;
-    bottom: 0;
     box-shadow: 0 0 15px #ff007f;
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px;
     z-index: 6;
+}
+/* Obstáculo de Pular (Chão) */
+.ground-obstacle {
+    height: 40px;
+    bottom: 0;
+    background: linear-gradient(to top, #ff007f, #9900ff);
+}
+/* Obstáculo de Agachar (Aéreo) */
+.air-obstacle {
+    height: 35px;
+    top: 130px; /* Posicionado na altura exata da cabeça da boneca */
+    background: linear-gradient(to bottom, #00ffff, #ff007f);
 }
 
 /* ================= PAINEL DE ESPECIFICAÇÕES DO PROFESSOR (EXTERNO) ================= */
@@ -432,14 +443,4 @@ body {
 }
 
 .spec-card p {
-    font-size: 12px; 
-    line-height: 1.8;
-    color: #cccccc;
-}
-
-/* Animações e Brilhos Neon */
-.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
-.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
-.pulsate { animation
-
-          
+    font-
