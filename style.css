@@ -1,288 +1,308 @@
-/* ======================== DIRETRIZES VISUAIS E PALETA NEON ======================== */
-:root {
-    --dark-void: #0a0512;
-    --neon-pink: #ff007f;
-    --neon-purple: #9d00ff;
-    --neon-cyan: #00f0ff;
-    --pure-white: #ffffff;
-    --overlay-box: rgba(25, 12, 43, 0.9);
-    --pixel-font: 'Press Start 2P', monospace;
-    --display-font: 'Rajdhani', sans-serif;
-}
-
+/* ================= CONFIGURAÇÕES GERAIS E CORES CLÁSSICAS ================= */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Press Start 2P', monospace;
+    user-select: none;
 }
 
 body {
-    background-color: var(--dark-void);
-    /* Geração de grade quadriculada de fundo simulando telas de fliperama retrô */
-    background-image: 
-        linear-gradient(rgba(157, 0, 255, 0.15) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(157, 0, 255, 0.15) 1px, transparent 1px);
-    background-size: 35px 35px;
-    color: var(--pure-white);
-    font-family: var(--display-font);
-    font-size: 18px;
-    min-height: 100vh;
+    background-color: #0b0b14;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
     overflow: hidden;
 }
 
-/* Estrutura do Gabinete Arcade virtual */
+/* Moldura externa do monitor do jogo */
 .arcade-cabinet {
-    width: 100%;
-    max-width: 900px;
-    background: rgba(12, 6, 22, 0.98);
-    border: 4px solid var(--neon-pink);
-    border-radius: 16px;
-    box-shadow: 0 0 35px var(--neon-purple), inset 0 0 20px var(--neon-pink);
-    padding: 25px;
+    width: 800px;
+    height: 600px;
+    background: #111122;
+    border: 5px solid #ff007f;
+    box-shadow: 0 0 35px #ff007f, inset 0 0 20px rgba(255, 0, 127, 0.4);
     position: relative;
+    overflow: hidden;
 }
 
-/* Mecanismo de exibição dinâmica de telas */
 .game-screen {
     display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 520px;
-    text-align: center;
+    align-items: center;
+    background: radial-gradient(circle, #181836 0%, #07070f 100%);
+    padding: 20px;
 }
 
 .game-screen.active {
     display: flex;
 }
 
-/* ======================== BOTÕES E INTERATIVIDADE ======================== */
+/* ================= COMPONENTES DO SITE ================= */
+.game-main-title {
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-shadow: 3px 3px 0px #ff007f;
+}
+
+.logo-png-area {
+    width: 520px;
+    height: 130px;
+    border: 3px dashed #00ffff;
+    background: rgba(0, 255, 255, 0.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ffff;
+    font-size: 9px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #00ffff;
+}
+
 .btn-arcade-neon {
-    font-family: var(--pixel-font);
-    font-size: 16px;
-    padding: 18px 32px;
-    color: var(--pure-white);
     background: transparent;
-    border: 3px solid var(--neon-cyan);
+    border: 3px solid #ff007f;
+    color: #ff007f;
+    padding: 16px 32px;
+    font-size: 11px;
     cursor: pointer;
-    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 5px var(--neon-cyan);
-    transition: all 0.25s ease-in-out;
-    margin-top: 25px;
+    text-shadow: 0 0 8px #ff007f;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+    transition: all 0.2s ease;
 }
 
 .btn-arcade-neon:hover {
-    background: var(--neon-cyan);
-    color: var(--dark-void);
-    box-shadow: 0 0 30px var(--neon-cyan);
-    transform: scale(1.05);
+    background: #ff007f;
+    color: #fff;
+    box-shadow: 0 0 25px #ff007f;
 }
 
-/* Botão meramente visual exigido pelo roteiro técnico */
-.btn-visual-only {
-    font-family: var(--pixel-font);
-    font-size: 11px;
-    padding: 10px 20px;
-    color: var(--pure-white);
-    background: transparent;
-    border: 2px solid var(--neon-pink);
-    box-shadow: 0 0 10px var(--neon-pink);
-    margin-top: 15px;
-    cursor: default;
-    opacity: 0.8;
-}
-
-/* ======================== TELA 1: ELEMENTOS DO MENU ======================== */
-.logo-png-area {
-    width: 100%;
-    max-width: 550px;
-    height: 190px;
-    border: 3px dashed rgba(255, 0, 127, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 35px;
-    background: rgba(255, 0, 127, 0.03);
-}
-
-.placeholder-tag {
-    font-family: var(--pixel-font);
-    font-size: 11px;
-    color: var(--neon-pink);
-    letter-spacing: 1px;
-}
-
-.arcade-subtext {
-    margin-top: 45px;
-    font-family: var(--pixel-font);
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-/* ======================== TELA 2 E 4: CAIXAS DE TEXTO E GIFS ======================== */
-.retro-textbox {
-    background: var(--overlay-box);
-    border: 2px solid var(--neon-purple);
-    padding: 22px;
-    border-radius: 8px;
-    max-width: 750px;
+/* Caixas de Texto com as Histórias e Diálogos */
+.story-textbox {
+    width: 85%; 
+    color: #ffffff; 
+    font-size: 9px; 
+    line-height: 1.8; 
+    text-align: center; 
     margin-bottom: 20px;
-    line-height: 1.6;
-    text-align: left;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    border: 2px solid #333355;
+    border-radius: 6px;
 }
 
-.retro-textbox span {
-    color: var(--neon-pink);
+.highlight-label {
     font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
 }
 
-.highlight-text {
-    font-family: var(--pixel-font);
-    font-size: 13px;
-    color: var(--neon-cyan);
+.header-title {
+    font-size: 14px; 
+    margin-bottom: 20px;
+}
+
+/* Painel de Características do Jogo */
+.features-box {
+    width: 85%;
+    background: rgba(255, 0, 127, 0.05);
+    border: 2px solid #ff007f;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.features-box h3 {
+    font-size: 10px;
+    color: #ff007f;
     margin-bottom: 10px;
 }
 
-.gif-media-box {
-    width: 100%;
-    max-width: 450px;
-    height: 110px;
-    border: 2px dashed var(--neon-cyan);
+.features-box ul {
+    list-style: none;
+}
+
+.features-box li {
+    font-size: 8px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
+
+/* Espaço para o GIF nas seções de transição */
+.gif-header-box {
+    width: 85%;
+    height: 90px;
+    border: 2px dashed #ff007f;
+    background: rgba(255, 0, 127, 0.03);
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 15px 0;
-    background: rgba(0, 240, 255, 0.04);
+    align-items: center;
+    color: #ff007f;
+    font-size: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
 }
 
-.gif-media-box .placeholder-tag {
-    color: var(--neon-cyan);
-}
-
-.border-pink { border-color: var(--neon-pink) !important; }
-
-/* ======================== TELA 3: ARENA MECÂNICA DO JOGO ======================== */
+/* ================= ÁREA DA CORRIDA E INDICADORES ================= */
 #game-arena {
-    position: relative;
     width: 100%;
-    max-width: 780px;
-    height: 280px;
-    background: #0f0722;
-    border: 3px solid var(--neon-purple);
+    height: 260px;
+    background: #0f0f20;
+    border-top: 4px solid #00ffff;
+    border-bottom: 4px solid #00ffff;
+    position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 25px #000000;
+    margin-top: 15px;
 }
 
-/* CONSTRUÇÃO PIXEL ART DA BONECA DA MADONNA NO CAVALO EM CSS */
-#madonna-player {
-    position: absolute;
-    left: 60px;
-    bottom: 0;
-    width: 55px;
-    height: 65px;
-}
-
-.pixel-horse { 
-    width: 55px; 
-    height: 24px; 
-    background: #e2e2e2; 
-    position: absolute; 
-    bottom: 0; 
-    border: 2px solid #444; 
-}
-.pixel-legs { 
-    width: 14px; 
-    height: 18px; 
-    background: #000000; 
-    position: absolute; 
-    bottom: 22px; 
-    left: 20px; 
-} /* Calça de hipismo preta */
-.pixel-suit { 
-    width: 22px; 
-    height: 22px; 
-    background: #000000; 
-    position: absolute; 
-    bottom: 36px; 
-    left: 16px; 
-} /* Casaco de hipismo preto */
-.pixel-head { 
-    width: 16px; 
-    height: 16px; 
-    background: #ffcca3; 
-    position: absolute; 
-    bottom: 54px; 
-    left: 19px; 
-}
-.pixel-hair { 
-    width: 22px; 
-    height: 18px; 
-    background: #ffd700; 
-    position: absolute; 
-    bottom: 56px; 
-    left: 14px; 
-    border-radius: 3px; 
-} /* Cabelo loiro */
-
-/* Obstáculo do percurso */
-#game-obstacle {
-    position: absolute;
-    right: -40px;
-    bottom: 0;
-    width: 26px;
-    height: 42px;
-    background: var(--neon-pink);
-    border: 2px solid var(--pure-white);
-    box-shadow: 0 0 12px var(--neon-pink);
-}
-
-/* Heads-Up Display (Placar) */
 .game-hud {
+    width: 90%;
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 780px;
-    padding: 12px;
-    background: #000000;
-    border: 2px solid var(--neon-pink);
-    margin-bottom: 12px;
-    font-family: var(--pixel-font);
-    font-size: 11px;
+    color: #fff;
+    font-size: 10px;
+    margin-top: 10px;
 }
 
-.controls-hint {
-    margin-top: 12px;
-    font-size: 13px;
-    color: #8a8199;
+.text-cyan { color: #00ffff; text-shadow: 0 0 5px #00ffff; }
+.text-pink { color: #ff007f; text-shadow: 0 0 5px #ff007f; }
+.controls-hint { color: #666688; font-size: 8px; margin-top: 12px; }
+
+/* Botão Decorativo Recomendado pelo Professor */
+.btn-visual-only {
+    margin-top: 15px;
+    background: #00ffff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 8px;
+    font-weight: bold;
+    cursor: default;
+    box-shadow: 0 0 10px #00ffff;
 }
 
-/* ======================== CORES AUXILIARES E ANIMAÇÕES ======================== */
-.text-cyan { color: var(--neon-cyan); }
-.text-pink { color: var(--neon-pink); }
-
-.neon-title-purple {
-    font-family: var(--pixel-font);
-    font-size: 22px;
-    color: var(--pure-white);
-    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
-    margin-bottom: 20px;
+/* ================= DESIGN DA PERSONAGEM EM PIXEL ART ================= */
+#madonna-player {
+    width: 80px;
+    height: 110px;
+    position: absolute;
+    left: 80px;
+    transition: bottom 0.05s linear;
+    z-index: 10;
 }
 
-.neon-title-cyan {
-    font-family: var(--pixel-font);
-    font-size: 28px;
-    color: var(--pure-white);
-    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
-    margin-bottom: 20px;
+/* Cabelo Loiro Volumoso (2005-2006) */
+.pixel-hair {
+    width: 44px;
+    height: 36px;
+    background-color: #ffd700;
+    position: absolute;
+    top: 0;
+    left: 14px;
+    border-radius: 6px 6px 0 0;
+    box-shadow: inset -4px -4px 0 #e6c300;
 }
 
+/* Cabeça e Rosto */
+.pixel-head {
+    width: 32px;
+    height: 28px;
+    background-color: #ffdbac;
+    position: absolute;
+    top: 6px;
+    left: 20px;
+}
+
+/* Olhos: Dois Quadrados Simétricos */
+.pixel-eye-left, .pixel-eye-right {
+    width: 4px;
+    height: 4px;
+    background-color: #2b1d0c;
+    position: absolute;
+    top: 8px;
+}
+.pixel-eye-left { left: 6px; }
+.pixel-eye-right { right: 6px; }
+
+/* Boca: Um Retângulo Centralizado */
+.pixel-mouth {
+    width: 12px;
+    height: 4px;
+    background-color: #e6005c;
+    position: absolute;
+    bottom: 6px;
+    left: 10px;
+}
+
+/* Roupa de Montaria Preta */
+.pixel-suit {
+    width: 36px;
+    height: 34px;
+    background-color: #111111;
+    position: absolute;
+    top: 34px;
+    left: 18px;
+    border-radius: 4px;
+    border-top: 4px solid #ffffff; /* Gola branca clássica */
+}
+
+/* Cavalo de Hipismo */
+.pixel-horse {
+    width: 76px;
+    height: 42px;
+    background-color: #5c4033;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 6px;
+    box-shadow: inset -6px -6px 0 #3d2b22;
+}
+
+.pixel-horse-head {
+    width: 24px;
+    height: 28px;
+    background-color: #5c4033;
+    position: absolute;
+    top: -18px;
+    right: -6px;
+    border-radius: 4px;
+}
+
+/* Obstáculo Neon Dinâmico */
+#game-obstacle {
+    width: 30px;
+    height: 50px;
+    background: linear-gradient(to top, #ff007f, #00ffff);
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 0 10px #ff007f;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Animação Clássica de Brilho Neon */
 .pulse-effect {
-    animation: arcadePulse 1.4s infinite alternate;
+    animation: neonPulse 1.5s infinite alternate;
 }
 
-@keyframes arcadePulse {
-    from { transform: scale(1); filter: brightness(1); }
-    to { transform: scale(1.03); filter: brightness(1.25); }
+@keyframes neonPulse {
+    from {
+        text-shadow: 2px 2px 8px rgba(255, 0, 127, 0.6);
+    }
+    to {
+        text-shadow: 2px 2px 20px rgba(255, 0, 127, 1), 0 0 10px #ff007f;
+    }
 }
