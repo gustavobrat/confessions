@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <!-- Trilha sonora do jogo -->
     <audio id="game-audio" loop>
         <source src="musica-retro-madonna.mp3" type="audio/mpeg">
     </audio>
@@ -34,7 +35,7 @@
             <div class="story-textbox glass-panel box-expanded">
                 <p class="highlight-label">RUMO AO SHOW</p>
                 <p>Guie a rainha <span class="text-cyan">Madonna</span> em segurança até a grande arena da Confessions Tour de 2006.</p>
-                <p>Use as setas do teclado para desviar dos <strong>60 obstáculos</strong> eletrônicos ritmados na pista.</p>
+                <p>Use as setas do teclado para desviar dos <strong>60 obstáculos</strong> dinâmicos na pista.</p>
             </div>
             
             <button class="btn-arcade-neon cyan-theme" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
@@ -52,19 +53,17 @@
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
                 
-                <!-- A Grande Arena Cinza com Pilares Estruturada via CSS -->
+                <!-- Grande Arena Cinza de Chegada (Com estrutura de Palco) -->
                 <div id="pixel-arena-end">
-                    <div class="arena-roof">STAGE ARENA</div>
-                    <div class="arena-pillar column-left"></div>
-                    <div class="arena-pillar column-center"></div>
-                    <div class="arena-pillar column-right"></div>
-                    <div class="arena-lights"></div>
+                    <div class="arena-roof"></div>
+                    <div class="arena-stage-lights"></div>
                 </div>
 
-                <!-- Sprite Completo com Coque Perfeito e Mecânica de Agachamento -->
+                <!-- Sprite Refinado e Corrigido (Madonna + Cavalo) -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
-                    <div class="pixel-hair-back"></div> 
+                    <div class="pixel-hair-bun"></div>
+                    <div class="pixel-hair"></div>
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
                         <div class="pixel-eye-right"></div>
@@ -83,7 +82,7 @@
                 <div id="game-obstacle" style="left: 800px;"></div>
             </div>
             
-            <p class="controls-hint">Use <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para achatar o conjunto e passar por baixo.</p>
+            <p class="controls-hint">Use <span class="text-cyan">[↑ SETA PARA CIMA]</span> para saltar e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para agachar e achatar o conjunto.</p>
             <button class="btn-visual-only pink-glow-button">JOGAR AGORA / BAIXAR (VISUAL)</button>
         </section>
 
@@ -105,25 +104,25 @@
         </section>
     </div>
 
-    <!-- ================= DOCUMENTAÇÃO DO PROFESSOR ================= -->
+    <!-- ================= DOCUMENTAÇÃO DO PROFESSOR (CORRIGIDA COM ALTO CONTRASTE) ================= -->
     <footer class="professor-specifications-panel">
         <h2>📋 DOCUMENTAÇÃO DO PROJETO - AVALIAÇÃO WEB</h2>
         <div class="spec-grid">
             <div class="spec-card">
                 <strong>📌 ATIVIDADE & CONCEITO:</strong>
-                <p>Desafio de Recuperação de Programação WEB. Landing page interativa inspirada em jogos eletrônicos clássicos.</p>
+                <p>Desafio de Recuperação de Programação WEB. Landing page interativa simulando um gabinete clássico de fliperama.</p>
             </div>
             <div class="spec-card">
                 <strong>💯 VALOR DO PROJETO:</strong>
-                <p>80 Pontos baseados em estilização CSS3 e estruturação HTML5.</p>
+                <p>80 Pontos baseados em estilização CSS3 avançada e estruturação HTML5 sem dependências externas.</p>
             </div>
             <div class="spec-card">
                 <strong>🗓️ PRAZO MÁXIMO DE ENTREGA:</strong>
-                <p>13/05 (Notas serão lançadas sem direito a atrasos).</p>
+                <p>13/05 (Notas serão lançadas sem direito a novas alterações pós-prazo).</p>
             </div>
             <div class="spec-card">
-                <strong>🎵 ARQUITETURA IMPLEMENTADA:</strong>
-                <p>Gráficos em pixel art puro, detecção de comandos duplos por matriz de teclado (Pulo/Agachamento) e transição de cenários na linha de chegada.</p>
+                <strong>🎵 ARQUITETURA RETRÔ IMPLEMENTADA:</strong>
+                <p>Gráficos em pixel art nativos, detecção síncrona de comandos duplos por matriz de teclado (Pulo/Agachamento) com achatamento de colisores e fluxo contínuo de áudio.</p>
             </div>
         </div>
     </footer>
@@ -147,9 +146,11 @@
         let mainLoopInterval;
         let obstacleXPosition = 800;
         let arenaXPosition = 900;
-        let baseGameSpeed = 5.5; // Começa consideravelmente mais rápido para dinâmica arcade real
+        
+        // Ritmo inicial otimizado: mais dinâmico e veloz
+        let baseGameSpeed = 4.8; 
         let isGameRunning = false;
-        let nextObstacleType = "low_narrow"; 
+        let nextObstacleType = "low"; 
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
@@ -165,16 +166,16 @@
             currentScore = 0;
             obstacleXPosition = 800;
             arenaXPosition = 900;
-            baseGameSpeed = 5.5;
+            baseGameSpeed = 4.8;
             isGameRunning = true;
             isDucking = false;
-            nextObstacleType = "low_narrow";
+            nextObstacleType = "low";
             
             scoreCounter.innerText = currentScore;
-            speedIndicator.innerText = "ALTA VELOCIDADE";
+            speedIndicator.innerText = "BALADA POP";
             madonnaPlayer.style.bottom = "0px";
             gameObstacle.style.left = "800px";
-            arenaEnd.style.right = "-900px"; 
+            arenaEnd.style.right = "-500px";
             madonnaPlayer.className = "horse-gallop";
             madonnaPlayer.style.transform = "scaleY(1)";
             
@@ -191,7 +192,7 @@
             
             let verticalPosition = 0;
             let upwardMotion = setInterval(() => {
-                if (verticalPosition >= 145) {
+                if (verticalPosition >= 140) {
                     clearInterval(upwardMotion);
                     
                     let downwardMotion = setInterval(() => {
@@ -208,7 +209,7 @@
                         madonnaPlayer.style.bottom = verticalPosition + 'px';
                     }, 10);
                 } else {
-                    verticalPosition += 8.0;
+                    verticalPosition += 7.5;
                 }
                 madonnaPlayer.style.bottom = verticalPosition + 'px';
             }, 10);
@@ -227,7 +228,7 @@
                     isDucking = true;
                     madonnaPlayer.classList.remove('horse-gallop');
                     madonnaPlayer.style.transformOrigin = "bottom center";
-                    madonnaPlayer.style.transform = "scaleY(0.55)"; 
+                    madonnaPlayer.style.transform = "scaleY(0.50)"; 
                 } else {
                     isDucking = true; 
                 }
@@ -245,32 +246,25 @@
         });
 
         function applyObstacleStyle() {
-            // Matriz com as 4 variações reais exigidas
-            switch(nextObstacleType) {
-                case "low_narrow":
-                    gameObstacle.style.width = "20px";
-                    gameObstacle.style.height = "38px";
-                    gameObstacle.style.bottom = "0px";
-                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #9900ff)";
-                    break;
-                case "low_wide":
-                    gameObstacle.style.width = "50px";
-                    gameObstacle.style.height = "38px";
-                    gameObstacle.style.bottom = "0px";
-                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #00ffff)";
-                    break;
-                case "high_narrow":
-                    gameObstacle.style.width = "20px";
-                    gameObstacle.style.height = "55px";
-                    gameObstacle.style.bottom = "50px"; 
-                    gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
-                    break;
-                case "high_wide":
-                    gameObstacle.style.width = "55px";
-                    gameObstacle.style.height = "55px";
-                    gameObstacle.style.bottom = "50px";
-                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #ffffff)";
-                    break;
+            // Variações visuais radicais entre os obstáculos dinâmicos
+            if (nextObstacleType === "high") {
+                gameObstacle.style.width = "28px";
+                gameObstacle.style.height = "65px";
+                gameObstacle.style.bottom = "50px"; 
+                gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
+                gameObstacle.style.boxShadow = "0 0 20px #00ffff";
+            } else if (nextObstacleType === "wide") {
+                gameObstacle.style.width = "45px";
+                gameObstacle.style.height = "35px";
+                gameObstacle.style.bottom = "0px";
+                gameObstacle.style.background = "linear-gradient(to top, #ff0055, #ff007f)";
+                gameObstacle.style.boxShadow = "0 0 20px #ff007f";
+            } else {
+                gameObstacle.style.width = "22px";
+                gameObstacle.style.height = "42px";
+                gameObstacle.style.bottom = "0px";
+                gameObstacle.style.background = "linear-gradient(to top, #ff007f, #9900ff)";
+                gameObstacle.style.boxShadow = "0 0 15px #ff007f";
             }
         }
 
@@ -280,20 +274,24 @@
             if (currentScore < 60) {
                 obstacleXPosition -= baseGameSpeed;
 
-                if (obstacleXPosition < -60) {
+                if (obstacleXPosition < -50) {
                     obstacleXPosition = 800;
                     currentScore++;
                     scoreCounter.innerText = currentScore;
                     
-                    // Progressão veloz contínua
-                    baseGameSpeed += 0.15;
+                    // Progressão rítmica mais veloz e nítida
+                    baseGameSpeed += 0.22;
                     
-                    if (currentScore > 45) speedIndicator.innerText = "VELOCIDADE INSANA!";
-                    else if (currentScore > 25) speedIndicator.innerText = "COREOGRAFIA RÁPIDA";
-                    else if (currentScore > 12) speedIndicator.innerText = "RITMO CRESCENTE";
+                    if (currentScore > 45) speedIndicator.innerText = "OVERDRIVE VIBES!";
+                    else if (currentScore > 25) speedIndicator.innerText = "ACELERADO";
+                    else if (currentScore > 12) speedIndicator.innerText = "RÍTMICO";
 
-                    const types = ["low_narrow", "low_wide", "high_narrow", "high_wide"];
-                    nextObstacleType = types[Math.floor(Math.random() * types.length)];
+                    // Sorteio entre 3 variações de obstáculos
+                    let rand = Math.random();
+                    if (rand < 0.35) nextObstacleType = "high";
+                    else if (rand < 0.70) nextObstacleType = "wide";
+                    else nextObstacleType = "low";
+                    
                     applyObstacleStyle();
 
                     if (currentScore >= 60) {
@@ -303,26 +301,30 @@
                 }
                 gameObstacle.style.left = obstacleXPosition + 'px';
 
+                // Hitbox responsiva para detecção precisa
                 let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
                 let obstacleWidth = parseInt(gameObstacle.style.width) || 24;
                 
-                // Cálculo de colisão dinâmica adaptável à largura das variações
-                if (obstacleXPosition > (90 - obstacleWidth) && obstacleXPosition < 125) {
-                    if ((nextObstacleType === "low_narrow" || nextObstacleType === "low_wide") && playerCurrentBottom < 36) {
+                if (obstacleXPosition > 80 && obstacleXPosition < (100 + obstacleWidth)) {
+                    if (nextObstacleType === "low" && playerCurrentBottom < 40) {
                         handleCollision();
-                    } else if ((nextObstacleType === "high_narrow" || nextObstacleType === "high_wide") && !isDucking && playerCurrentBottom < 75) {
+                    } else if (nextObstacleType === "wide" && playerCurrentBottom < 34) {
+                        handleCollision();
+                    } else if (nextObstacleType === "high" && !isDucking && playerCurrentBottom < 90) {
                         handleCollision();
                     }
                 }
             } else {
-                // SEQUÊNCIA DA ARENA CINZA FINAL
-                arenaXPosition -= 4.0; 
-                arenaEnd.style.right = (800 - arenaXPosition) + 'px';
+                // Entrada triunfal da Arena Cinza
+                arenaXPosition -= 3.2;
+                arenaEnd.style.right = (50 - arenaXPosition) + 'px';
 
-                if (arenaXPosition <= 760) {
+                if (arenaXPosition <= 440) {
                     isGameRunning = false;
                     madonnaPlayer.classList.remove('horse-gallop');
                     clearInterval(mainLoopInterval);
+                    
+                    // Pausa deliberada de 2.5s antes da tela de vitória
                     setTimeout(() => {
                         screenGame.classList.remove('active');
                         screenVictory.classList.add('active');
@@ -332,14 +334,14 @@
         }
 
         function handleCollision() {
-            alert("Obstáculo atingido! A coreografia recomeçou do início da contagem.");
+            alert("Obstáculo atingido! A música continua contínua, tente novamente o desafio.");
             currentScore = 0;
-            baseGameSpeed = 5.5;
+            baseGameSpeed = 4.8;
             obstacleXPosition = 800;
             scoreCounter.innerText = currentScore;
-            speedIndicator.innerText = "ALTA VELOCIDADE";
+            speedIndicator.innerText = "BALADA POP";
             gameObstacle.style.left = obstacleXPosition + 'px';
-            nextObstacleType = "low_narrow";
+            nextObstacleType = "low";
             applyObstacleStyle();
         }
 
