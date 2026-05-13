@@ -23,17 +23,14 @@
         
         <!-- ================= TELA 1: ENTRADA ULTRA MINIMALISTA ================= -->
         <section id="screen-start" class="game-screen active">
-            <!-- Espaço exclusivo e limpo para o arquivo PNG da Logo -->
             <div class="logo-png-area mirror-glow">
                 <span class="placeholder-text">✦ LOGO DO JOGO (PNG) ✦</span>
             </div>
-            
             <button class="btn-arcade-neon pulsate" onclick="changeToStoryScreen()">CLIQUE PARA JOGAR</button>
         </section>
 
         <!-- ================= TELA 2: HISTÓRIA E OBJETIVOS (STORYBOARD 1) ================= -->
         <section id="screen-story" class="game-screen">
-            <!-- Espaço Máximo Expandido para o GIF da História -->
             <div class="gif-header-box mirror-glow border-cyan-glow giant-gif">
                 <span class="placeholder-text">✦ [ GIF GIGANTE INTRODUTÓRIO DA HISTÓRIA ] ✦</span>
             </div>
@@ -41,7 +38,7 @@
             <div class="story-textbox glass-panel box-expanded">
                 <p class="highlight-label">RUMO AO SHOW</p>
                 <p>Guie a rainha <span class="text-cyan">Madonna</span> em segurança até a grande arena da Confessions Tour de 2006.</p>
-                <p>Montada em seu cavalo, use as setas do teclado para saltar por <strong>30 obstáculos</strong> eletrônicos ritmados na pista.</p>
+                <p>Use as setas do teclado para desviar dos <strong>30 obstáculos</strong> eletrônicos ritmados na pista.</p>
             </div>
             
             <button class="btn-arcade-neon cyan-theme" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
@@ -54,23 +51,20 @@
                 <div class="hud-block">RITMO: <span id="speed-indicator" class="text-pink">PISTA LIVRE</span></div>
             </div>
             
-            <!-- Arena de jogo com elementos de cenário integrados -->
-            <div id="game-arena" onclick="triggerMadonnaJump()">
-                <!-- Elementos do cenário de fundo -->
+            <div id="game-arena">
+                <!-- Elementos gráficos do cenário de fundo -->
                 <div class="pixel-moon"></div>
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
-                
-                <!-- Grande arena cinza de chegada estruturada com teto e luzes -->
                 <div id="pixel-arena-end">
                     <div class="arena-roof"></div>
                     <div class="arena-stage-lights"></div>
                 </div>
 
-                <!-- Sprite Refinado Madonna (Capacete, Coque Loiro na Nuca e Cavalo) -->
+                <!-- Sprite completo controlado pelas animações e agachamento global -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
-                    <div class="pixel-hair-bun"></div>
+                    <div class="pixel-hair-bun"></div> 
                     <div class="pixel-hair"></div>
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
@@ -90,7 +84,7 @@
                 <div id="game-obstacle" style="left: 800px;"></div>
             </div>
             
-            <p class="controls-hint">Use as teclas <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para agachar.</p>
+            <p class="controls-hint">Use <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para achatar o conjunto e passar por baixo.</p>
             <button class="btn-visual-only pink-glow-button">JOGAR AGORA / BAIXAR (VISUAL)</button>
         </section>
 
@@ -112,30 +106,30 @@
         </section>
     </div>
 
-    <!-- ================= DOCUMENTAÇÃO COMPLETA E ESPECIFICAÇÕES DO PROFESSOR ================= -->
+    <!-- ================= DOCUMENTAÇÃO DO PROFESSOR ================= -->
     <footer class="professor-specifications-panel">
         <h2>📋 DOCUMENTAÇÃO DO PROJETO - AVALIAÇÃO WEB</h2>
         <div class="spec-grid">
             <div class="spec-card">
                 <strong>📌 ATIVIDADE & CONCEITO:</strong>
-                <p>Desafio de Recuperação de Programação WEB. Interface responsiva simulando um gabinete clássico de fliperama.</p>
+                <p>Desafio de Recuperação de Programação WEB. Landing page interativa inspirada em jogos eletrônicos clássicos.</p>
             </div>
             <div class="spec-card">
                 <strong>💯 VALOR DO PROJETO:</strong>
-                <p>80 Pontos Distribuídos em Critérios Técnicos de HTML5 Estrutural e CSS3 Avançado.</p>
+                <p>80 Pontos baseados em estilização CSS3 e estruturação HTML5.</p>
             </div>
             <div class="spec-card">
                 <strong>🗓️ PRAZO MÁXIMO DE ENTREGA:</strong>
-                <p>13/05 (Fechamento do Período Letivo Vigente).</p>
+                <p>13/05 (Notas serão lançadas sem direito a atrasos).</p>
             </div>
             <div class="spec-card">
-                <strong>🎵 ARQUITETURA RETRÔ IMPLEMENTADA:</strong>
-                <p>Gráficos em pixel art puro (gerados nativamente via CSS), controles adaptados pelas setas direcionais com física de queda rápida (estilo Dino do Google) e aceleração progressiva adaptada para 30 obstáculos.</p>
+                <strong>🎵 ARQUITETURA IMPLEMENTADA:</strong>
+                <p>Gráficos em pixel art puro, detecção de comandos duplos por matriz de teclado (Pulo/Agachamento) e transição de cenários na linha de chegada para 30 obstáculos.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Lógica do Motor de Jogo Integrada -->
+    <!-- Lógica de comandos e motor físico gradual ajustado -->
     <script>
         const screenStart = document.getElementById('screen-start');
         const screenStory = document.getElementById('screen-story');
@@ -155,7 +149,7 @@
         let mainLoopInterval;
         let obstacleXPosition = 800;
         let arenaXPosition = 900;
-        let baseGameSpeed = 4.0; 
+        let baseGameSpeed = 3.5; 
         let isGameRunning = false;
         let nextObstacleType = "low"; 
 
@@ -173,7 +167,7 @@
             currentScore = 0;
             obstacleXPosition = 800;
             arenaXPosition = 900;
-            baseGameSpeed = 4.0;
+            baseGameSpeed = 3.5;
             isGameRunning = true;
             isDucking = false;
             nextObstacleType = "low";
@@ -216,7 +210,7 @@
                         madonnaPlayer.style.bottom = verticalPosition + 'px';
                     }, 10);
                 } else {
-                    verticalPosition += 7.0;
+                    verticalPosition += 6.5;
                 }
                 madonnaPlayer.style.bottom = verticalPosition + 'px';
             }, 10);
@@ -237,7 +231,7 @@
                     madonnaPlayer.style.transformOrigin = "bottom center";
                     madonnaPlayer.style.transform = "scaleY(0.55)"; 
                 } else {
-                    isDucking = true;
+                    isDucking = true; 
                 }
             }
         });
@@ -254,9 +248,9 @@
 
         function applyObstacleStyle() {
             if (nextObstacleType === "high") {
-                gameObstacle.style.width = "35px";
-                gameObstacle.style.height = "35px";
-                gameObstacle.style.bottom = "65px"; 
+                gameObstacle.style.width = "30px";
+                gameObstacle.style.height = "40px";
+                gameObstacle.style.bottom = "75px"; 
                 gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
                 gameObstacle.style.boxShadow = "0 0 15px #00ffff";
             } else {
@@ -279,14 +273,13 @@
                     currentScore++;
                     scoreCounter.innerText = currentScore;
                     
-                    // Curva de aceleração gradual equilibrada para 30 obstáculos
-                    baseGameSpeed += 0.22;
+                    baseGameSpeed += 0.15;
                     
-                    if (currentScore > 22) speedIndicator.innerText = "OVERDRIVE!";
-                    else if (currentScore > 12) speedIndicator.innerText = "ACELERADO";
-                    else if (currentScore > 5) speedIndicator.innerText = "MÉDIO";
+                    if (currentScore > 22) speedIndicator.innerText = "CRUCIAL!";
+                    else if (currentScore > 14) speedIndicator.innerText = "ACELERADO";
+                    else if (currentScore > 7) speedIndicator.innerText = "MÉDIO";
 
-                    nextObstacleType = Math.random() > 0.45 ? "high" : "low";
+                    nextObstacleType = Math.random() > 0.4 ? "high" : "low";
                     applyObstacleStyle();
 
                     if (currentScore >= 30) {
@@ -297,26 +290,22 @@
                 gameObstacle.style.left = obstacleXPosition + 'px';
 
                 let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
-                
-                // Mapeamento matemático de Hitbox estruturado
                 if (obstacleXPosition > 85 && obstacleXPosition < 125) {
                     if (nextObstacleType === "low" && playerCurrentBottom < 38) {
                         handleCollision();
-                    } else if (nextObstacleType === "high" && !isDucking && playerCurrentBottom < 75) {
+                    } else if (nextObstacleType === "high" && !isDucking) {
                         handleCollision();
                     }
                 }
             } else {
-                // SEQUÊNCIA DO GRAND FINALE: Movimenta a arena cinza para dentro da tela
-                arenaXPosition -= 3.0;
+                // Cenário final da grande arena cinza se deslocando
+                arenaXPosition -= 3.5;
                 arenaEnd.style.right = (50 - arenaXPosition) + 'px';
 
-                if (arenaXPosition <= 400) {
+                if (arenaXPosition <= 440) {
                     isGameRunning = false;
                     madonnaPlayer.classList.remove('horse-gallop');
                     clearInterval(mainLoopInterval);
-                    
-                    // Transição sem interrupção de áudio, aguardando 2.5 segundos
                     setTimeout(() => {
                         screenGame.classList.remove('active');
                         screenVictory.classList.add('active');
@@ -328,7 +317,7 @@
         function handleCollision() {
             alert("Obstáculo atingido! A coreografia recomeçou do início da contagem.");
             currentScore = 0;
-            baseGameSpeed = 4.0;
+            baseGameSpeed = 3.5;
             obstacleXPosition = 800;
             scoreCounter.innerText = currentScore;
             speedIndicator.innerText = "PISTA LIVRE";
