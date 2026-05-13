@@ -48,16 +48,15 @@
             </div>
             
             <div id="game-arena">
-                <!-- Elementos Estáticos e Dinâmicos do Cenário -->
                 <div class="pixel-moon"></div>
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
                 <div id="pixel-arena-end"></div>
 
-                <!-- Sprite com Capacete Preto e Cabelo Loiro Visível -->
+                <!-- Sprite completo controlado pelas animações e agachamento global -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
-                    <div class="pixel-hair"></div>
+                    <div class="pixel-hair-back"></div> <!-- Coque loiro na nuca perto do pescoço -->
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
                         <div class="pixel-eye-right"></div>
@@ -76,7 +75,7 @@
                 <div id="game-obstacle" style="left: 800px;"></div>
             </div>
             
-            <p class="controls-hint">Use <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular barreiras baixas e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para agachar sob barreiras altas.</p>
+            <p class="controls-hint">Use <span class="text-cyan">[↑ SETA PARA CIMA]</span> para pular e <span class="text-cyan">[↓ SETA PARA BAIXO]</span> para achatar o conjunto e passar por baixo.</p>
             <button class="btn-visual-only pink-glow-button">JOGAR AGORA / BAIXAR (VISUAL)</button>
         </section>
 
@@ -142,7 +141,7 @@
         let arenaXPosition = 900;
         let baseGameSpeed = 3.2; 
         let isGameRunning = false;
-        let nextObstacleType = "low"; // "low" ou "high"
+        let nextObstacleType = "low"; 
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
@@ -169,6 +168,7 @@
             gameObstacle.style.left = "800px";
             arenaEnd.style.right = "-400px";
             madonnaPlayer.className = "horse-gallop";
+            madonnaPlayer.style.transform = "scaleY(1)";
             
             applyObstacleStyle();
             
@@ -217,8 +217,10 @@
                 e.preventDefault();
                 if (!isCurrentlyJumping) {
                     isDucking = true;
-                    madonnaPlayer.style.transform = "scaleY(0.65)";
+                    // Correção: Remove a oscilação e achata o conjunto inteiro (Avatar + Cavalo) mantendo o alinhamento com a base
                     madonnaPlayer.classList.remove('horse-gallop');
+                    madonnaPlayer.style.transformOrigin = "bottom center";
+                    madonnaPlayer.style.transform = "scaleY(0.55)"; 
                 } else {
                     isDucking = true; 
                 }
@@ -258,7 +260,6 @@
                     currentScore++;
                     scoreCounter.innerText = currentScore;
                     
-                    // Aceleração milimétrica extremamente amigável
                     baseGameSpeed += 0.05;
                     
                     if (currentScore > 45) speedIndicator.innerText = "CRUCIAL!";
@@ -275,7 +276,6 @@
                 }
                 gameObstacle.style.left = obstacleXPosition + 'px';
 
-                // Sistema Simples de Colisão Corrigido
                 let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
                 if (obstacleXPosition > 85 && obstacleXPosition < 125) {
                     if (nextObstacleType === "low" && playerCurrentBottom < 38) {
@@ -285,7 +285,6 @@
                     }
                 }
             } else {
-                // SEQUÊNCIA DE VITÓRIA: Transição suave do palco chegando
                 arenaXPosition -= 2.5;
                 arenaEnd.style.right = (50 - arenaXPosition) + 'px';
 
@@ -311,15 +310,6 @@
             gameObstacle.style.left = obstacleXPosition + 'px';
             nextObstacleType = "low";
             applyObstacleStyle();
-        }
-
-        function stopGameSession(reachedVictory) {
-            isGameRunning = false;
-            clearInterval(mainLoopInterval);
-            if (reachedVictory) {
-                screenGame.classList.remove('active');
-                screenVictory.classList.add('active');
-            }
         }
 
         function resetArcadeToMenu() {
