@@ -51,12 +51,20 @@
                 <div class="pixel-moon"></div>
                 <div class="pixel-stars"></div>
                 <div class="pixel-skyline"></div>
-                <div id="pixel-arena-end"></div>
+                
+                <!-- A Grande Arena Cinza com Pilares Estruturada via CSS -->
+                <div id="pixel-arena-end">
+                    <div class="arena-roof">STAGE ARENA</div>
+                    <div class="arena-pillar column-left"></div>
+                    <div class="arena-pillar column-center"></div>
+                    <div class="arena-pillar column-right"></div>
+                    <div class="arena-lights"></div>
+                </div>
 
-                <!-- Sprite completo controlado pelas animações e agachamento global -->
+                <!-- Sprite Completo com Coque Perfeito e Mecânica de Agachamento -->
                 <div id="madonna-player" class="horse-gallop" style="bottom: 0px;">
                     <div class="pixel-helmet"></div>
-                    <div class="pixel-hair-back"></div> <!-- Coque loiro na nuca perto do pescoço -->
+                    <div class="pixel-hair-back"></div> 
                     <div class="pixel-head">
                         <div class="pixel-eye-left"></div>
                         <div class="pixel-eye-right"></div>
@@ -139,9 +147,9 @@
         let mainLoopInterval;
         let obstacleXPosition = 800;
         let arenaXPosition = 900;
-        let baseGameSpeed = 3.2; 
+        let baseGameSpeed = 5.5; // Começa consideravelmente mais rápido para dinâmica arcade real
         let isGameRunning = false;
-        let nextObstacleType = "low"; 
+        let nextObstacleType = "low_narrow"; 
 
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
@@ -157,16 +165,16 @@
             currentScore = 0;
             obstacleXPosition = 800;
             arenaXPosition = 900;
-            baseGameSpeed = 3.2;
+            baseGameSpeed = 5.5;
             isGameRunning = true;
             isDucking = false;
-            nextObstacleType = "low";
+            nextObstacleType = "low_narrow";
             
             scoreCounter.innerText = currentScore;
-            speedIndicator.innerText = "PISTA LIVRE";
+            speedIndicator.innerText = "ALTA VELOCIDADE";
             madonnaPlayer.style.bottom = "0px";
             gameObstacle.style.left = "800px";
-            arenaEnd.style.right = "-400px";
+            arenaEnd.style.right = "-900px"; 
             madonnaPlayer.className = "horse-gallop";
             madonnaPlayer.style.transform = "scaleY(1)";
             
@@ -183,11 +191,11 @@
             
             let verticalPosition = 0;
             let upwardMotion = setInterval(() => {
-                if (verticalPosition >= 140) {
+                if (verticalPosition >= 145) {
                     clearInterval(upwardMotion);
                     
                     let downwardMotion = setInterval(() => {
-                        let fallSpeed = isDucking ? 9 : 4.5;
+                        let fallSpeed = isDucking ? 10 : 5.5;
                         
                         if (verticalPosition <= 0) {
                             clearInterval(downwardMotion);
@@ -200,7 +208,7 @@
                         madonnaPlayer.style.bottom = verticalPosition + 'px';
                     }, 10);
                 } else {
-                    verticalPosition += 6.5;
+                    verticalPosition += 8.0;
                 }
                 madonnaPlayer.style.bottom = verticalPosition + 'px';
             }, 10);
@@ -217,7 +225,6 @@
                 e.preventDefault();
                 if (!isCurrentlyJumping) {
                     isDucking = true;
-                    // Correção: Remove a oscilação e achata o conjunto inteiro (Avatar + Cavalo) mantendo o alinhamento com a base
                     madonnaPlayer.classList.remove('horse-gallop');
                     madonnaPlayer.style.transformOrigin = "bottom center";
                     madonnaPlayer.style.transform = "scaleY(0.55)"; 
@@ -238,14 +245,32 @@
         });
 
         function applyObstacleStyle() {
-            if (nextObstacleType === "high") {
-                gameObstacle.style.height = "55px";
-                gameObstacle.style.bottom = "45px"; 
-                gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
-            } else {
-                gameObstacle.style.height = "40px";
-                gameObstacle.style.bottom = "0px";
-                gameObstacle.style.background = "linear-gradient(to top, #ff007f, #9900ff)";
+            // Matriz com as 4 variações reais exigidas
+            switch(nextObstacleType) {
+                case "low_narrow":
+                    gameObstacle.style.width = "20px";
+                    gameObstacle.style.height = "38px";
+                    gameObstacle.style.bottom = "0px";
+                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #9900ff)";
+                    break;
+                case "low_wide":
+                    gameObstacle.style.width = "50px";
+                    gameObstacle.style.height = "38px";
+                    gameObstacle.style.bottom = "0px";
+                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #00ffff)";
+                    break;
+                case "high_narrow":
+                    gameObstacle.style.width = "20px";
+                    gameObstacle.style.height = "55px";
+                    gameObstacle.style.bottom = "50px"; 
+                    gameObstacle.style.background = "linear-gradient(to top, #9900ff, #00ffff)";
+                    break;
+                case "high_wide":
+                    gameObstacle.style.width = "55px";
+                    gameObstacle.style.height = "55px";
+                    gameObstacle.style.bottom = "50px";
+                    gameObstacle.style.background = "linear-gradient(to top, #ff007f, #ffffff)";
+                    break;
             }
         }
 
@@ -255,40 +280,46 @@
             if (currentScore < 60) {
                 obstacleXPosition -= baseGameSpeed;
 
-                if (obstacleXPosition < -40) {
+                if (obstacleXPosition < -60) {
                     obstacleXPosition = 800;
                     currentScore++;
                     scoreCounter.innerText = currentScore;
                     
-                    baseGameSpeed += 0.05;
+                    // Progressão veloz contínua
+                    baseGameSpeed += 0.15;
                     
-                    if (currentScore > 45) speedIndicator.innerText = "CRUCIAL!";
-                    else if (currentScore > 25) speedIndicator.innerText = "ACELERADO";
-                    else if (currentScore > 12) speedIndicator.innerText = "MÉDIO";
+                    if (currentScore > 45) speedIndicator.innerText = "VELOCIDADE INSANA!";
+                    else if (currentScore > 25) speedIndicator.innerText = "COREOGRAFIA RÁPIDA";
+                    else if (currentScore > 12) speedIndicator.innerText = "RITMO CRESCENTE";
 
-                    nextObstacleType = Math.random() > 0.5 ? "high" : "low";
+                    const types = ["low_narrow", "low_wide", "high_narrow", "high_wide"];
+                    nextObstacleType = types[Math.floor(Math.random() * types.length)];
                     applyObstacleStyle();
 
                     if (currentScore >= 60) {
-                        gameObstacle.style.left = "-100px";
+                        gameObstacle.style.left = "-200px";
                         return;
                     }
                 }
                 gameObstacle.style.left = obstacleXPosition + 'px';
 
                 let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
-                if (obstacleXPosition > 85 && obstacleXPosition < 125) {
-                    if (nextObstacleType === "low" && playerCurrentBottom < 38) {
+                let obstacleWidth = parseInt(gameObstacle.style.width) || 24;
+                
+                // Cálculo de colisão dinâmica adaptável à largura das variações
+                if (obstacleXPosition > (90 - obstacleWidth) && obstacleXPosition < 125) {
+                    if ((nextObstacleType === "low_narrow" || nextObstacleType === "low_wide") && playerCurrentBottom < 36) {
                         handleCollision();
-                    } else if (nextObstacleType === "high" && !isDucking && playerCurrentBottom < 80) {
+                    } else if ((nextObstacleType === "high_narrow" || nextObstacleType === "high_wide") && !isDucking && playerCurrentBottom < 75) {
                         handleCollision();
                     }
                 }
             } else {
-                arenaXPosition -= 2.5;
-                arenaEnd.style.right = (50 - arenaXPosition) + 'px';
+                // SEQUÊNCIA DA ARENA CINZA FINAL
+                arenaXPosition -= 4.0; 
+                arenaEnd.style.right = (800 - arenaXPosition) + 'px';
 
-                if (arenaXPosition <= 480) {
+                if (arenaXPosition <= 760) {
                     isGameRunning = false;
                     madonnaPlayer.classList.remove('horse-gallop');
                     clearInterval(mainLoopInterval);
@@ -303,12 +334,12 @@
         function handleCollision() {
             alert("Obstáculo atingido! A coreografia recomeçou do início da contagem.");
             currentScore = 0;
-            baseGameSpeed = 3.2;
+            baseGameSpeed = 5.5;
             obstacleXPosition = 800;
             scoreCounter.innerText = currentScore;
-            speedIndicator.innerText = "PISTA LIVRE";
+            speedIndicator.innerText = "ALTA VELOCIDADE";
             gameObstacle.style.left = obstacleXPosition + 'px';
-            nextObstacleType = "low";
+            nextObstacleType = "low_narrow";
             applyObstacleStyle();
         }
 
