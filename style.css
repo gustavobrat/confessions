@@ -1,4 +1,4 @@
-/* ================= LUXURY DISCO CORES E CONFIGURAÇÕES BASE ================= */
+/* ================= LUXURY DISCO CONFIGURAÇÕES BASE ================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -47,7 +47,7 @@ body {
     display: flex;
 }
 
-/* ================= COMPONENTES VISUAIS E CONFIGURAÇÕES GERAIS ================= */
+/* ================= COMPONENTES VISUAIS ================= */
 .logo-png-area {
     width: 580px;
     height: 180px;
@@ -66,18 +66,15 @@ body {
 
 .placeholder-text {
     color: #ffffff;
-    font-size: 14px; 
+    font-size: 14px;
     letter-spacing: 1px;
     text-shadow: 0 0 8px #ffffff;
 }
 
 .glass-panel {
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     border: 2px solid rgba(255, 0, 127, 0.25);
     border-radius: 8px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
 .story-textbox {
@@ -90,20 +87,16 @@ body {
     padding: 22px;
 }
 
-.story-textbox.box-expanded {
-    margin-bottom: 35px;
-}
-
 .highlight-label {
     font-weight: bold;
     color: #ffd700;
-    font-size: 20px; 
+    font-size: 20px;
     margin-bottom: 12px;
     text-shadow: 0 0 8px #ffd700;
 }
 
 .header-title-big {
-    font-size: 24px; 
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
@@ -120,25 +113,23 @@ body {
 .border-cyan-glow { border: 2px solid #00ffff; }
 .border-pink-glow { border: 2px solid #ff007f; }
 
-/* ================= BOTÕES ARCADE NEON ================= */
+/* ================= BOTÕES ================= */
 .btn-arcade-neon {
     background: transparent;
     border: 3px solid #ff007f;
     color: #ff007f;
     padding: 20px 45px;
-    font-size: 16px; 
+    font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
     text-shadow: 0 0 6px #ff007f;
     box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
-    transition: all 0.2s ease;
 }
 
 .btn-arcade-neon:hover {
     background: #ff007f;
     color: #fff;
     box-shadow: 0 0 30px #ff007f;
-    transform: scale(1.04);
 }
 
 .btn-arcade-neon.cyan-theme {
@@ -149,10 +140,9 @@ body {
 .btn-arcade-neon.cyan-theme:hover {
     background: #00ffff;
     color: #000;
-    box-shadow: 0 0 30px #00ffff;
 }
 
-/* ================= ARENA DE JOGO COM PREDIO E ARENA FINAL COBERTA ================= */
+/* ================= ARENA DE JOGO E CENÁRIO DE FUNDO ================= */
 #game-arena {
     width: 100%;
     height: 240px;
@@ -203,35 +193,16 @@ body {
     z-index: 2;
 }
 
-/* ARENA DE SHOW DO FINAL DO JOGO (Vem deslizando da direita) */
-#arena-destination {
-    width: 180px;
-    height: 160px;
+#pixel-arena-end {
+    width: 340px;
+    height: 240px;
+    background: linear-gradient(to top, #ff007f, transparent);
+    border-left: 6px solid #00ffff;
     position: absolute;
     bottom: 0;
-    right: -300px; /* Inicia escondida */
+    right: -400px;
     z-index: 3;
-    transition: right 0.1s linear;
-}
-.arena-roof {
-    width: 180px;
-    height: 60px;
-    background: #ff007f;
-    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    box-shadow: 0 0 15px #ff007f;
-}
-.arena-lights {
-    width: 180px;
-    height: 10px;
-    background: #00ffff;
-    box-shadow: 0 0 10px #00ffff;
-}
-.arena-door {
-    width: 180px;
-    height: 90px;
-    background: #111126;
-    border-left: 6px solid #ff007f;
-    border-right: 6px solid #ff007f;
+    box-shadow: -15px 0 30px rgba(0, 255, 255, 0.4);
 }
 
 .game-hud {
@@ -239,7 +210,7 @@ body {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: 15px; 
+    font-size: 15px;
 }
 
 .hud-block { font-weight: bold; letter-spacing: 1px; }
@@ -252,19 +223,16 @@ body {
     color: #00ffff;
     border: 2px solid #00ffff;
     padding: 12px 24px;
-    font-size: 12px; 
-    cursor: default;
-    border-radius: 4px;
+    font-size: 12px;
 }
 
-/* ================= SPRITE MELHORADO: CAPACETE PEQUENO E CABELO SUPER VISÍVEL ================= */
+/* ================= SPRITE CORRIGIDO: HELMET + LOIRO VISÍVEL ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
     position: absolute;
     left: 90px;
     z-index: 10;
-    transition: transform 0.1s ease, bottom 0.02s linear;
 }
 
 .horse-gallop {
@@ -275,51 +243,48 @@ body {
     100% { transform: translateY(-5px) rotate(3deg); }
 }
 
-/* Pose de Agachar do Teclado Seta Baixo */
-.ducking-pose {
-    transform: scaleY(0.6) translateY(25px);
-}
-
-/* Capacete de Hipismo Miniatura (Deixa o cabelo livre) */
-.pixel-helmet-small {
+/* Capacete Preto Compactado */
+.pixel-helmet {
     width: 22px;
-    height: 5px;
-    background-color: #0a0a0a;
-    position: absolute;
-    top: 4px;
-    left: 13px;
-    z-index: 13;
-}
-
-/* Cabelo Loiro Amplo e Altamente Visível no Topo e Laterais */
-.pixel-hair-top {
-    width: 26px;
-    height: 12px;
-    background-color: #ffd700;
+    height: 8px;
+    background-color: #000000;
     position: absolute;
     top: 2px;
-    left: 11px;
-    border-radius: 5px 5px 0 0;
-    z-index: 12;
-    box-shadow: inset -3px 0 0 #d4b200, -2px 6px 0 #ffd700, 2px 6px 0 #ffd700;
+    left: 13px;
+    border-radius: 3px 3px 0 0;
+    z-index: 13;
+    border-bottom: 1px solid #222;
 }
 
-/* Rosto Compacto */
+/* Cabelo Loiro Totalmente Expandido e Visível */
+.pixel-hair {
+    width: 26px;
+    height: 14px;
+    background-color: #ffd700;
+    position: absolute;
+    top: 9px; /* Perfeitamente acoplado abaixo do capacete */
+    left: 11px;
+    z-index: 11;
+    border-radius: 0 0 3px 3px;
+    box-shadow: inset -2px -2px 0 #d4b200;
+}
+
+/* Rosto sobreposto ao cabelo */
 .pixel-head {
     width: 18px;
-    height: 16px;
+    height: 14px;
     background-color: #ffdbac;
     position: absolute;
-    top: 12px;
+    top: 9px;
     left: 15px;
-    z-index: 11;
+    z-index: 12;
 }
 .pixel-eye-left, .pixel-eye-right {
     width: 3px;
     height: 3px;
     background-color: #1a1008;
     position: absolute;
-    top: 4px;
+    top: 3px;
 }
 .pixel-eye-left { left: 3px; }
 .pixel-eye-right { right: 3px; }
@@ -329,22 +294,23 @@ body {
     height: 2px;
     background-color: #d6004f;
     position: absolute;
-    bottom: 3px;
+    bottom: 2px;
     left: 5px;
 }
 
-/* Traje Slim de Hipismo */
+/* Traje de Montaria */
 .pixel-suit {
     width: 20px;
     height: 22px;
     background-color: #121212;
     position: absolute;
-    top: 28px;
+    top: 23px;
     left: 14px;
     border-top: 3px solid #ffffff;
+    z-index: 10;
 }
 
-/* Novo Design Detalhado do Cavalo */
+/* Anatomia do Cavalo */
 .pixel-horse {
     width: 56px;
     height: 28px;
@@ -381,7 +347,7 @@ body {
 .pixel-leg-back { left: 6px; }
 .pixel-leg-front { right: 10px; }
 
-/* OBSTÁCULOS CONFIGURADOS PELO SCRIPT */
+/* Obstáculo Neon */
 #game-obstacle {
     width: 24px;
     position: absolute;
@@ -389,20 +355,8 @@ body {
     border-radius: 4px;
     z-index: 6;
 }
-/* Obstáculo de Pular (Chão) */
-.ground-obstacle {
-    height: 40px;
-    bottom: 0;
-    background: linear-gradient(to top, #ff007f, #9900ff);
-}
-/* Obstáculo de Agachar (Aéreo) */
-.air-obstacle {
-    height: 35px;
-    top: 130px; /* Posicionado na altura exata da cabeça da boneca */
-    background: linear-gradient(to bottom, #00ffff, #ff007f);
-}
 
-/* ================= PAINEL DE ESPECIFICAÇÕES DO PROFESSOR (EXTERNO) ================= */
+/* ================= PAINEL DO PROFESSOR ================= */
 .professor-specifications-panel {
     width: 800px;
     margin-top: 30px;
@@ -410,16 +364,13 @@ body {
     border: 2px solid #00ffff;
     border-radius: 8px;
     padding: 24px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
     color: #ffffff;
 }
 
 .professor-specifications-panel h2 {
-    font-size: 16px; 
+    font-size: 16px;
     color: #00ffff;
     margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
 }
 
 .spec-grid {
@@ -437,10 +388,22 @@ body {
 
 .spec-card strong {
     display: block;
-    font-size: 13px; 
+    font-size: 13px;
     color: #ff007f;
     margin-bottom: 8px;
 }
 
 .spec-card p {
-    font-
+    font-size: 12px;
+    line-height: 1.8;
+    color: #cccccc;
+}
+
+.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
+.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
+
+@keyframes glowEffect {
+    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); }
+    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); }
+}
