@@ -18,6 +18,15 @@ body {
     overflow-x: hidden;
 }
 
+/* Elemento de áudio configurado sem ocupar espaço visual */
+audio {
+    display: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
 .arcade-cabinet {
     width: 800px;
     height: 600px;
@@ -53,14 +62,22 @@ body {
     height: 180px;
     border: 2px solid #00ffff;
     margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Garante que se houver uma tag img dentro da área da logo, ela fique perfeita */
+.logo-png-area img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
 
 .mirror-glow {
     background: linear-gradient(135deg, rgba(255, 0, 127, 0.12) 0%, rgba(0, 255, 255, 0.12) 100%);
     box-shadow: 0 0 25px rgba(255, 0, 127, 0.2), inset 0 0 15px rgba(0, 255, 255, 0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 8px;
 }
 
@@ -78,11 +95,11 @@ body {
 }
 
 .story-textbox {
-    width: 90%; 
-    color: #f0f0f5; 
-    font-size: 16px; 
-    line-height: 2.2; 
-    text-align: center; 
+    width: 90%;
+    color: #f0f0f5;
+    font-size: 16px;
+    line-height: 2.2;
+    text-align: center;
     margin-bottom: 25px;
     padding: 22px;
 }
@@ -104,18 +121,35 @@ body {
     margin-bottom: 20px;
 }
 
-.gif-header-box {
-    width: 90%;
-    height: 110px;
-    margin-bottom: 20px;
-}
-.gif-header-box.giant-gif {
-    height: 235px !important;
-    margin-bottom: 30px;
+/* ================= NOVO SISTEMA DE ESPAÇAMENTO PARA OS GIFS ================= */
+.gif-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
-.border-cyan-glow { border: 2px solid #00ffff; }
-.border-pink-glow { border: 2px solid #ff007f; }
+.pixel-gif {
+    max-width: 100%;
+    height: auto;
+    max-height: 180px; /* Evita que GIFs gigantes estourem o tamanho vertical */
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Configurações neon customizadas para cada tela */
+.screen-cyan-gif .pixel-gif {
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.screen-pink-gif .pixel-gif {
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+}
 
 /* ================= BOTÕES ================= */
 .btn-arcade-neon {
@@ -141,6 +175,7 @@ body {
     color: #00ffff;
     text-shadow: 0 0 6px #00ffff;
 }
+
 .btn-arcade-neon.cyan-theme:hover {
     background: #00ffff;
     color: #000;
@@ -189,9 +224,10 @@ body {
     left: 0;
     background-color: #07040f;
     clip-path: polygon(
-        0% 100%, 0% 40%, 8% 40%, 8% 20%, 15% 20%, 15% 50%, 22% 50%, 22% 10%, 30% 10%, 30% 60%, 
-        38% 60%, 38% 30%, 48% 30%, 48% 55%, 55% 55%, 55% 5%, 65% 5%, 65% 45%, 72% 45%, 72% 25%, 
-        82% 25%, 82% 65%, 90% 65%, 90% 15%, 100% 15%, 100% 100%
+        0% 100%, 0% 40%, 8% 40%, 8% 20%, 15% 20%, 15% 50%, 22% 50%, 22% 10%,
+        30% 10%, 30% 60%, 38% 60%, 38% 30%, 48% 30%, 48% 55%, 55% 55%, 55% 5%,
+        65% 5%, 65% 45%, 72% 45%, 72% 25%, 82% 25%, 82% 65%, 90% 65%, 90% 15%,
+        100% 15%, 100% 100%
     );
     opacity: 0.6;
     z-index: 2;
@@ -233,9 +269,22 @@ body {
     font-size: 15px;
 }
 
-.hud-block { font-weight: bold; letter-spacing: 1px; }
-.hud-total { color: #555577; font-size: 12px; }
-.controls-hint { color: #5a5a80; font-size: 12px; margin-top: 15px; text-align: center; }
+.hud-block {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hud-total {
+    color: #555577;
+    font-size: 12px;
+}
+
+.controls-hint {
+    color: #5a5a80;
+    font-size: 12px;
+    margin-top: 15px;
+    text-align: center;
+}
 
 .btn-visual-only {
     margin-top: 20px;
@@ -246,7 +295,7 @@ body {
     font-size: 12px;
 }
 
-/* ================= SPRITE AJUSTADO COM CAPACETE + CABELO LOIRO VISÍVEL ================= */
+/* ================= SPRITE AJUSTADO CONFORME REQUISITOS ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
@@ -259,6 +308,7 @@ body {
 .horse-gallop {
     animation: gallopSystem 0.4s infinite alternate ease-in-out;
 }
+
 @keyframes gallopSystem {
     0% { transform: translateY(0px) rotate(0deg); }
     100% { transform: translateY(-5px) rotate(3deg); }
@@ -282,7 +332,7 @@ body {
     height: 12px;
     background-color: #ffd700;
     position: absolute;
-    top: 9px; 
+    top: 9px;
     left: 12px;
     z-index: 11;
     border-radius: 0 0 2px 2px;
@@ -311,6 +361,7 @@ body {
     left: 16px;
     z-index: 12;
 }
+
 .pixel-eye-left, .pixel-eye-right {
     width: 3px;
     height: 3px;
@@ -318,6 +369,7 @@ body {
     position: absolute;
     top: 3px;
 }
+
 .pixel-eye-left { left: 2px; }
 .pixel-eye-right { right: 2px; }
 
@@ -352,6 +404,7 @@ body {
     left: 0;
     z-index: 5;
 }
+
 .pixel-horse-head {
     width: 16px;
     height: 22px;
@@ -361,6 +414,7 @@ body {
     right: -4px;
     border-radius: 3px;
 }
+
 .pixel-horse-mane {
     width: 6px;
     height: 20px;
@@ -369,6 +423,7 @@ body {
     top: -10px;
     left: 2px;
 }
+
 .pixel-leg-front, .pixel-leg-back {
     width: 5px;
     height: 10px;
@@ -376,6 +431,7 @@ body {
     position: absolute;
     bottom: -10px;
 }
+
 .pixel-leg-back { left: 6px; }
 .pixel-leg-front { right: 10px; }
 
@@ -387,7 +443,7 @@ body {
     z-index: 6;
 }
 
-/* ================= PAINEL DO PROFESSOR (CORRIGIDO COM ALTO CONTRASTE) ================= */
+/* ================= PAINEL DO PROFESSOR (ALTO CONTRASTE) ================= */
 .professor-specifications-panel {
     width: 800px;
     margin-top: 30px;
@@ -400,42 +456,5 @@ body {
 
 .professor-specifications-panel h2 {
     font-size: 16px;
-    color: #00ffff !important; 
-    margin-bottom: 20px;
-    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-}
-
-.spec-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.spec-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid #333355;
-    padding: 14px;
-    border-radius: 6px;
-}
-
-.spec-card strong {
-    display: block;
-    font-size: 13px;
-    color: #ff007f !important;
-    margin-bottom: 8px;
-}
-
-.spec-card p {
-    font-size: 12px;
-    line-height: 1.8;
-    color: #ffffff !important;
-}
-
-.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
-.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
-.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
-
-@keyframes glowEffect {
-    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); }
-    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); }
-}
+    color: #00ffff !important;
+    margin
