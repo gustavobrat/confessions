@@ -66,7 +66,7 @@ body {
 
 .placeholder-text {
     color: #ffffff;
-    font-size: 11px;
+    font-size: 14px; /* FONTE AMPLIADA */
     letter-spacing: 1px;
     text-shadow: 0 0 8px #ffffff;
 }
@@ -84,7 +84,7 @@ body {
 .story-textbox {
     width: 90%; 
     color: #f0f0f5; 
-    font-size: 14px; 
+    font-size: 16px; /* FONTE AMPLIADA */
     line-height: 2.2; 
     text-align: center; 
     margin-bottom: 25px;
@@ -98,13 +98,13 @@ body {
 .highlight-label {
     font-weight: bold;
     color: #ffd700;
-    font-size: 16px;
+    font-size: 20px; /* FONTE AMPLIADA */
     margin-bottom: 12px;
     text-shadow: 0 0 8px #ffd700;
 }
 
 .header-title-big {
-    font-size: 20px;
+    font-size: 24px; /* FONTE AMPLIADA */
     margin-bottom: 20px;
 }
 
@@ -128,7 +128,7 @@ body {
     border: 3px solid #ff007f;
     color: #ff007f;
     padding: 20px 45px;
-    font-size: 14px;
+    font-size: 16px; /* FONTE AMPLIADA */
     cursor: pointer;
     border-radius: 4px;
     text-shadow: 0 0 6px #ff007f;
@@ -154,7 +154,7 @@ body {
     box-shadow: 0 0 30px #00ffff;
 }
 
-/* ================= ARENA COM CENÁRIO DE FUNDO IMPRESSIONANTE ================= */
+/* ================= ARENA COM CENÁRIO DE FUNDO CORRIGIDO ================= */
 #game-arena {
     width: 100%;
     height: 240px;
@@ -176,6 +176,7 @@ body {
     right: 60px;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(255, 255, 204, 0.4);
+    z-index: 2;
 }
 
 /* Estrelas Brilhantes */
@@ -186,26 +187,26 @@ body {
     position: absolute;
     top: 40px;
     left: 120px;
-    box-shadow: 200px -10px #fff, 350px 30px #fff, 500px -20px #fff, -50px 15px #fff;
+    box-shadow: 200px -10px #fff, 350px 30px #fff, 500px -20px #fff, 630px 15px #fff;
+    z-index: 2;
 }
 
-/* Silhueta de Prédios (Skyline) ao Fundo */
+/* Prédios (Skyline) ao Fundo Corrigidos */
 .pixel-skyline {
     width: 100%;
-    height: 60px;
+    height: 70px;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-image: 
-        linear-gradient(to top, #090514 100%, transparent),
-        box-shadow(40px -30px #090514);
-    box-shadow: 
-        40px -30px 0 #07040f, 70px -45px 0 #07040f, 130px -25px 0 #07040f,
-        200px -50px 0 #07040f, 260px -35px 0 #07040f, 320px -55px 0 #07040f,
-        420px -40px 0 #07040f, 490px -60px 0 #07040f, 580px -30px 0 #07040f,
-        640px -45px 0 #07040f, 720px -55px 0 #07040f;
-    opacity: 0.5;
-    z-index: 1;
+    background-color: #07040f;
+    /* Geração geométrica dos blocos dos prédios via clip-path para evitar bugs */
+    clip-path: polygon(
+        0% 100%, 0% 40%, 8% 40%, 8% 20%, 15% 20%, 15% 50%, 22% 50%, 22% 10%, 30% 10%, 30% 60%, 
+        38% 60%, 38% 30%, 48% 30%, 48% 55%, 55% 55%, 55% 5%, 65% 5%, 65% 45%, 72% 45%, 72% 25%, 
+        82% 25%, 82% 65%, 90% 65%, 90% 15%, 100% 15%, 100% 100%
+    );
+    opacity: 0.6;
+    z-index: 2;
 }
 
 .game-hud {
@@ -213,12 +214,12 @@ body {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: 13px;
+    font-size: 15px; /* HUD AMPLIADO */
 }
 
 .hud-block { font-weight: bold; letter-spacing: 1px; }
-.hud-total { color: #555577; font-size: 11px; }
-.controls-hint { color: #5a5a80; font-size: 10px; margin-top: 15px; }
+.hud-total { color: #555577; font-size: 12px; }
+.controls-hint { color: #5a5a80; font-size: 12px; margin-top: 15px; text-align: center; }
 
 .btn-visual-only {
     margin-top: 20px;
@@ -226,12 +227,12 @@ body {
     color: #00ffff;
     border: 2px solid #00ffff;
     padding: 12px 24px;
-    font-size: 10px;
+    font-size: 12px; /* FONTE AMPLIADA */
     cursor: default;
     border-radius: 4px;
 }
 
-/* ================= SPRITE MINIMALISTA AVANÇADO MADONNA ================= */
+/* ================= SPRITE ULTRA MINIMALISTA COM COQUE LOIRO ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
@@ -262,7 +263,20 @@ body {
     box-shadow: 4px 2px 0 #222;
 }
 
-/* Rosto Compacto (Cabelo longo removido, simulando o coque por trás) */
+/* Coque Loiro por Trás (Cabelo Amarrado Visível Ocultando as Laterais) */
+.pixel-hair-bun {
+    width: 8px;
+    height: 8px;
+    background-color: #ffd700;
+    position: absolute;
+    top: 10px;
+    left: 8px; /* Posicionado atrás da nuca */
+    border-radius: 2px;
+    z-index: 10;
+    box-shadow: -2px 1px 0 #d4b200;
+}
+
+/* Rosto Compacto */
 .pixel-head {
     width: 18px;
     height: 16px;
@@ -310,6 +324,7 @@ body {
     position: absolute;
     bottom: 8px;
     left: 0;
+    z-index: 5;
 }
 .pixel-horse-head {
     width: 16px;
@@ -347,7 +362,7 @@ body {
     bottom: 0;
     box-shadow: 0 0 15px #ff007f;
     border-radius: 4px 4px 0 0;
-    z-index: 2;
+    z-index: 6;
 }
 
 /* ================= PAINEL DE ESPECIFICAÇÕES DO PROFESSOR (EXTERNO) ================= */
@@ -363,7 +378,7 @@ body {
 }
 
 .professor-specifications-panel h2 {
-    font-size: 14px;
+    font-size: 16px; /* FONTE AMPLIADA */
     color: #00ffff;
     margin-bottom: 20px;
     letter-spacing: 1px;
@@ -385,13 +400,13 @@ body {
 
 .spec-card strong {
     display: block;
-    font-size: 11px;
+    font-size: 13px; /* FONTE AMPLIADA */
     color: #ff007f;
     margin-bottom: 8px;
 }
 
 .spec-card p {
-    font-size: 10px;
+    font-size: 12px; /* FONTE AMPLIADA */
     line-height: 1.8;
     color: #cccccc;
 }
