@@ -197,16 +197,59 @@ body {
     z-index: 2;
 }
 
+/* ================= ARQUITETURA DA ARENA CINZA GRANDE DO FINAL ================= */
 #pixel-arena-end {
-    width: 340px;
+    width: 800px;
     height: 240px;
-    background: linear-gradient(to top, #ff007f, transparent);
-    border-left: 6px solid #00ffff;
+    background: #2a2a35; /* Base sólida Cinza */
+    border-left: 8px solid #ff007f;
     position: absolute;
     bottom: 0;
-    right: -400px;
-    z-index: 3;
-    box-shadow: -15px 0 30px rgba(0, 255, 255, 0.4);
+    right: -900px; /* Escondido dinamicamente fora da tela */
+    z-index: 20;   /* Renderização por cima de todos os objetos e cenários */
+    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.arena-roof {
+    width: 100%;
+    height: 50px;
+    background: #1a1a24;
+    border-bottom: 4px solid #00ffff;
+    color: #00ffff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.arena-pillar {
+    width: 40px;
+    height: 190px;
+    background: #3e3e4f;
+    border-left: 4px solid #555566;
+    border-right: 4px solid #1a1a24;
+    position: absolute;
+    bottom: 0;
+}
+.column-left { left: 80px; }
+.column-center { left: 380px; }
+.column-right { left: 680px; }
+
+.arena-lights {
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    top: 50px;
+    background: repeating-linear-gradient(to right, #ff007f, #ff007f 20px, transparent 20px, transparent 40px);
+    animation: stageFlicker 0.2s infinite alternate;
+}
+@keyframes stageFlicker {
+    from { opacity: 0.4; } to { opacity: 1; }
 }
 
 .game-hud {
@@ -230,14 +273,14 @@ body {
     font-size: 12px;
 }
 
-/* ================= SPRITE CORRIGIDO COM COQUE NA NUCA E CAPACETE ================= */
+/* ================= SPRITE AJUSTADO COM COQUE REFINADO DE LUXO ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
     position: absolute;
     left: 90px;
-    z-index: 10;
-    transition: transform 0.1s linear; /* Suaviza achatamento completo */
+    z-index: 15;
+    transition: transform 0.08s linear; 
 }
 
 .horse-gallop {
@@ -260,7 +303,7 @@ body {
     z-index: 14;
 }
 
-/* Cabelo Loiro nas Laterais e Rosto */
+/* Cabelo Loiro Lateral */
 .pixel-hair {
     width: 24px;
     height: 12px;
@@ -272,17 +315,18 @@ body {
     border-radius: 0 0 2px 2px;
 }
 
-/* COQUE LOIRO NA NUCA (Perto do pescoço e abaixo do capacete) */
+/* COQUE LOIRO REFINADO (Volumoso, circular, com sombra e contorno dourado na nuca) */
 .pixel-hair-back {
-    width: 10px;
-    height: 10px;
+    width: 14px;  /* Aumentado para destaque real */
+    height: 14px; /* Aumentado para destaque real */
     background-color: #ffd700;
     position: absolute;
-    top: 13px; /* Alinhado perfeitamente perto do pescoço */
-    left: 7px;  /* Posicionado por trás na nuca */
+    top: 12px;    /* Reposicionado cirurgicamente na curvatura do pescoço */
+    left: 5px;     /* Projetado para trás da nuca perfeitamente visível */
     border-radius: 50%;
     z-index: 9;
-    box-shadow: inset -2px -2px 0 #d4b200, -1px 1px 0 rgba(0,0,0,0.3);
+    border: 1.5px solid #cc9900; /* Contorno pixelado dourado escuro */
+    box-shadow: inset -3px -3px 0 #b38600; /* Profundidade tridimensional */
 }
 
 /* Rosto sobreposto */
@@ -353,73 +397,4 @@ body {
     top: -10px;
     left: 2px;
 }
-.pixel-leg-front, .pixel-leg-back {
-    width: 5px;
-    height: 10px;
-    background-color: #3d291f;
-    position: absolute;
-    bottom: -10px;
-}
-.pixel-leg-back { left: 6px; }
-.pixel-leg-front { right: 10px; }
-
-/* Obstáculo Neon */
-#game-obstacle {
-    width: 24px;
-    position: absolute;
-    box-shadow: 0 0 15px #ff007f;
-    border-radius: 4px;
-    z-index: 6;
-}
-
-/* ================= PAINEL DO PROFESSOR ================= */
-.professor-specifications-panel {
-    width: 800px;
-    margin-top: 30px;
-    background: #0d0d1a;
-    border: 2px solid #00ffff;
-    border-radius: 8px;
-    padding: 24px;
-    color: #ffffff;
-}
-
-.professor-specifications-panel h2 {
-    font-size: 16px;
-    color: #00ffff;
-    margin-bottom: 20px;
-}
-
-.spec-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.spec-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid #333355;
-    padding: 14px;
-    border-radius: 6px;
-}
-
-.spec-card strong {
-    display: block;
-    font-size: 13px;
-    color: #ff007f;
-    margin-bottom: 8px;
-}
-
-.spec-card p {
-    font-size: 12px;
-    line-height: 1.8;
-    color: #cccccc;
-}
-
-.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
-.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
-.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
-
-@keyframes glowEffect {
-    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); }
-    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); }
-}
+.pixel-leg-front, .pixel
