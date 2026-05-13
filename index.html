@@ -8,199 +8,236 @@
 </head>
 <body>
 
-    <!-- 1. TELA INICIAL (BOOT / ARCADE) -->
-    <section id="start-screen" class="arcade-screen">
-        <div class="crt-overlay"></div>
-        <div class="logo-container">
-            <!-- Representação em texto/CSS da logo pixel art solicitada -->
-            <img src="logo.png" alt="THE CONFESSIONS TOUR: JUMP GAME" class="pixel-logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
-            <div id="fallback-logo" class="fallback-logo" style="display:none;">
-                <span class="neon-pink">THE CONFESSIONS TOUR</span>
-                <span class="neon-blue">JUMP GAME</span>
-            </div>
+    <!-- TAG DE ÁUDIO NATAL / CONTROLE DA TRILHA DE JUMP -->
+    <audio id="bg-arcade-track" loop>
+        <source src="jump-instrumental.mp3" type="audio/mpeg">
+        <source src="jump-instrumental.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- 1. TELA INICIAL (FINESSE ARCADE - LIMPA E PURA) -->
+    <section id="start-screen" class="arcade-screen screen-active">
+        <div class="scanlines"></div>
+        <div class="crt-glow"></div>
+        
+        <div class="logo-space-large">
+            <img src="logo.png" alt="" class="pixel-asset-render" onerror="this.style.display='none'; document.getElementById('css-pixel-logo').style.display='block';">
+            <div id="css-pixel-logo" class="logo-matrix-css" style="display:none;"></div>
         </div>
-        <button class="arcade-btn blink" onclick="showSection('about-section')">PRESS START</button>
+
+        <div class="insert-coin-area">
+            <button class="press-start-btn" onclick="showSection('about-section')">PRESS START</button>
+        </div>
     </section>
 
     <!-- 2. SEÇÃO ABOUT THE GAME -->
     <section id="about-section" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
-        <h2 class="neon-pink">ABOUT THE GAME</h2>
-        <div class="arcade-card">
-            <p>Inspirado nos arcades clássicos dos anos 80/90 e na icônica abertura de hipismo da <span class="neon-blue">Confessions Tour (Future Lovers / I Feel Love)</span>.</p>
-            <p>Sua missão é guiar a Rainha montada em seu cavalo através de uma jornada pixelada perigosa até alcançar a arena do show definitivo.</p>
+        <div class="scanlines"></div>
+        <h2 class="neon-pink-text-glow">ABOUT THE GAME</h2>
+        
+        <div class="arcade-frame-panel">
+            <p class="dialogue-text">INSPIRADO NA ICÔNICA ABERTURA DE HIPISMO DA <span class="neon-blue-text-glow">CONFESSIONS TOUR</span>.</p>
+            <p class="dialogue-text">GUIDE A RAINHA MONTADA EM SEU CAVALO ATRAVÉS DE UMA ESTRADA DISCO DE 16-BITS ATÉ A ARENA DO SHOW.</p>
         </div>
-        <button class="arcade-btn" onclick="showSection('features-section')">NEXT ></button>
+        
+        <button class="control-nav-btn" onclick="showSection('features-section')">NEXT STAGE ></button>
     </section>
 
     <!-- 3. SEÇÃO GAME FEATURES & 4. BOTÕES VISUAIS -->
     <section id="features-section" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
-        <h2 class="neon-blue">GAME FEATURES</h2>
+        <div class="scanlines"></div>
+        <h2 class="neon-blue-text-glow">HARDWARE SYSTEMS</h2>
         
-        <div class="features-grid">
-            <div class="feature-item"><span>[X]</span> PIXEL ART 16-BIT</div>
-            <div class="feature-item"><span>[X]</span> DINO GAME INSPIRATION</div>
-            <div class="feature-item"><span>[X]</span> 60 PROGRESSIVE OBSTACLES</div>
-            <div class="feature-item"><span>[X]</span> RETRO ARCADE VISUAL</div>
-            <div class="feature-item"><span>[X]</span> DISCO SOUNDTRACK VIBE</div>
-            <div class="feature-item"><span>[X]</span> INCREASING DIFFICULTY</div>
+        <div class="features-arcade-container">
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> PIXEL ART 16-BIT RETRO</div>
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> CLASSIC DINO GAMEPLAY</div>
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> 60 PROGRESSIVE SPEEDS</div>
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> ARCADE VISUAL INTERFACE</div>
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> FUTURE LOVERS DISCO VIBE</div>
+            <div class="feature-hardware-card"><span class="bullet-neon"></span> PRO-GAMER DIFFICULTY</div>
         </div>
 
-        <!-- Botões Visuais Obrigatórios -->
-        <div class="action-buttons">
-            <button class="arcade-btn-secondary">DOWNLOAD</button>
-            <button class="arcade-btn" onclick="showSection('storyboard-section')">JOGAR AGORA</button>
+        <div class="arcade-hardware-buttons">
+            <button class="hardware-btn-download">DOWNLOAD ROM</button>
+            <button class="hardware-btn-play" onclick="showSection('storyboard-section')">JOGAR AGORA</button>
         </div>
     </section>
 
     <!-- 5. STORYBOARD / MISSION MODE -->
     <section id="storyboard-section" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
-        <h2 class="neon-pink">MISSION MODE</h2>
+        <div class="scanlines"></div>
+        <h2 class="neon-pink-text-glow">MISSION BRIEFING</h2>
         
-        <div class="media-box">
-            <img src="intro.gif" alt="Intro Animation" class="pixel-gif" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'100\' height=\'50\' viewBox=\'0 0 100 50\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%230ff\' font-family=\'monospace\'>[INTRO.GIF]</text></svg>';">
+        <div class="cinematic-gif-container">
+            <img src="intro.gif" alt="Cinematic Intro" class="pixel-asset-render" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'300\' height=\'150\' viewBox=\'0 0 300 150\'><rect width=\'100%\' height=\'100%\' fill=\'%23050505\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23ff007f\' font-family=\'monospace\' font-size=\'14\'>[INTRO.GIF DISPLAY AREA]</text></svg>';">
         </div>
 
-        <div class="arcade-card text-left">
-            <p>A estrela precisa atravessar os obstáculos montada em seu cavalo negro de hipismo para chegar a tempo do show!</p>
-            <p class="neon-blue font-bold">COMANDO: Pressione ESPAÇO para PULAR.</p>
+        <!-- MÓDULO INTEGRADO DO SOM JUMP INSTRUMENTAL -->
+        <div class="soundtrack-deck">
+            <div class="soundtrack-label">BGM DECK: JUMP (INSTRUMENTAL)</div>
+            <div class="deck-controls">
+                <button id="deck-play-btn" class="deck-btn" onclick="toggleAudio()">PLAY TAPE</button>
+                <div id="deck-visualizer" class="visualizer-bars">
+                    <div class="vbar"></div><div class="vbar"></div><div class="vbar"></div><div class="vbar"></div>
+                </div>
+            </div>
         </div>
 
-        <button class="arcade-btn blink" onclick="startGame()">START RIDE</button>
+        <div class="arcade-frame-panel layout-left">
+            <p class="dialogue-text">A ESTRELA PRECISA ATRAVESSAR OS OBSTÁCULOS NÉON DA AUTOESTRADA EM VELOCIDADE MÁXIMA PARA CHEGAR A TEMPO DA TOURNÉE.</p>
+            <p class="dialogue-text neon-blue-text-glow font-bold">CONTROLE: Pressione ESPAÇO para saltar.</p>
+        </div>
+
+        <button class="press-start-btn" onclick="startGame()">START RIDE</button>
     </section>
 
-    <!-- 6. JOGO (GAMEPLAY EXECUTÁVEL) -->
+    <!-- 6. ÁREA DE GAMEPLAY DO JOGO -->
     <section id="game-section" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
+        <div class="scanlines"></div>
         
-        <div class="game-hud">
-            <div class="hud-item">OBSTACLES: <span id="score-counter" class="neon-pink">00</span>/60</div>
-            <div class="hud-item">SPEED: <span id="speed-counter" class="neon-blue">1x</span></div>
+        <div class="hud-arcade-display">
+            <div class="hud-bracket">STAGE COUNTER: <span id="score-counter" class="neon-pink-text-glow">00</span>/60</div>
+            <div class="hud-bracket">ENGINE: <span id="speed-counter" class="neon-blue-text-glow">1.0x</span></div>
         </div>
 
-        <div id="game-stage" class="game-stage">
-            <!-- Personagem montada a cavalo (Visual Retrô com CSS Puro caso falte imagem) -->
-            <div id="player" class="player-sprite">
-                <img src="madonna-horse-pixel.png" alt="Madonna" onerror="this.style.display='none';">
-                <div class="fallback-sprite-jockey"></div>
-                <div class="fallback-sprite-horse"></div>
+        <div id="game-stage" class="game-viewport">
+            <div id="player" class="madonna-rider-sprite">
+                <img src="madonna-horse-pixel.png" alt="Madonna Rider" class="pixel-asset-render" onerror="this.style.display='none';">
+                <div class="css-pixel-horse-body"></div>
+                <div class="css-pixel-horse-head"></div>
+                <div class="css-pixel-horse-legs"></div>
+                <div class="css-pixel-madonna-body"></div>
+                <div class="css-pixel-madonna-hair"></div>
             </div>
             
-            <!-- Obstáculo dinâmico -->
-            <div id="obstacle" class="obstacle-sprite"></div>
+            <div id="obstacle" class="equestrian-hurdle-obstacle">
+                <div class="hurdle-bars"></div>
+            </div>
             
-            <!-- Linha do chão -->
-            <div class="game-floor"></div>
+            <div class="arcade-scrolling-floor"></div>
         </div>
         
-        <div class="game-instructions">Pressione ESPAÇO ou TOQUE na tela para pular</div>
+        <div class="game-hardware-footer">PRESS [SPACEBAR] OR TAP TO JUMP</div>
     </section>
 
     <!-- 7. FINAL DO JOGO (VITÓRIA) -->
     <section id="victory-screen" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
-        <h2 class="neon-pink blink">STAGE CLEAR</h2>
+        <div class="scanlines"></div>
+        <h2 class="neon-blue-text-glow clear-animation">STAGE CLEAR</h2>
         
-        <div class="media-box">
-            <img src="final.gif" alt="Victory Animation" class="pixel-gif" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'100\' height=\'50\' viewBox=\'0 0 100 50\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f0f\' font-family=\'monospace\'>[FINAL.GIF]</text></svg>';">
+        <div class="cinematic-gif-container">
+            <img src="final.gif" alt="Victory Cinematic" class="pixel-asset-render" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'300\' height=\'150\' viewBox=\'0 0 300 150\'><rect width=\'100%\' height=\'100%\' fill=\'%2300ffff\' font-family=\'monospace\' font-size=\'14\'>[FINAL.GIF DISPLAY AREA]</text></svg>';">
         </div>
 
-        <div class="arcade-card">
-            <p class="neon-blue">CONGRATULATIONS!</p>
-            <p>Você superou todos os perigos da estrada. A Rainha chegou em segurança à arena da Confessions Tour!</p>
-            <p>Obrigado por jogar!</p>
+        <div class="arcade-frame-panel">
+            <p class="dialogue-text neon-pink-text-glow">CONGRATULATIONS PLAYER 1!</p>
+            <p class="dialogue-text">VOCÊ SOBREVIVEU ÀS TRILHAS RETRÔ. A ESTRELA ESTÁ NA ARENA PRONTA PARA A PERFORMANCE DE FUTURE LOVERS.</p>
         </div>
 
-        <button class="arcade-btn" onclick="resetGame()">PLAY AGAIN</button>
+        <button class="control-nav-btn" onclick="resetGame()">RETURN TO MAIN</button>
     </section>
 
-    <!-- TELA DE GAME OVER -->
+    <!-- TELA DE GAME OVER REFINADA -->
     <section id="gameover-screen" class="arcade-screen hidden">
-        <div class="crt-overlay"></div>
-        <h2 class="neon-pink blink" style="color: red; text-shadow: 0 0 10px red;">GAME OVER</h2>
-        <div class="arcade-card">
-            <p>Você não conseguiu alcançar o show a tempo.</p>
+        <div class="scanlines"></div>
+        <h2 class="gameover-title-glow">GAME OVER</h2>
+        <div class="arcade-frame-panel">
+            <p class="dialogue-text">O CAVALO TROPEÇOU NOS OBSTÁCULOS DA ARENA.</p>
         </div>
-        <button class="arcade-btn" onclick="startGame()">TRY AGAIN</button>
+        <button class="press-start-btn" onclick="startGame()">TRY AGAIN</button>
     </section>
 
     <script>
-        // SISTEMA DE NAVEGAÇÃO DE TELAS
-        function showSection(sectionId) {
-            document.querySelectorAll('.arcade-screen').forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById(sectionId).classList.remove('hidden');
-        }
-
-        // ENGINE DO JOGO (ENDLESS RUNNER INTERATIVO)
         let isJumping = false;
         let score = 0;
-        let gameSpeed = 5;
+        let gameSpeed = 6.5;
         let gameActive = false;
-        let obstacleTimeout;
         let checkCollisionInterval;
 
         const player = document.getElementById('player');
         const obstacle = document.getElementById('obstacle');
         const scoreCounter = document.getElementById('score-counter');
         const speedCounter = document.getElementById('speed-counter');
+        
+        // Elementos do Módulo de Trilha Sonora
+        const bgTrack = document.getElementById('bg-arcade-track');
+        const deckPlayBtn = document.getElementById('deck-play-btn');
+        const deckVisualizer = document.getElementById('deck-visualizer');
 
-        // Monitoramento de Input (Teclado e Toque)
+        function showSection(sectionId) {
+            document.querySelectorAll('.arcade-screen').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('screen-active');
+            });
+            const activeSection = document.getElementById(sectionId);
+            activeSection.classList.remove('hidden');
+            activeSection.classList.add('screen-active');
+        }
+
+        // Controle Manual de Áudio pela fita K7 do Menu
+        function toggleAudio() {
+            if (bgTrack.paused) {
+                bgTrack.play().catch(err => console.log("Interação requerida"));
+                deckPlayBtn.innerText = "STOP TAPE";
+                deckPlayBtn.classList.add('deck-btn-active');
+                deckVisualizer.classList.add('active-bars');
+            } else {
+                bgTrack.pause();
+                deckPlayBtn.innerText = "PLAY TAPE";
+                deckPlayBtn.classList.remove('deck-btn-active');
+                deckVisualizer.classList.remove('active-bars');
+            }
+        }
+
         document.addEventListener('keydown', function(event) {
             if (event.code === 'Space' && gameActive) {
+                event.preventDefault();
                 jump();
             }
         });
 
-        document.getElementById('game-stage').addEventListener('touchstart', function() {
+        document.getElementById('game-stage').addEventListener('touchstart', function(e) {
+            e.preventDefault();
             if (gameActive) jump();
         });
 
         function jump() {
             if (isJumping) return;
             isJumping = true;
-            player.classList.add('jump-animation');
+            player.classList.add('jump-arc');
             
             setTimeout(() => {
-                player.classList.remove('jump-animation');
+                player.classList.remove('jump-arc');
                 isJumping = false;
-            }, 600); 
+            }, 650); 
         }
 
         function startGame() {
             showSection('game-section');
             score = 0;
-            gameSpeed = 6;
+            gameSpeed = 6.5;
             gameActive = true;
             scoreCounter.innerText = "00";
-            speedCounter.innerText = "1x";
+            speedCounter.innerText = "1.0x";
             
-            // Resetar posições
-            obstacle.style.right = '-40px';
+            // Força a reprodução automática do Instrumental ao iniciar a jogabilidade
+            bgTrack.play().catch(e => console.log("Audio autostart block bypass"));
+
+            obstacle.style.right = '-50px';
             obstacle.style.left = 'auto';
             
-            // Iniciar loops do jogo
             loopObstacle();
-            checkCollisionInterval = setInterval(checkCollision, 10);
+            checkCollisionInterval = setInterval(checkCollision, 8);
         }
 
         function loopObstacle() {
             if (!gameActive) return;
-
-            // Move obstáculo para a direita inicial externa
             obstacle.style.animation = 'none';
-            obstacle.offsetHeight; // Força reflow do browser
+            obstacle.offsetHeight; 
             
-            // Aplica velocidade dinâmica baseada nos pontos
-            let duration = 3 / (gameSpeed / 5);
-            if (duration < 0.8) duration = 0.8; // limite máximo de velocidade
+            let duration = 2.8 / (gameSpeed / 6.5);
+            if (duration < 0.75) duration = 0.75; 
             
-            obstacle.style.animation = `moveObstacle ${duration}s linear infinite`;
-
-            // Escuta a repetição da animação para contar pontos
+            obstacle.style.animation = `moveHurdle ${duration}s linear infinite`;
             obstacle.addEventListener('animationiteration', incrementScore);
         }
 
@@ -208,16 +245,17 @@
             if (!gameActive) return;
             score++;
             
-            // Formata o contador com dois dígitos
             scoreCounter.innerText = score < 10 ? '0' + score : score;
             
-            // Aumenta a velocidade progressivamente
             if (score % 5 === 0) {
-                gameSpeed += 0.8;
-                speedCounter.innerText = (gameSpeed / 5).toFixed(1) + 'x';
+                gameSpeed += 0.9;
+                speedCounter.innerText = (gameSpeed / 6.5).toFixed(1) + 'x';
+                
+                let duration = 2.8 / (gameSpeed / 6.5);
+                if (duration < 0.75) duration = 0.75;
+                obstacle.style.animationDuration = `${duration}s`;
             }
 
-            // Condição de Vitória (60 obstáculos)
             if (score >= 60) {
                 endGame(true);
             }
@@ -229,11 +267,10 @@
             const playerRect = player.getBoundingClientRect();
             const obstacleRect = obstacle.getBoundingClientRect();
 
-            // Margem de tolerância (hitbox pixel-perfect tolerante)
             if (
-                playerRect.right - 15 > obstacleRect.left &&
-                playerRect.left + 15 < obstacleRect.right &&
-                playerRect.bottom - 5 > obstacleRect.top
+                playerRect.right - 25 > obstacleRect.left &&
+                playerRect.left + 25 < obstacleRect.right &&
+                playerRect.bottom - 8 > obstacleRect.top
             ) {
                 endGame(false);
             }
@@ -245,16 +282,25 @@
             obstacle.style.animation = 'none';
             obstacle.removeEventListener('animationiteration', incrementScore);
 
-            if (isVictory) {
-                showSection('victory-screen');
-            } else {
+            // Reduz o volume gradativamente para efeito arcade premium de encerramento
+            if (!isVictory) {
+                bgTrack.pause();
+                bgTrack.currentTime = 0; // Reseta áudio se perder
                 showSection('gameover-screen');
+            } else {
+                showSection('victory-screen');
             }
         }
 
         function resetGame() {
+            bgTrack.pause();
+            bgTrack.currentTime = 0;
+            deckPlayBtn.innerText = "PLAY TAPE";
+            deckPlayBtn.classList.remove('deck-btn-active');
+            deckVisualizer.classList.remove('active-bars');
             showSection('start-screen');
         }
     </script>
 </body>
-</html>
+    </html>
+    
