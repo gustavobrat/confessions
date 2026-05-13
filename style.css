@@ -197,59 +197,32 @@ body {
     z-index: 2;
 }
 
-/* ================= ARQUITETURA DA ARENA CINZA GRANDE DO FINAL ================= */
+/* GRANDE ARENA CINZA DE CHEGADA ESTRUTURADA */
 #pixel-arena-end {
-    width: 800px;
+    width: 450px;
     height: 240px;
-    background: #2a2a35; /* Base sólida Cinza */
-    border-left: 8px solid #ff007f;
+    background: #4d4d4d;
+    border-left: 8px solid #a6a6a6;
+    border-top: 4px solid #a6a6a6;
     position: absolute;
     bottom: 0;
-    right: -900px; /* Escondido dinamicamente fora da tela */
-    z-index: 20;   /* Renderização por cima de todos os objetos e cenários */
-    box-shadow: -20px 0 40px rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    right: -500px;
+    z-index: 3;
+    box-shadow: -15px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .arena-roof {
     width: 100%;
-    height: 50px;
-    background: #1a1a24;
-    border-bottom: 4px solid #00ffff;
-    color: #00ffff;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 0 0 5px #00ffff;
+    height: 40px;
+    background: #333333;
+    border-bottom: 4px solid #222;
 }
 
-.arena-pillar {
-    width: 40px;
-    height: 190px;
-    background: #3e3e4f;
-    border-left: 4px solid #555566;
-    border-right: 4px solid #1a1a24;
-    position: absolute;
-    bottom: 0;
-}
-.column-left { left: 80px; }
-.column-center { left: 380px; }
-.column-right { left: 680px; }
-
-.arena-lights {
+.arena-stage-lights {
     width: 100%;
-    height: 10px;
-    position: absolute;
-    top: 50px;
-    background: repeating-linear-gradient(to right, #ff007f, #ff007f 20px, transparent 20px, transparent 40px);
-    animation: stageFlicker 0.2s infinite alternate;
-}
-@keyframes stageFlicker {
-    from { opacity: 0.4; } to { opacity: 1; }
+    height: 15px;
+    background: repeating-linear-gradient(90deg, #00ffff, #00ffff 10px, #ff007f 10px, #ff007f 20px);
+    opacity: 0.8;
 }
 
 .game-hud {
@@ -273,14 +246,14 @@ body {
     font-size: 12px;
 }
 
-/* ================= SPRITE AJUSTADO COM COQUE REFINADO DE LUXO ================= */
+/* ================= SPRITE AJUSTADO COM CAPACETE + CABELO LOIRO VISÍVEL ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
     position: absolute;
     left: 90px;
-    z-index: 15;
-    transition: transform 0.08s linear; 
+    z-index: 10;
+    transition: transform 0.08s linear;
 }
 
 .horse-gallop {
@@ -291,7 +264,7 @@ body {
     100% { transform: translateY(-5px) rotate(3deg); }
 }
 
-/* Capacete Preto Compacto */
+/* Capacete Slim Preto */
 .pixel-helmet {
     width: 20px;
     height: 8px;
@@ -303,7 +276,7 @@ body {
     z-index: 14;
 }
 
-/* Cabelo Loiro Lateral */
+/* Cabelo Loiro nas Laterais e Moldura */
 .pixel-hair {
     width: 24px;
     height: 12px;
@@ -315,21 +288,20 @@ body {
     border-radius: 0 0 2px 2px;
 }
 
-/* COQUE LOIRO REFINADO (Volumoso, circular, com sombra e contorno dourado na nuca) */
-.pixel-hair-back {
-    width: 14px;  /* Aumentado para destaque real */
-    height: 14px; /* Aumentado para destaque real */
+/* COQUE LOIRO REFINADO NA NUCA E PESCOÇO */
+.pixel-hair-bun {
+    width: 12px;
+    height: 12px;
     background-color: #ffd700;
     position: absolute;
-    top: 12px;    /* Reposicionado cirurgicamente na curvatura do pescoço */
-    left: 5px;     /* Projetado para trás da nuca perfeitamente visível */
-    border-radius: 50%;
+    top: 12px; 
+    left: 6px;  
+    border-radius: 4px;
     z-index: 9;
-    border: 1.5px solid #cc9900; /* Contorno pixelado dourado escuro */
-    box-shadow: inset -3px -3px 0 #b38600; /* Profundidade tridimensional */
+    box-shadow: inset -2px -2px 0 #d4b200, -1px 2px 0 rgba(0,0,0,0.4);
 }
 
-/* Rosto sobreposto */
+/* Rosto */
 .pixel-head {
     width: 16px;
     height: 14px;
@@ -397,4 +369,54 @@ body {
     top: -10px;
     left: 2px;
 }
-.pixel-leg-front, .pixel
+.pixel-leg-front, .pixel-leg-back {
+    width: 5px;
+    height: 10px;
+    background-color: #3d291f;
+    position: absolute;
+    bottom: -10px;
+}
+.pixel-leg-back { left: 6px; }
+.pixel-leg-front { right: 10px; }
+
+/* Obstáculo Dinâmico */
+#game-obstacle {
+    position: absolute;
+    z-index: 6;
+}
+
+/* ================= PAINEL DO PROFESSOR (CORRIGIDO COM ALTO CONTRASTE) ================= */
+.professor-specifications-panel {
+    width: 800px;
+    margin-top: 30px;
+    background: #0d0d1a;
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+.professor-specifications-panel h2 {
+    font-size: 16px;
+    color: #00ffff !important; /* Força cor azul neon no título */
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+.spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.spec-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #333355;
+    padding: 14px;
+    border-radius: 6px;
+}
+
+.spec-card strong {
+    display: block;
+    font-size: 13px;
+    color: #ff
