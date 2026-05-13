@@ -1,4 +1,4 @@
-/* ================= CONFIGURAÇÕES GERAIS E CORES CLÁSSICAS ================= */
+/* ================= DESIGN IDENTITÁRIO: DISCO ARCADE DE LUXO ================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #0b0b14;
+    background-color: #05050b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,13 +16,13 @@ body {
     overflow: hidden;
 }
 
-/* Moldura externa do monitor do jogo */
+/* Moldura externa do monitor estilo Club Premium */
 .arcade-cabinet {
     width: 800px;
     height: 600px;
-    background: #111122;
+    background: #090914;
     border: 5px solid #ff007f;
-    box-shadow: 0 0 35px #ff007f, inset 0 0 20px rgba(255, 0, 127, 0.4);
+    box-shadow: 0 0 50px rgba(255, 0, 127, 0.6), inset 0 0 30px rgba(0, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -37,136 +37,168 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, #181836 0%, #07070f 100%);
-    padding: 20px;
+    background: radial-gradient(circle at center, #1c113a 0%, #04020a 100%);
+    padding: 30px;
 }
 
 .game-screen.active {
     display: flex;
 }
 
-/* ================= COMPONENTES DO SITE ================= */
+/* ================= TIPOGRAFIA REFINADA E MAIOR ================= */
 .game-main-title {
     color: #ffffff;
-    font-size: 20px;
+    font-size: 26px;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.4;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.game-sub-title {
+    font-size: 24px;
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+}
+
+.header-title-big {
+    font-size: 18px;
     margin-bottom: 25px;
-    text-shadow: 3px 3px 0px #ff007f;
+    letter-spacing: 1px;
 }
 
-.logo-png-area {
-    width: 520px;
-    height: 130px;
-    border: 3px dashed #00ffff;
-    background: rgba(0, 255, 255, 0.04);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #00ffff;
-    font-size: 9px;
-    text-align: center;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    text-shadow: 0 0 5px #00ffff;
+/* Efeito Espelhado Metálico */
+.text-reflect {
+    text-shadow: 0 3px 0 #ff007f, 0 6px 0 #aa0055, 0 10px 20px rgba(0,0,0,0.6);
 }
 
-.btn-arcade-neon {
-    background: transparent;
-    border: 3px solid #ff007f;
-    color: #ff007f;
-    padding: 16px 32px;
-    font-size: 11px;
-    cursor: pointer;
-    text-shadow: 0 0 8px #ff007f;
-    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
-    transition: all 0.2s ease;
+/* ================= PAINÉIS EM GLASSMORPHISM (MOLDURA PREMIUM) ================= */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 0, 127, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.btn-arcade-neon:hover {
-    background: #ff007f;
-    color: #fff;
-    box-shadow: 0 0 25px #ff007f;
-}
-
-/* Caixas de Texto com as Histórias e Diálogos */
 .story-textbox {
-    width: 85%; 
-    color: #ffffff; 
-    font-size: 9px; 
-    line-height: 1.8; 
+    width: 90%; 
+    color: #f0f0f5; 
+    font-size: 12px; /* Ampliado para melhor leitura */
+    line-height: 2; 
     text-align: center; 
-    margin-bottom: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 15px;
-    border: 2px solid #333355;
-    border-radius: 6px;
+    margin-bottom: 25px;
+    padding: 20px;
 }
 
 .highlight-label {
     font-weight: bold;
     color: #ffd700;
-    margin-bottom: 8px;
-    text-shadow: 0 0 4px rgba(255, 215, 0, 0.4);
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
 }
 
-.header-title {
-    font-size: 14px; 
-    margin-bottom: 20px;
-}
-
-/* Painel de Características do Jogo */
 .features-box {
-    width: 85%;
-    background: rgba(255, 0, 127, 0.05);
-    border: 2px solid #ff007f;
-    border-radius: 6px;
-    padding: 15px;
-    margin-bottom: 25px;
-    color: #fff;
+    width: 90%;
+    padding: 20px;
+    margin-bottom: 30px;
+    color: #ffffff;
 }
 
 .features-box h3 {
-    font-size: 10px;
-    color: #ff007f;
-    margin-bottom: 10px;
+    font-size: 12px;
+    color: #00ffff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
 }
 
-.features-box ul {
-    list-style: none;
-}
-
+.features-box ul { list-style: none; }
 .features-box li {
-    font-size: 8px;
-    line-height: 1.6;
-    margin-bottom: 5px;
+    font-size: 10px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    color: #e2e2ec;
 }
 
-/* Espaço para o GIF nas seções de transição */
-.gif-header-box {
-    width: 85%;
-    height: 90px;
-    border: 2px dashed #ff007f;
-    background: rgba(255, 0, 127, 0.03);
+/* ================= ESPAÇOS CONCEITUAIS HOLOGRÁFICOS PARA AS MÍDIAS ================= */
+.mirror-glow {
+    background: linear-gradient(135deg, rgba(255,0,127,0.15) 0%, rgba(0,255,255,0.15) 100%);
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.25), inset 0 0 15px rgba(0,255,255,0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ff007f;
-    font-size: 8px;
-    margin-bottom: 20px;
-    border-radius: 6px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-/* ================= ÁREA DA CORRIDA E INDICADORES ================= */
+.logo-png-area {
+    width: 560px;
+    height: 140px;
+    border: 2px solid #00ffff;
+    margin-bottom: 45px;
+}
+
+.gif-header-box {
+    width: 90%;
+    height: 110px;
+    margin-bottom: 25px;
+}
+
+.border-pink-glow { border: 2px solid #ff007f; }
+.placeholder-text {
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* ================= BOTÕES NO ESTILO DISCO CLUB ================= */
+.btn-arcade-neon {
+    background: transparent;
+    border: 3px solid #ff007f;
+    color: #ff007f;
+    padding: 18px 36px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-shadow: 0 0 6px #ff007f;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-arcade-neon:hover {
+    background: #ff007f;
+    color: #fff;
+    box-shadow: 0 0 30px #ff007f;
+    transform: scale(1.05);
+}
+
+.btn-arcade-neon.cyan-theme {
+    border-color: #00ffff;
+    color: #00ffff;
+    text-shadow: 0 0 6px #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.btn-arcade-neon.cyan-theme:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 30px #00ffff;
+}
+
+/* ================= CENTRAL DE COMANDOS DA PISTA ================= */
 #game-arena {
     width: 100%;
-    height: 260px;
-    background: #0f0f20;
-    border-top: 4px solid #00ffff;
-    border-bottom: 4px solid #00ffff;
+    height: 240px;
+    background: #060610;
+    border-top: 3px solid #00ffff;
+    border-bottom: 3px solid #00ffff;
+    box-shadow: inset 0 0 30px rgba(0,255,255,0.1);
     position: relative;
     overflow: hidden;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .game-hud {
@@ -174,135 +206,142 @@ body {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: 10px;
-    margin-top: 10px;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
-.text-cyan { color: #00ffff; text-shadow: 0 0 5px #00ffff; }
-.text-pink { color: #ff007f; text-shadow: 0 0 5px #ff007f; }
-.controls-hint { color: #666688; font-size: 8px; margin-top: 12px; }
+.hud-block { font-weight: bold; letter-spacing: 1px; }
+.hud-total { color: #555577; font-size: 10px; }
+.controls-hint { color: #5c5c8a; font-size: 9px; margin-top: 15px; }
 
-/* Botão Decorativo Recomendado pelo Professor */
 .btn-visual-only {
-    margin-top: 15px;
-    background: #00ffff;
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    font-size: 8px;
-    font-weight: bold;
+    margin-top: 20px;
+    background: transparent;
+    color: #00ffff;
+    border: 2px solid #00ffff;
+    padding: 12px 24px;
+    font-size: 9px;
     cursor: default;
-    box-shadow: 0 0 10px #00ffff;
+    border-radius: 4px;
+    text-shadow: 0 0 5px #00ffff;
 }
 
-/* ================= DESIGN DA PERSONAGEM EM PIXEL ART ================= */
+/* ================= A NOVA MADONNA COMPACTA E ANIMADA (2005) ================= */
 #madonna-player {
-    width: 80px;
-    height: 110px;
+    width: 50px;
+    height: 70px;
     position: absolute;
-    left: 80px;
-    transition: bottom 0.05s linear;
+    left: 90px;
     z-index: 10;
 }
 
-/* Cabelo Loiro Volumoso (2005-2006) */
+/* Movimento de Galope Vertical Sincronizado */
+.horse-gallop {
+    animation: gallopMotion 0.45s infinite alternate ease-in-out;
+}
+
+@keyframes gallopMotion {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-4px) rotate(2deg); }
+}
+
+/* Cabelo Loiro Uniforme e Compacto */
 .pixel-hair {
-    width: 44px;
-    height: 36px;
+    width: 26px;
+    height: 22px;
     background-color: #ffd700;
     position: absolute;
     top: 0;
-    left: 14px;
-    border-radius: 6px 6px 0 0;
-    box-shadow: inset -4px -4px 0 #e6c300;
+    left: 10px;
+    border-radius: 4px 4px 0 0;
+    box-shadow: inset -2px -2px 0 #d4b200;
 }
 
-/* Cabeça e Rosto */
+/* Rosto Compactado */
 .pixel-head {
-    width: 32px;
-    height: 28px;
+    width: 20px;
+    height: 18px;
     background-color: #ffdbac;
     position: absolute;
-    top: 6px;
-    left: 20px;
+    top: 4px;
+    left: 13px;
 }
 
-/* Olhos: Dois Quadrados Simétricos */
+/* Olhos Quadrados Menores */
 .pixel-eye-left, .pixel-eye-right {
-    width: 4px;
-    height: 4px;
-    background-color: #2b1d0c;
+    width: 3px;
+    height: 3px;
+    background-color: #1e140a;
     position: absolute;
-    top: 8px;
+    top: 5px;
 }
-.pixel-eye-left { left: 6px; }
-.pixel-eye-right { right: 6px; }
+.pixel-eye-left { left: 4px; }
+.pixel-eye-right { right: 4px; }
 
-/* Boca: Um Retângulo Centralizado */
+/* Boca Retangular Ajustada */
 .pixel-mouth {
-    width: 12px;
-    height: 4px;
-    background-color: #e6005c;
+    width: 8px;
+    height: 2px;
+    background-color: #d6004f;
     position: absolute;
-    bottom: 6px;
-    left: 10px;
+    bottom: 4px;
+    left: 6px;
 }
 
-/* Roupa de Montaria Preta */
+/* Traje Slim de Hipismo Preto */
 .pixel-suit {
-    width: 36px;
-    height: 34px;
-    background-color: #111111;
+    width: 22px;
+    height: 22px;
+    background-color: #161616;
     position: absolute;
-    top: 34px;
-    left: 18px;
-    border-radius: 4px;
-    border-top: 4px solid #ffffff; /* Gola branca clássica */
+    top: 22px;
+    left: 12px;
+    border-radius: 2px;
+    border-top: 3px solid #ffffff;
 }
 
-/* Cavalo de Hipismo */
+/* Cavalo Compacto e Fluido */
 .pixel-horse {
-    width: 76px;
-    height: 42px;
-    background-color: #5c4033;
+    width: 48px;
+    height: 26px;
+    background-color: #4a3226;
     position: absolute;
     bottom: 0;
     left: 0;
-    border-radius: 6px;
-    box-shadow: inset -6px -6px 0 #3d2b22;
+    border-radius: 4px;
+    box-shadow: inset -4px -4px 0 #2d1e17;
 }
 
 .pixel-horse-head {
-    width: 24px;
-    height: 28px;
-    background-color: #5c4033;
+    width: 16px;
+    height: 18px;
+    background-color: #4a3226;
     position: absolute;
-    top: -18px;
-    right: -6px;
-    border-radius: 4px;
+    top: -12px;
+    right: -4px;
+    border-radius: 2px;
 }
 
-/* Obstáculo Neon Dinâmico */
+/* Obstáculo Neon Cônico Slim */
 #game-obstacle {
-    width: 30px;
-    height: 50px;
-    background: linear-gradient(to top, #ff007f, #00ffff);
+    width: 24px;
+    height: 40px;
+    background: linear-gradient(to top, #ff007f, #b300ff);
     position: absolute;
     bottom: 0;
-    box-shadow: 0 0 10px #ff007f;
-    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 15px #ff007f;
+    border-radius: 5px 5px 0 0;
 }
 
-/* Animação Clássica de Brilho Neon */
-.pulse-effect {
-    animation: neonPulse 1.5s infinite alternate;
-}
+/* Cores de Brilho Dinâmico */
+.text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
+.text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
+.glow-purple { text-shadow: 0 0 12px #b300ff; }
+.glow-pink { text-shadow: 0 0 10px #ff007f; }
+.glow-cyan { text-shadow: 0 0 10px #00ffff; }
 
-@keyframes neonPulse {
-    from {
-        text-shadow: 2px 2px 8px rgba(255, 0, 127, 0.6);
-    }
-    to {
-        text-shadow: 2px 2px 20px rgba(255, 0, 127, 1), 0 0 10px #ff007f;
-    }
+.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
+@keyframes glowEffect {
+    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); transform: scale(1); }
+    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); transform: scale(1.02); }
 }
