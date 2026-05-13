@@ -4,130 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Confessions Tour: Jump Game</title>
-    <!-- Importação de Fonte Pixel Retrô via Google Fonts -->
+    <!-- Importação de fontes estilizadas para o clima Arcade Finesse -->
     <link rel="preconnect" href="googleapis.com">
     <link rel="preconnect" href="gstatic.com" crossorigin>
     <link href="googleapis.com" rel="stylesheet">
+    <!-- Vinculação com o arquivo CSS próprio externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ELEMENTO DE ÁUDIO DE FUNDO (Inicia com o jogo) -->
-    <!-- Substitua "sua-trilha-retro.mp3" pelo link ou arquivo da música -->
-    <audio id="arcade-music" loop>
-        <source src="sua-trilha-retro.mp3" type="audio/mpeg">
+    <!-- ELEMENTO DE ÁUDIO EXIGIDO (Inicia com a interação do jogador) -->
+    <audio id="game-audio" loop>
+        <source src="musica-retro-madonna.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="arcade-container">
-        
-        <!-- ================= TELA 1: INÍCIO (START SCREEN) ================= -->
+    <div class="arcade-cabinet">
+
+        <!-- ================= TELA 1: ENTRADA (START SCREEN) ================= -->
         <section id="screen-start" class="game-screen active">
-            <div class="logo-container">
-                <!-- Espaço reservado para o Logotipo em PNG -->
-                <img src="logo-confessions-tour.png" alt="The Confessions Tour Jump Game Logo" class="pixel-logo">
+            <!-- Espaço reservado superior para o Logotipo em PNG -->
+            <div class="logo-png-area">
+                <span class="placeholder-tag">[ INSIRA AQUI O PNG DA LOGO DO JOGO ]</span>
             </div>
 
             <!-- Botão de entrada exigido -->
-            <button class="btn-arcade pulse" onclick="startGame()">CLIQUE PARA JOGAR</button>
+            <button class="btn-arcade-neon pulse-effect" onclick="changeToStoryScreen()">CLIQUE PARA JOGAR</button>
             
-            <div class="arcade-footer-text">
-                <p>© 1984 - 2026 RETRO-POP STUDIOS</p>
+            <div class="arcade-subtext">
+                <p>INSERT COIN • RETRO-POP STUDIOS</p>
             </div>
         </section>
 
-        <!-- ================= TELA 2: HISTÓRIA E JOGO (STORYBOARD) ================= -->
+        <!-- ================= TELA 2: HISTÓRIA DO JOGO (STORYBOARD) ================= -->
         <section id="screen-story" class="game-screen">
-            <header class="game-header">
-                <h1 class="neon-text-pink">THE CONFESSIONS TOUR</h1>
-                <h2 class="neon-text-purple">JUMP GAME</h2>
-            </header>
-
-            <main class="story-layout">
-                <!-- Lado Esquerdo: História e Detalhes -->
-                <div class="story-info">
-                    <div class="arcade-card">
-                        <h3>A MISSÃO RETRÔ</h3>
-                        <p>Prepare as pistas de dança! Sua missão é guiar a rainha do Pop, **Madonna**, montada em seu cavalo majestoso direto para a arena do show histórico.</p>
-                        <p>Desvie dos refletores caídos, caixas de som antigas e paparazzi retrô ao longo do caminho.</p>
-                    </div>
-
-                    <div class="arcade-card">
-                        <h3>CARACTERÍSTICAS</h3>
-                        <ul class="features-list">
-                            <li>🕹️ Estética Clássica 16-Bit</li>
-                            <li>🐎 Look Icônico: Cabelo Loiro & Traje de Hipismo Preto</li>
-                            <li>🎵 Trilha Sonora Synthwave / Pop Dinâmica</li>
-                            <li>⚡ Desafio Progressivo: 60 Obstáculos Rápidos</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Lado Direito: Visualizador do Jogo / Espaço para GIF -->
-                <div class="game-visualizer">
-                    <div class="gif-placeholder">
-                        <!-- Espaço reservado para o GIF da boneca pixelizada na arena -->
-                        <span class="placeholder-text">[ COLE O GIF DA MADONNA PIXEL EM CIMA DO CAVALO AQUI ]</span>
-                        <!-- Exemplo de tag pronta para quando tiver o arquivo: -->
-                        <!-- <img src="madonna-riding.gif" alt="Madonna Pixel Art Animation"> -->
-                    </div>
-                    
-                    <div class="game-stats">
-                        <div class="stat-box">OBSTÁCULOS: <span class="neon-text-pink">0 / 60</span></div>
-                        <div class="stat-box">VELOCIDADE: <span class="neon-text-purple">MAX</span></div>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Botão Visual de Interação exigido pelo professor -->
-            <div class="action-area">
-                <button class="btn-arcade btn-download" onclick="showVictory()">BAIXAR VERSÃO ARCADE (VISUAL)</button>
+            <h1 class="neon-title-purple">THE STORYBOARD</h1>
+            
+            <div class="retro-textbox">
+                <p class="highlight-text">A MISSÃO POP:</p>
+                <p>Leve a rainha <span>Madonna</span> em segurança até a grande arena para realizar o show histórico da <strong>Confessions Tour</strong>!</p>
+                <p>Montada em seu cavalo, vestindo seu icônico traje de hipismo preto e ostentando seus cabelos loiros, ela deve galopar em alta velocidade e saltar por <strong>60 obstáculos</strong> ritmados eletrônicos.</p>
             </div>
+
+            <!-- Espaço para GIF na página de história conforme solicitado -->
+            <div class="gif-media-box">
+                <span class="placeholder-tag">[ ESPAÇO RESERVADO PARA O GIF DA HISTÓRIA / INTRODUÇÃO ]</span>
+            </div>
+
+            <button class="btn-arcade-neon" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
         </section>
 
-        <!-- ================= TELA 3: VITÓRIA E AGRADECIMENTO ================= -->
-        <section id="screen-victory" class="game-screen">
-            <div class="victory-container">
-                <h1 class="victory-title pulse">STAGE CLEAR!</h1>
-                
-                <div class="gif-placeholder victory-gif">
-                    <!-- Espaço reservado para o GIF de celebração do show final -->
-                    <span class="placeholder-text">[ COLE O GIF DA MADONNA CONSEGUINDO CHEGAR NA ARENA AQUI ]</span>
-                    <!-- <img src="madonna-concert-victory.gif" alt="Madonna Concert Success"> -->
-                </div>
-
-                <div class="arcade-card thank-you-card">
-                    <h3>OBJETIVO ALCANÇADO!</h3>
-                    <p>Obrigado, jogador! Você conseguiu desviar de todos os 60 obstáculos com maestria e velocidade máxima.</p>
-                    <p>A Rainha do Pop está segura no palco e pronta para iniciar a **Confessions Tour** graças às suas habilidades no controle!</p>
-                </div>
-
-                <button class="btn-arcade" onclick="resetGame()">JOGAR NOVAMENTE</button>
+        <!-- ================= TELA 3: ARENA DE JOGO ATIVO ================= -->
+        <section id="screen-game" class="game-screen">
+            <div class="game-hud">
+                <div class="hud-item">OBSTÁCULOS: <span id="score-counter" class="text-cyan">0</span> / 60</div>
+                <div class="hud-item">VELOCIDADE: <span id="speed-indicator" class="text-pink">NORMAL</span></div>
             </div>
+
+            <!-- Arena física do jogo onde a mecânica real acontece -->
+            <div id="game-arena" onclick="triggerMadonnaJump()">
+                
+                <!-- Boneca Pixel da Madonna montada no cavalo (Gerada via CSS) -->
+                <div id="madonna-player">
+                    <div class="pixel-hair"></div>
+                    <div class="pixel-head"></div>
+                    <div class="pixel-suit"></div>
+                    <div class="pixel-legs"></div>
+                    <div class="pixel-horse"></div>
+                </div>
+
+                <!-- Obstáculo Pop Dinâmico -->
+                <div id="game-obstacle"></div>
+
+            </div>
+            
+            <p class="controls-hint">Pressione a barra de <span class="text-cyan">ESPAÇO</span> ou <span class="text-cyan">CLIQUE NA ARENA</span> para pular.</p>
+            
+            <!-- Botão de baixar/jogar puramente visual exigido pelo professor -->
+            <button class="btn-visual-only">JOGAR AGORA / BAIXAR (VISUAL)</button>
+        </section>
+
+        <!-- ================= TELA 4: AGRADECIMENTO E VITÓRIA ================= -->
+        <section id="screen-victory" class="game-screen">
+            <h1 class="neon-title-cyan pulse-effect">STAGE CLEAR!</h1>
+            
+            <div class="retro-textbox border-pink">
+                <p class="highlight-text text-pink">OBJETIVO ALCANÇADO!</p>
+                <p>Muito obrigado, jogador! Você conseguiu superar todos os <strong>60 obstáculos</strong> com precisão cirúrgica e velocidade máxima de jogabilidade arcade!</p>
+                <p>A diva pop chegou com sucesso total na arena e o show da <strong>Confessions Tour</strong> vai começar perfeitamente graças a você!</p>
+            </div>
+
+            <!-- Espaço para GIF na página de agradecimento conforme solicitado -->
+            <div class="gif-media-box border-pink">
+                <span class="placeholder-tag">[ ESPAÇO RESERVADO PARA O GIF DE VITÓRIA DO SHOW ]</span>
+            </div>
+
+            <button class="btn-arcade-neon" onclick="resetArcadeToMenu()">REINICIAR JOGO</button>
         </section>
 
     </div>
 
-    <!-- Scripts simples para navegação entre as telas do Storyboard e controle do áudio -->
+    <!-- ==================== LÓGICA JAVASCRIPT INTEGRADA DO JOGO ==================== -->
     <script>
-        function startGame() {
-            // Toca a música simulando o início do Arcade
-            var audio = document.getElementById('arcade-music');
-            audio.play().catch(function(error) {
-                console.log("O navegador bloqueou o áudio automático. Interação realizada.");
-            });
+        // Seletores de elementos das telas
+        const screenStart = document.getElementById('screen-start');
+        const screenStory = document.getElementById('screen-story');
+        const screenGame = document.getElementById('screen-game');
+        const screenVictory = document.getElementById('screen-victory');
 
-            document.getElementById('screen-start').classList.remove('active');
-            document.getElementById('screen-story').classList.add('active');
+        // Seletores de mecânica do motor do jogo
+        const madonnaPlayer = document.getElementById('madonna-player');
+        const gameObstacle = document.getElementById('game-obstacle');
+        const scoreCounter = document.getElementById('score-counter');
+        const speedIndicator = document.getElementById('speed-indicator');
+        const bgAudio = document.getElementById('game-audio');
+
+        // Variáveis de controle de física e estados
+        let currentScore = 0;
+        let isCurrentlyJumping = false;
+        let mainLoopInterval;
+        let obstacleXPosition = 800; 
+        let baseGameSpeed = 7; 
+        let isGameRunning = false;
+
+        function changeToStoryScreen() {
+            screenStart.classList.remove('active');
+            screenStory.classList.add('active');
+            bgAudio.play().catch(() => console.log("Áudio aguardando clique ativo."));
         }
 
-        function showVictory() {
-            document.getElementById('screen-story').classList.remove('active');
-            document.getElementById('screen-victory').classList.add('active');
+        function startActiveGameplay() {
+            screenStory.classList.remove('active');
+            screenGame.classList.add('active');
+            bgAudio.play().catch(() => {});
+
+            // Inicialização dos parâmetros do motor de jogo
+            currentScore = 0;
+            obstacleXPosition = 800;
+            baseGameSpeed = 7;
+            isGameRunning = true;
+            scoreCounter.innerText = currentScore;
+            speedIndicator.innerText = "NORMAL";
+            
+            clearInterval(mainLoopInterval);
+            mainLoopInterval = setInterval(runGameEngineTick, 10);
         }
 
-        function resetGame() {
-            document.getElementById('screen-victory').classList.remove('active');
-            document.getElementById('screen-start').classList.add('active');
+        function triggerMadonnaJump() {
+            if (isCurrentlyJumping || !isGameRunning) return;
+            isCurrentlyJumping = true;
+            
+            let verticalPosition = 0;
+            // Curva de subida do pulo arcade
+            let upwardMotion = setInterval(() => {
+                if (verticalPosition >= 130) {
+                    clearInterval(upwardMotion);
+                    // Curva de descida por gravidade simulada
+                    let downwardMotion = setInterval(() => {
+                        if (verticalPosition <= 0) {
+                            clearInterval(downMotion);
+                            isCurrentlyJumping = false;
+                        }
+                        verticalPosition -= 6;
+                        madonnaPlayer.style.bottom = verticalPosition + 'px';
+                    }, 12);
+                }
+                verticalPosition += 8;
+                madonnaPlayer.style.bottom = verticalPosition + 'px';
+            }, 12);
+        }
+
+        // Listener da tecla de Espaço
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                triggerMadonnaJump();
+            }
+        });
+
+        // Motor de atualização de quadros e checagem de colisões (Hitbox)
+        function runGameEngineTick() {
+            if (!isGameRunning) return;
+
+            obstacleXPosition -= baseGameSpeed;
+            if (obstacleXPosition < -40) {
+                obstacleXPosition = 800;
+                currentScore++;
+                scoreCounter.innerText = currentScore;
+
+                // Aceleração progressiva conforme solicitado (Fica mais rápido a cada ponto)
+                baseGameSpeed += 0.4; 
+
+                if (currentScore > 40) speedIndicator.innerText = "MÁXIMA!";
+                else if (currentScore > 20) speedIndicator.innerText = "RÁPIDO";
+                else if (currentScore > 10) speedIndicator.innerText = "MÉDIO";
+
+                // Condição de vitória exata ao atingir os 60 obstáculos limpos
+                if (currentScore >= 60) {
+                    stopGameSession(true);
+                    return;
+                }
+            }
+            gameObstacle.style.right = (800 - obstacleXPosition) + 'px';
+
+            // Verificação matemática de colisão
+            let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
+            if (obstacleXPosition > 50 && obstacleXPosition < 100 && playerCurrentBottom < 40) {
+                alert("Você colidiu em um obstáculo da turnê! O contador reiniciou para o desafio.");
+                currentScore = 0;
+                scoreCounter.innerText = currentScore;
+                baseGameSpeed = 7;
+                obstacleXPosition = 800;
+            }
+        }
+
+        function stopGameSession(reachedVictory) {
+            isGameRunning = false;
+            clearInterval(mainLoopInterval);
+            if (reachedVictory) {
+                screenGame.classList.remove('active');
+                screenVictory.classList.add('active');
+            }
+        }
+
+        function resetArcadeToMenu() {
+            screenVictory.classList.remove('active');
+            screenStart.classList.add('active');
         }
     </script>
 </body>
