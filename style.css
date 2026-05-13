@@ -1,13 +1,13 @@
-/* ======================== CONFIGURAÇÃO GERAL E CORES ======================== */
+/* ======================== DIRETRIZES VISUAIS E PALETA NEON ======================== */
 :root {
-    --bg-dark: #0a0512;
+    --dark-void: #0a0512;
     --neon-pink: #ff007f;
     --neon-purple: #9d00ff;
     --neon-cyan: #00f0ff;
-    --text-light: #ffffff;
-    --card-bg: rgba(25, 12, 43, 0.85);
-    --font-pixel: 'Press Start 2P', monospace;
-    --font-display: 'Rajdhani', sans-serif;
+    --pure-white: #ffffff;
+    --overlay-box: rgba(25, 12, 43, 0.9);
+    --pixel-font: 'Press Start 2P', monospace;
+    --display-font: 'Rajdhani', sans-serif;
 }
 
 * {
@@ -17,295 +17,272 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background-color: var(--dark-void);
+    /* Geração de grade quadriculada de fundo simulando telas de fliperama retrô */
     background-image: 
-        linear-gradient(rgba(157, 0, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(157, 0, 255, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px; /* Efeito de grade quadriculada retrô de fliperama */
-    color: var(--text-light);
-    font-family: var(--font-display);
+        linear-gradient(rgba(157, 0, 255, 0.15) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(157, 0, 255, 0.15) 1px, transparent 1px);
+    background-size: 35px 35px;
+    color: var(--pure-white);
+    font-family: var(--display-font);
     font-size: 18px;
-    letter-spacing: 1px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* Container que simula o gabinete ou tela de uma máquina Arcade */
-.arcade-container {
+/* Estrutura do Gabinete Arcade virtual */
+.arcade-cabinet {
     width: 100%;
-    max-width: 1200px;
-    min-height: 80vh;
-    margin: 20px;
-    padding: 30px;
-    background: rgba(10, 5, 18, 0.95);
+    max-width: 900px;
+    background: rgba(12, 6, 22, 0.98);
     border: 4px solid var(--neon-pink);
-    border-radius: 12px;
-    box-shadow: 0 0 30px var(--neon-purple), inset 0 0 15px var(--neon-pink);
+    border-radius: 16px;
+    box-shadow: 0 0 35px var(--neon-purple), inset 0 0 20px var(--neon-pink);
+    padding: 25px;
     position: relative;
 }
 
-/* Lógica de Troca de Telas (Esconde telas inativas) */
+/* Mecanismo de exibição dinâmica de telas */
 .game-screen {
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    animation: fadeIn 0.5s ease-in-out;
+    min-height: 520px;
+    text-align: center;
 }
 
 .game-screen.active {
     display: flex;
 }
 
-/* ======================== TELA 1: INÍCIO (START SCREEN) ======================== */
-#screen-start {
-    min-height: 70vh;
-    text-align: center;
-}
-
-.logo-container {
-    width: 100%;
-    max-width: 600px;
-    min-height: 250px; /* Suporte alto para receber a logo em PNG */
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed rgba(255, 0, 127, 0.3);
-    border-radius: 8px;
-    background: rgba(255, 0, 127, 0.05);
-}
-
-.pixel-logo {
-    max-width: 100%;
-    height: auto;
-    image-rendering: pixelated; /* Mantém o aspecto de bloco se a logo for pixelart */
-}
-
-/* ======================== COMPONENTES E BOTÕES ARCADE ======================== */
-.btn-arcade {
-    font-family: var(--font-pixel);
-    font-size: 18px;
-    padding: 20px 40px;
-    color: #fff;
+/* ======================== BOTÕES E INTERATIVIDADE ======================== */
+.btn-arcade-neon {
+    font-family: var(--pixel-font);
+    font-size: 16px;
+    padding: 18px 32px;
+    color: var(--pure-white);
     background: transparent;
     border: 3px solid var(--neon-cyan);
-    border-radius: 0px; /* Layout quadrado clássico de arcade */
     cursor: pointer;
-    text-shadow: 0 0 5px var(--neon-cyan);
-    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--neon-cyan), inset 0 0 5px var(--neon-cyan);
+    transition: all 0.25s ease-in-out;
+    margin-top: 25px;
 }
 
-.btn-arcade:hover {
+.btn-arcade-neon:hover {
     background: var(--neon-cyan);
-    color: var(--bg-dark);
-    box-shadow: 0 0 30px var(--neon-cyan), inset 0 0 5px #fff;
-    text-shadow: none;
+    color: var(--dark-void);
+    box-shadow: 0 0 30px var(--neon-cyan);
     transform: scale(1.05);
 }
 
-.btn-download {
-    border-color: var(--neon-pink);
-    text-shadow: 0 0 5px var(--neon-pink);
-    box-shadow: 0 0 15px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+/* Botão meramente visual exigido pelo roteiro técnico */
+.btn-visual-only {
+    font-family: var(--pixel-font);
+    font-size: 11px;
+    padding: 10px 20px;
+    color: var(--pure-white);
+    background: transparent;
+    border: 2px solid var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+    margin-top: 15px;
+    cursor: default;
+    opacity: 0.8;
 }
 
-.btn-download:hover {
-    background: var(--neon-pink);
-    color: #fff;
-    box-shadow: 0 0 30px var(--neon-pink);
+/* ======================== TELA 1: ELEMENTOS DO MENU ======================== */
+.logo-png-area {
+    width: 100%;
+    max-width: 550px;
+    height: 190px;
+    border: 3px dashed rgba(255, 0, 127, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    background: rgba(255, 0, 127, 0.03);
 }
 
-.arcade-footer-text {
-    margin-top: 60px;
-    font-family: var(--font-pixel);
+.placeholder-tag {
+    font-family: var(--pixel-font);
+    font-size: 11px;
+    color: var(--neon-pink);
+    letter-spacing: 1px;
+}
+
+.arcade-subtext {
+    margin-top: 45px;
+    font-family: var(--pixel-font);
     font-size: 10px;
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* ======================== TELA 2: STORYBOARD E LAYOUT ======================== */
-.game-header {
-    text-align: center;
-    margin-bottom: 30px;
+/* ======================== TELA 2 E 4: CAIXAS DE TEXTO E GIFS ======================== */
+.retro-textbox {
+    background: var(--overlay-box);
+    border: 2px solid var(--neon-purple);
+    padding: 22px;
+    border-radius: 8px;
+    max-width: 750px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: left;
 }
 
-.game-header h1 {
-    font-family: var(--font-pixel);
-    font-size: 28px;
+.retro-textbox span {
+    color: var(--neon-pink);
+    font-weight: bold;
+}
+
+.highlight-text {
+    font-family: var(--pixel-font);
+    font-size: 13px;
+    color: var(--neon-cyan);
     margin-bottom: 10px;
 }
 
-.game-header h2 {
-    font-size: 24px;
-    letter-spacing: 6px;
-}
-
-.story-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+.gif-media-box {
     width: 100%;
-    margin-bottom: 30px;
-}
-
-@media (max-width: 768px) {
-    .story-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
-.arcade-card {
-    background: var(--card-bg);
-    border: 2px solid var(--neon-purple);
-    padding: 25px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-.arcade-card h3 {
-    font-family: var(--font-pixel);
-    font-size: 14px;
-    color: var(--neon-cyan);
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-    padding-bottom: 8px;
-}
-
-.arcade-card p {
-    line-height: 1.6;
-    margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.features-list {
-    list-style: none;
-}
-
-.features-list li {
-    margin-bottom: 12px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* CONTAINER DO ESPAÇO PARA OS GIFS EXIGIDOS */
-.game-visualizer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.gif-placeholder {
-    width: 100%;
-    min-height: 300px;
-    background: #000;
-    border: 3px dashed var(--neon-pink);
+    max-width: 450px;
+    height: 110px;
+    border: 2px dashed var(--neon-cyan);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    text-align: center;
+    margin: 15px 0;
+    background: rgba(0, 240, 255, 0.04);
+}
+
+.gif-media-box .placeholder-tag {
+    color: var(--neon-cyan);
+}
+
+.border-pink { border-color: var(--neon-pink) !important; }
+
+/* ======================== TELA 3: ARENA MECÂNICA DO JOGO ======================== */
+#game-arena {
     position: relative;
-    box-shadow: inset 0 0 20px rgba(255, 0, 127, 0.5);
+    width: 100%;
+    max-width: 780px;
+    height: 280px;
+    background: #0f0722;
+    border: 3px solid var(--neon-purple);
+    overflow: hidden;
+    box-shadow: inset 0 0 25px #000000;
 }
 
-.gif-placeholder img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+/* CONSTRUÇÃO PIXEL ART DA BONECA DA MADONNA NO CAVALO EM CSS */
+#madonna-player {
+    position: absolute;
+    left: 60px;
+    bottom: 0;
+    width: 55px;
+    height: 65px;
 }
 
-.placeholder-text {
-    font-family: var(--font-pixel);
-    font-size: 12px;
-    color: var(--neon-pink);
-    line-height: 1.8;
+.pixel-horse { 
+    width: 55px; 
+    height: 24px; 
+    background: #e2e2e2; 
+    position: absolute; 
+    bottom: 0; 
+    border: 2px solid #444; 
+}
+.pixel-legs { 
+    width: 14px; 
+    height: 18px; 
+    background: #000000; 
+    position: absolute; 
+    bottom: 22px; 
+    left: 20px; 
+} /* Calça de hipismo preta */
+.pixel-suit { 
+    width: 22px; 
+    height: 22px; 
+    background: #000000; 
+    position: absolute; 
+    bottom: 36px; 
+    left: 16px; 
+} /* Casaco de hipismo preto */
+.pixel-head { 
+    width: 16px; 
+    height: 16px; 
+    background: #ffcca3; 
+    position: absolute; 
+    bottom: 54px; 
+    left: 19px; 
+}
+.pixel-hair { 
+    width: 22px; 
+    height: 18px; 
+    background: #ffd700; 
+    position: absolute; 
+    bottom: 56px; 
+    left: 14px; 
+    border-radius: 3px; 
+} /* Cabelo loiro */
+
+/* Obstáculo do percurso */
+#game-obstacle {
+    position: absolute;
+    right: -40px;
+    bottom: 0;
+    width: 26px;
+    height: 42px;
+    background: var(--neon-pink);
+    border: 2px solid var(--pure-white);
+    box-shadow: 0 0 12px var(--neon-pink);
 }
 
-.game-stats {
+/* Heads-Up Display (Placar) */
+.game-hud {
     display: flex;
     justify-content: space-between;
-    background: #000;
-    padding: 15px;
-    border: 2px solid var(--neon-purple);
-}
-
-.stat-box {
-    font-family: var(--font-pixel);
-    font-size: 12px;
-}
-
-.action-area {
-    margin-top: 10px;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    max-width: 780px;
+    padding: 12px;
+    background: #000000;
+    border: 2px solid var(--neon-pink);
+    margin-bottom: 12px;
+    font-family: var(--pixel-font);
+    font-size: 11px;
 }
 
-/* ======================== TELA 3: VITÓRIA / FINAL ======================== */
-.victory-container {
-    text-align: center;
-    max-width: 700px;
-    width: 100%;
+.controls-hint {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #8a8199;
 }
 
-.victory-title {
-    font-family: var(--font-pixel);
-    font-size: 36px;
-    color: var(--neon-cyan);
-    text-shadow: 0 0 15px var(--neon-cyan);
-    margin-bottom: 30px;
+/* ======================== CORES AUXILIARES E ANIMAÇÕES ======================== */
+.text-cyan { color: var(--neon-cyan); }
+.text-pink { color: var(--neon-pink); }
+
+.neon-title-purple {
+    font-family: var(--pixel-font);
+    font-size: 22px;
+    color: var(--pure-white);
+    text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+    margin-bottom: 20px;
 }
 
-.victory-gif {
-    border-color: var(--neon-cyan);
-    box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.5);
-    margin-bottom: 30px;
+.neon-title-cyan {
+    font-family: var(--pixel-font);
+    font-size: 28px;
+    color: var(--pure-white);
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+    margin-bottom: 20px;
 }
 
-.victory-gif .placeholder-text {
-    color: var(--neon-cyan);
-}
-
-.thank-you-card {
-    border-color: var(--neon-pink);
-    margin-bottom: 40px;
-}
-
-/* ======================== ANIMAÇÕES RETRÔ E EFEITOS ======================== */
-.neon-text-pink {
-    color: #fff;
-    text-shadow: 0 0 5px #fff, 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
-}
-
-.neon-text-purple {
-    color: #fff;
-    text-shadow: 0 0 5px #fff, 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.98); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.pulse {
-    animation: arcadePulse 1.5s infinite alternate;
+.pulse-effect {
+    animation: arcadePulse 1.4s infinite alternate;
 }
 
 @keyframes arcadePulse {
-    from {
-        transform: scale(1);
-        filter: brightness(1);
-    }
-    to {
-        transform: scale(1.02);
-        filter: brightness(1.2);
-    }
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.03); filter: brightness(1.25); }
 }
