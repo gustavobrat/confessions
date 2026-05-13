@@ -18,7 +18,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Moldura externa do monitor do jogo */
 .arcade-cabinet {
     width: 800px;
     height: 600px;
@@ -48,15 +47,14 @@ body {
     display: flex;
 }
 
-/* ================= COMPONENTES VISUAIS PREMIUM ================= */
+/* ================= COMPONENTES VISUAIS E Gifs EXPANDIDOS ================= */
 .logo-png-area {
     width: 580px;
-    height: 160px;
+    height: 180px;
     border: 2px solid #00ffff;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
-/* Efeito Holográfico Espelhado */
 .mirror-glow {
     background: linear-gradient(135deg, rgba(255, 0, 127, 0.12) 0%, rgba(0, 255, 255, 0.12) 100%);
     box-shadow: 0 0 25px rgba(255, 0, 127, 0.2), inset 0 0 15px rgba(0, 255, 255, 0.15);
@@ -73,7 +71,6 @@ body {
     text-shadow: 0 0 8px #ffffff;
 }
 
-/* Painéis de História com Efeito Vidro */
 .glass-panel {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(6px);
@@ -83,56 +80,43 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* Tamanho de Fonte Ampliado para Legibilidade Máxima */
 .story-textbox {
     width: 90%; 
     color: #f0f0f5; 
-    font-size: 12px; 
-    line-height: 2; 
+    font-size: 14px; 
+    line-height: 2.2; 
     text-align: center; 
-    margin-bottom: 20px;
-    padding: 16px;
+    margin-bottom: 25px;
+    padding: 22px;
+}
+
+.story-textbox.box-expanded {
+    margin-bottom: 35px;
 }
 
 .highlight-label {
     font-weight: bold;
     color: #ffd700;
-    font-size: 13px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 12px;
     text-shadow: 0 0 8px #ffd700;
 }
 
-.features-box {
-    width: 90%;
-    padding: 16px;
-    margin-bottom: 25px;
-    color: #ffffff;
-    border: 2px solid #00ffff;
+.header-title-big {
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
-.features-box h3 {
-    font-size: 11px;
-    color: #00ffff;
-    margin-bottom: 12px;
-    text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
-}
-
-.features-box ul { list-style: none; }
-.features-box li {
-    font-size: 9px;
-    line-height: 1.8;
-    margin-bottom: 6px;
-    color: #dedee6;
-}
-
-/* Espaço para GIF Expandido Gigante Solicitado */
+/* Espaço para GIF Ultra Expandido Conforme Pedido */
 .gif-header-box {
     width: 90%;
     height: 110px;
     margin-bottom: 20px;
 }
 .gif-header-box.giant-gif {
-    height: 220px !important;
-    margin-bottom: 25px;
+    height: 235px !important;
+    margin-bottom: 30px;
 }
 
 .border-cyan-glow { border: 2px solid #00ffff; }
@@ -143,8 +127,8 @@ body {
     background: transparent;
     border: 3px solid #ff007f;
     color: #ff007f;
-    padding: 20px 40px;
-    font-size: 13px;
+    padding: 20px 45px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
     text-shadow: 0 0 6px #ff007f;
@@ -170,11 +154,11 @@ body {
     box-shadow: 0 0 30px #00ffff;
 }
 
-/* ================= ARENA ATIVA E COMPONENTES DE FÍSICA ================= */
+/* ================= ARENA COM CENÁRIO DE FUNDO IMPRESSIONANTE ================= */
 #game-arena {
     width: 100%;
     height: 240px;
-    background: #05050d;
+    background: linear-gradient(to bottom, #03030d 0%, #0d081f 100%);
     border-top: 3px solid #00ffff;
     border-bottom: 3px solid #00ffff;
     position: relative;
@@ -182,17 +166,59 @@ body {
     margin-top: 20px;
 }
 
+/* Lua Pixel Art no Fundo */
+.pixel-moon {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffcc;
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 204, 0.4);
+}
+
+/* Estrelas Brilhantes */
+.pixel-stars {
+    width: 3px;
+    height: 3px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 40px;
+    left: 120px;
+    box-shadow: 200px -10px #fff, 350px 30px #fff, 500px -20px #fff, -50px 15px #fff;
+}
+
+/* Silhueta de Prédios (Skyline) ao Fundo */
+.pixel-skyline {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: 
+        linear-gradient(to top, #090514 100%, transparent),
+        box-shadow(40px -30px #090514);
+    box-shadow: 
+        40px -30px 0 #07040f, 70px -45px 0 #07040f, 130px -25px 0 #07040f,
+        200px -50px 0 #07040f, 260px -35px 0 #07040f, 320px -55px 0 #07040f,
+        420px -40px 0 #07040f, 490px -60px 0 #07040f, 580px -30px 0 #07040f,
+        640px -45px 0 #07040f, 720px -55px 0 #07040f;
+    opacity: 0.5;
+    z-index: 1;
+}
+
 .game-hud {
     width: 90%;
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .hud-block { font-weight: bold; letter-spacing: 1px; }
-.hud-total { color: #555577; font-size: 10px; }
-.controls-hint { color: #5a5a80; font-size: 9px; margin-top: 15px; }
+.hud-total { color: #555577; font-size: 11px; }
+.controls-hint { color: #5a5a80; font-size: 10px; margin-top: 15px; }
 
 .btn-visual-only {
     margin-top: 20px;
@@ -200,12 +226,12 @@ body {
     color: #00ffff;
     border: 2px solid #00ffff;
     padding: 12px 24px;
-    font-size: 9px;
+    font-size: 10px;
     cursor: default;
     border-radius: 4px;
 }
 
-/* ================= CONSTRUÇÃO DA NOVA AVATAR PIXEL AVANÇADA ================= */
+/* ================= SPRITE MINIMALISTA AVANÇADO MADONNA ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
@@ -215,7 +241,6 @@ body {
     transition: transform 0.1s ease;
 }
 
-/* Animação de oscilação do galope do cavalo */
 .horse-gallop {
     animation: gallopSystem 0.4s infinite alternate ease-in-out;
 }
@@ -224,37 +249,26 @@ body {
     100% { transform: translateY(-5px) rotate(3deg); }
 }
 
-/* Capacete de Hipismo Preto Nobre Exigido */
+/* Capacete de Hipismo Preto Nobre */
 .pixel-helmet {
     width: 24px;
-    height: 8px;
+    height: 10px;
     background-color: #0a0a0a;
     position: absolute;
-    top: -2px;
+    top: 2px;
     left: 12px;
     border-radius: 4px 4px 0 0;
     z-index: 12;
     box-shadow: 4px 2px 0 #222;
 }
 
-/* Cabelo Loiro Uniforme */
-.pixel-hair {
-    width: 26px;
-    height: 22px;
-    background-color: #ffd700;
-    position: absolute;
-    top: 4px;
-    left: 11px;
-    border-radius: 0 0 4px 4px;
-}
-
-/* Cabeça e Feições Geométricas Solicitadas */
+/* Rosto Compacto (Cabelo longo removido, simulando o coque por trás) */
 .pixel-head {
     width: 18px;
     height: 16px;
     background-color: #ffdbac;
     position: absolute;
-    top: 6px;
+    top: 10px;
     left: 15px;
     z-index: 11;
 }
@@ -280,12 +294,12 @@ body {
 /* Traje Slim de Hipismo */
 .pixel-suit {
     width: 20px;
-    height: 24px;
+    height: 22px;
     background-color: #121212;
     position: absolute;
-    top: 22px;
+    top: 26px;
     left: 14px;
-    border-top: 3px solid #ffffff; /* Detalhe da gola */
+    border-top: 3px solid #ffffff;
 }
 
 /* Novo Design Detalhado do Cavalo */
@@ -296,7 +310,6 @@ body {
     position: absolute;
     bottom: 8px;
     left: 0;
-    border-radius: 4px;
 }
 .pixel-horse-head {
     width: 16px;
@@ -315,7 +328,6 @@ body {
     top: -10px;
     left: 2px;
 }
-/* Patas Traseiras e Dianteiras Detalhadas */
 .pixel-leg-front, .pixel-leg-back {
     width: 5px;
     height: 10px;
@@ -335,6 +347,7 @@ body {
     bottom: 0;
     box-shadow: 0 0 15px #ff007f;
     border-radius: 4px 4px 0 0;
+    z-index: 2;
 }
 
 /* ================= PAINEL DE ESPECIFICAÇÕES DO PROFESSOR (EXTERNO) ================= */
@@ -350,7 +363,7 @@ body {
 }
 
 .professor-specifications-panel h2 {
-    font-size: 12px;
+    font-size: 14px;
     color: #00ffff;
     margin-bottom: 20px;
     letter-spacing: 1px;
@@ -366,27 +379,26 @@ body {
 .spec-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid #333355;
-    padding: 12px;
+    padding: 14px;
     border-radius: 6px;
 }
 
 .spec-card strong {
     display: block;
-    font-size: 9px;
+    font-size: 11px;
     color: #ff007f;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .spec-card p {
-    font-size: 9px;
-    line-height: 1.6;
+    font-size: 10px;
+    line-height: 1.8;
     color: #cccccc;
 }
 
 /* Animações e Brilhos Neon */
 .text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
 .text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
-.glow-cyan { text-shadow: 0 0 10px #00ffff; }
 .pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
 
 @keyframes glowEffect {
