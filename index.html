@@ -1,289 +1,260 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>The Confessions Tour: Jump Game</title>
-
+    <title>THE CONFESSIONS TOUR: JUMP GAME</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
-    <!-- TELA INICIAL -->
-
-    <section class="start-screen">
-
-        <!-- LOGO PNG -->
-        <img src="logo.png" class="logo">
-
-        <button onclick="showIntro()">
-            PRESS START
-        </button>
-
+    <!-- 1. TELA INICIAL (BOOT / ARCADE) -->
+    <section id="start-screen" class="arcade-screen">
+        <div class="crt-overlay"></div>
+        <div class="logo-container">
+            <!-- Representação em texto/CSS da logo pixel art solicitada -->
+            <img src="logo.png" alt="THE CONFESSIONS TOUR: JUMP GAME" class="pixel-logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
+            <div id="fallback-logo" class="fallback-logo" style="display:none;">
+                <span class="neon-pink">THE CONFESSIONS TOUR</span>
+                <span class="neon-blue">JUMP GAME</span>
+            </div>
+        </div>
+        <button class="arcade-btn blink" onclick="showSection('about-section')">PRESS START</button>
     </section>
 
-
-    <!-- SOBRE O JOGO -->
-
-    <section class="about-section">
-
-        <h2>ABOUT THE GAME</h2>
-
-        <p>
-            The Confessions Tour: Jump Game é um jogo retrô inspirado
-            nos clássicos videogames arcade dos anos 80 e 90.
-            O objetivo é levar a estrela pop até a arena principal
-            da Confessions Tour montada em seu cavalo.
-        </p>
-
+    <!-- 2. SEÇÃO ABOUT THE GAME -->
+    <section id="about-section" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        <h2 class="neon-pink">ABOUT THE GAME</h2>
+        <div class="arcade-card">
+            <p>Inspirado nos arcades clássicos dos anos 80/90 e na icônica abertura de hipismo da <span class="neon-blue">Confessions Tour (Future Lovers / I Feel Love)</span>.</p>
+            <p>Sua missão é guiar a Rainha montada em seu cavalo através de uma jornada pixelada perigosa até alcançar a arena do show definitivo.</p>
+        </div>
+        <button class="arcade-btn" onclick="showSection('features-section')">NEXT ></button>
     </section>
 
-
-    <!-- CARACTERÍSTICAS -->
-
-    <section class="features-section">
-
-        <h2>GAME FEATURES</h2>
-
-        <div class="features-box">
-
-            <div class="feature">
-                PIXEL ART 16-BIT
-            </div>
-
-            <div class="feature">
-                GAMEPLAY ESTILO DINO GAME
-            </div>
-
-            <div class="feature">
-                60 OBSTÁCULOS PROGRESSIVOS
-            </div>
-
-            <div class="feature">
-                VISUAL ARCADE RETRÔ
-            </div>
-
-            <div class="feature">
-                TRILHA SONORA DISCO
-            </div>
-
+    <!-- 3. SEÇÃO GAME FEATURES & 4. BOTÕES VISUAIS -->
+    <section id="features-section" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        <h2 class="neon-blue">GAME FEATURES</h2>
+        
+        <div class="features-grid">
+            <div class="feature-item"><span>[X]</span> PIXEL ART 16-BIT</div>
+            <div class="feature-item"><span>[X]</span> DINO GAME INSPIRATION</div>
+            <div class="feature-item"><span>[X]</span> 60 PROGRESSIVE OBSTACLES</div>
+            <div class="feature-item"><span>[X]</span> RETRO ARCADE VISUAL</div>
+            <div class="feature-item"><span>[X]</span> DISCO SOUNDTRACK VIBE</div>
+            <div class="feature-item"><span>[X]</span> INCREASING DIFFICULTY</div>
         </div>
 
+        <!-- Botões Visuais Obrigatórios -->
+        <div class="action-buttons">
+            <button class="arcade-btn-secondary">DOWNLOAD</button>
+            <button class="arcade-btn" onclick="showSection('storyboard-section')">JOGAR AGORA</button>
+        </div>
     </section>
 
-
-    <!-- BOTÕES -->
-
-    <section class="buttons-section">
-
-        <button class="menu-button">
-            JOGAR AGORA
-        </button>
-
-        <button class="menu-button">
-            DOWNLOAD
-        </button>
-
-    </section>
-
-
-    <!-- STORYBOARD -->
-
-    <section class="story-screen hidden" id="story">
-
-        <h2>MISSION MODE</h2>
-
-        <!-- GIF -->
-        <img src="intro.gif" class="story-gif">
-
-        <p>
-            A grande noite chegou.
-            A estrela precisa atravessar a cidade
-            e sobreviver aos obstáculos para chegar
-            até a arena da Confessions Tour.
-        </p>
-
-        <p>
-            Use a tecla ESPAÇO para saltar
-            e sobreviva aos 60 obstáculos.
-        </p>
-
-        <button onclick="startGame()">
-            START RIDE
-        </button>
-
-    </section>
-
-
-    <!-- JOGO -->
-
-    <section class="game-screen hidden" id="game">
-
-        <h2>
-            OBSTÁCULOS:
-            <span id="score">0</span>/60
-        </h2>
-
-        <div class="game-area">
-
-            <!-- PERSONAGEM -->
-
-            <div class="madonna-horse">
-
-                <img src="madonna-horse-pixel.png">
-
-            </div>
-
-            <!-- OBSTÁCULO -->
-
-            <div class="obstacle"></div>
-
+    <!-- 5. STORYBOARD / MISSION MODE -->
+    <section id="storyboard-section" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        <h2 class="neon-pink">MISSION MODE</h2>
+        
+        <div class="media-box">
+            <img src="intro.gif" alt="Intro Animation" class="pixel-gif" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'100\' height=\'50\' viewBox=\'0 0 100 50\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%230ff\' font-family=\'monospace\'>[INTRO.GIF]</text></svg>';">
         </div>
 
-        <p class="tip">
-            APERTE ESPAÇO PARA PULAR
-        </p>
+        <div class="arcade-card text-left">
+            <p>A estrela precisa atravessar os obstáculos montada em seu cavalo negro de hipismo para chegar a tempo do show!</p>
+            <p class="neon-blue font-bold">COMANDO: Pressione ESPAÇO para PULAR.</p>
+        </div>
 
+        <button class="arcade-btn blink" onclick="startGame()">START RIDE</button>
     </section>
 
+    <!-- 6. JOGO (GAMEPLAY EXECUTÁVEL) -->
+    <section id="game-section" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        
+        <div class="game-hud">
+            <div class="hud-item">OBSTACLES: <span id="score-counter" class="neon-pink">00</span>/60</div>
+            <div class="hud-item">SPEED: <span id="speed-counter" class="neon-blue">1x</span></div>
+        </div>
 
-    <!-- FINAL -->
-
-    <section class="end-screen hidden" id="end">
-
-        <h1>SHOW TIME!</h1>
-
-        <!-- GIF -->
-        <img src="final.gif" class="final-gif">
-
-        <p>
-            Você conseguiu levar a estrela
-            até a arena principal.
-        </p>
-
-        <h2>
-            THANK YOU PLAYER
-        </h2>
-
+        <div id="game-stage" class="game-stage">
+            <!-- Personagem montada a cavalo (Visual Retrô com CSS Puro caso falte imagem) -->
+            <div id="player" class="player-sprite">
+                <img src="madonna-horse-pixel.png" alt="Madonna" onerror="this.style.display='none';">
+                <div class="fallback-sprite-jockey"></div>
+                <div class="fallback-sprite-horse"></div>
+            </div>
+            
+            <!-- Obstáculo dinâmico -->
+            <div id="obstacle" class="obstacle-sprite"></div>
+            
+            <!-- Linha do chão -->
+            <div class="game-floor"></div>
+        </div>
+        
+        <div class="game-instructions">Pressione ESPAÇO ou TOQUE na tela para pular</div>
     </section>
 
+    <!-- 7. FINAL DO JOGO (VITÓRIA) -->
+    <section id="victory-screen" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        <h2 class="neon-pink blink">STAGE CLEAR</h2>
+        
+        <div class="media-box">
+            <img src="final.gif" alt="Victory Animation" class="pixel-gif" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'w3.org\' width=\'100\' height=\'50\' viewBox=\'0 0 100 50\'><rect width=\'100%\' height=\'100%\' fill=\'%23111\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f0f\' font-family=\'monospace\'>[FINAL.GIF]</text></svg>';">
+        </div>
 
+        <div class="arcade-card">
+            <p class="neon-blue">CONGRATULATIONS!</p>
+            <p>Você superou todos os perigos da estrada. A Rainha chegou em segurança à arena da Confessions Tour!</p>
+            <p>Obrigado por jogar!</p>
+        </div>
 
-<script>
+        <button class="arcade-btn" onclick="resetGame()">PLAY AGAIN</button>
+    </section>
 
-const storyScreen = document.getElementById("story");
+    <!-- TELA DE GAME OVER -->
+    <section id="gameover-screen" class="arcade-screen hidden">
+        <div class="crt-overlay"></div>
+        <h2 class="neon-pink blink" style="color: red; text-shadow: 0 0 10px red;">GAME OVER</h2>
+        <div class="arcade-card">
+            <p>Você não conseguiu alcançar o show a tempo.</p>
+        </div>
+        <button class="arcade-btn" onclick="startGame()">TRY AGAIN</button>
+    </section>
 
-const gameScreen = document.getElementById("game");
-
-const endScreen = document.getElementById("end");
-
-const madonna = document.querySelector(".madonna-horse");
-
-const obstacle = document.querySelector(".obstacle");
-
-let score = 0;
-
-let speed = 2;
-
-
-function showIntro() {
-
-    document.querySelector(".start-screen").style.display = "none";
-
-    storyScreen.classList.remove("hidden");
-
-}
-
-
-function startGame() {
-
-    storyScreen.classList.add("hidden");
-
-    gameScreen.classList.remove("hidden");
-
-    document.addEventListener("keydown", jump);
-
-    let gameLoop = setInterval(() => {
-
-        let madonnaBottom =
-            parseInt(
-                window.getComputedStyle(madonna)
-                .getPropertyValue("bottom")
-            );
-
-        let obstacleLeft =
-            parseInt(
-                window.getComputedStyle(obstacle)
-                .getPropertyValue("left")
-            );
-
-        if (
-
-            obstacleLeft < 180 &&
-            obstacleLeft > 50 &&
-            madonnaBottom < 100
-
-        ) {
-
-            alert("GAME OVER");
-
-            location.reload();
-
+    <script>
+        // SISTEMA DE NAVEGAÇÃO DE TELAS
+        function showSection(sectionId) {
+            document.querySelectorAll('.arcade-screen').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
         }
 
-        if (obstacleLeft < 0) {
+        // ENGINE DO JOGO (ENDLESS RUNNER INTERATIVO)
+        let isJumping = false;
+        let score = 0;
+        let gameSpeed = 5;
+        let gameActive = false;
+        let obstacleTimeout;
+        let checkCollisionInterval;
 
+        const player = document.getElementById('player');
+        const obstacle = document.getElementById('obstacle');
+        const scoreCounter = document.getElementById('score-counter');
+        const speedCounter = document.getElementById('speed-counter');
+
+        // Monitoramento de Input (Teclado e Toque)
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' && gameActive) {
+                jump();
+            }
+        });
+
+        document.getElementById('game-stage').addEventListener('touchstart', function() {
+            if (gameActive) jump();
+        });
+
+        function jump() {
+            if (isJumping) return;
+            isJumping = true;
+            player.classList.add('jump-animation');
+            
+            setTimeout(() => {
+                player.classList.remove('jump-animation');
+                isJumping = false;
+            }, 600); 
+        }
+
+        function startGame() {
+            showSection('game-section');
+            score = 0;
+            gameSpeed = 6;
+            gameActive = true;
+            scoreCounter.innerText = "00";
+            speedCounter.innerText = "1x";
+            
+            // Resetar posições
+            obstacle.style.right = '-40px';
+            obstacle.style.left = 'auto';
+            
+            // Iniciar loops do jogo
+            loopObstacle();
+            checkCollisionInterval = setInterval(checkCollision, 10);
+        }
+
+        function loopObstacle() {
+            if (!gameActive) return;
+
+            // Move obstáculo para a direita inicial externa
+            obstacle.style.animation = 'none';
+            obstacle.offsetHeight; // Força reflow do browser
+            
+            // Aplica velocidade dinâmica baseada nos pontos
+            let duration = 3 / (gameSpeed / 5);
+            if (duration < 0.8) duration = 0.8; // limite máximo de velocidade
+            
+            obstacle.style.animation = `moveObstacle ${duration}s linear infinite`;
+
+            // Escuta a repetição da animação para contar pontos
+            obstacle.addEventListener('animationiteration', incrementScore);
+        }
+
+        function incrementScore() {
+            if (!gameActive) return;
             score++;
+            
+            // Formata o contador com dois dígitos
+            scoreCounter.innerText = score < 10 ? '0' + score : score;
+            
+            // Aumenta a velocidade progressivamente
+            if (score % 5 === 0) {
+                gameSpeed += 0.8;
+                speedCounter.innerText = (gameSpeed / 5).toFixed(1) + 'x';
+            }
 
-            document.getElementById("score").innerText = score;
-
-            speed += 0.1;
-
-            obstacle.style.animationDuration =
-            speed > 6
-            ? "0.7s"
-            : `${2 - speed * 0.1}s`;
-
+            // Condição de Vitória (60 obstáculos)
+            if (score >= 60) {
+                endGame(true);
+            }
         }
 
-        if (score >= 60) {
+        function checkCollision() {
+            if (!gameActive) return;
 
-            clearInterval(gameLoop);
+            const playerRect = player.getBoundingClientRect();
+            const obstacleRect = obstacle.getBoundingClientRect();
 
-            gameScreen.classList.add("hidden");
-
-            endScreen.classList.remove("hidden");
-
+            // Margem de tolerância (hitbox pixel-perfect tolerante)
+            if (
+                playerRect.right - 15 > obstacleRect.left &&
+                playerRect.left + 15 < obstacleRect.right &&
+                playerRect.bottom - 5 > obstacleRect.top
+            ) {
+                endGame(false);
+            }
         }
 
-    }, 10);
+        function endGame(isVictory) {
+            gameActive = false;
+            clearInterval(checkCollisionInterval);
+            obstacle.style.animation = 'none';
+            obstacle.removeEventListener('animationiteration', incrementScore);
 
-}
+            if (isVictory) {
+                showSection('victory-screen');
+            } else {
+                showSection('gameover-screen');
+            }
+        }
 
-
-function jump() {
-
-    if (!madonna.classList.contains("jump")) {
-
-        madonna.classList.add("jump");
-
-        setTimeout(() => {
-
-            madonna.classList.remove("jump");
-
-        }, 500);
-
-    }
-
-}
-
-</script>
-
+        function resetGame() {
+            showSection('start-screen');
+        }
+    </script>
 </body>
-
 </html>
