@@ -66,7 +66,7 @@ body {
 
 .placeholder-text {
     color: #ffffff;
-    font-size: 14px; /* FONTE AMPLIADA */
+    font-size: 14px; 
     letter-spacing: 1px;
     text-shadow: 0 0 8px #ffffff;
 }
@@ -80,11 +80,10 @@ body {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
-/* Tamanho de Fonte Ampliado para Legibilidade Máxima */
 .story-textbox {
     width: 90%; 
     color: #f0f0f5; 
-    font-size: 16px; /* FONTE AMPLIADA */
+    font-size: 16px; 
     line-height: 2.2; 
     text-align: center; 
     margin-bottom: 25px;
@@ -98,17 +97,16 @@ body {
 .highlight-label {
     font-weight: bold;
     color: #ffd700;
-    font-size: 20px; /* FONTE AMPLIADA */
+    font-size: 20px; 
     margin-bottom: 12px;
     text-shadow: 0 0 8px #ffd700;
 }
 
 .header-title-big {
-    font-size: 24px; /* FONTE AMPLIADA */
+    font-size: 24px; 
     margin-bottom: 20px;
 }
 
-/* Espaço para GIF Ultra Expandido Conforme Pedido */
 .gif-header-box {
     width: 90%;
     height: 110px;
@@ -128,7 +126,7 @@ body {
     border: 3px solid #ff007f;
     color: #ff007f;
     padding: 20px 45px;
-    font-size: 16px; /* FONTE AMPLIADA */
+    font-size: 16px; 
     cursor: pointer;
     border-radius: 4px;
     text-shadow: 0 0 6px #ff007f;
@@ -154,7 +152,7 @@ body {
     box-shadow: 0 0 30px #00ffff;
 }
 
-/* ================= ARENA COM CENÁRIO DE FUNDO CORRIGIDO ================= */
+/* ================= ARENA COM CENÁRIO URBAN-DISCO CORRIGIDO ================= */
 #game-arena {
     width: 100%;
     height: 240px;
@@ -166,47 +164,75 @@ body {
     margin-top: 20px;
 }
 
-/* Lua Pixel Art no Fundo */
 .pixel-moon {
     width: 40px;
     height: 40px;
     background-color: #ffffcc;
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: 60px;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(255, 255, 204, 0.4);
     z-index: 2;
 }
 
-/* Estrelas Brilhantes */
 .pixel-stars {
     width: 3px;
     height: 3px;
     background-color: #ffffff;
     position: absolute;
-    top: 40px;
+    top: 35px;
     left: 120px;
     box-shadow: 200px -10px #fff, 350px 30px #fff, 500px -20px #fff, 630px 15px #fff;
     z-index: 2;
 }
 
-/* Prédios (Skyline) ao Fundo Corrigidos */
+/* Prédios estruturados nativamente no background */
 .pixel-skyline {
     width: 100%;
-    height: 70px;
+    height: 110px;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: #07040f;
-    /* Geração geométrica dos blocos dos prédios via clip-path para evitar bugs */
+    background-color: #080512;
     clip-path: polygon(
-        0% 100%, 0% 40%, 8% 40%, 8% 20%, 15% 20%, 15% 50%, 22% 50%, 22% 10%, 30% 10%, 30% 60%, 
-        38% 60%, 38% 30%, 48% 30%, 48% 55%, 55% 55%, 55% 5%, 65% 5%, 65% 45%, 72% 45%, 72% 25%, 
-        82% 25%, 82% 65%, 90% 65%, 90% 15%, 100% 15%, 100% 100%
+        0% 100%, 0% 50%, 6% 50%, 6% 30%, 14% 30%, 14% 60%, 20% 60%, 20% 20%, 28% 20%, 28% 70%, 
+        35% 70%, 35% 40%, 45% 40%, 45% 65%, 52% 65%, 52% 15%, 62% 15%, 62% 55%, 70% 55%, 70% 35%, 
+        80% 35%, 80% 75%, 88% 75%, 88% 25%, 96% 25%, 96% 100%
     );
-    opacity: 0.6;
     z-index: 2;
+}
+
+/* Janelas de Neon piscantes nos prédios */
+.pixel-windows {
+    width: 100%;
+    height: 110px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    background-image: radial-gradient(#00ffff 2px, transparent 3px);
+    background-size: 16px 20px;
+    opacity: 0.35;
+    clip-path: polygon(
+        0% 100%, 0% 50%, 6% 50%, 6% 30%, 14% 30%, 14% 60%, 20% 60%, 20% 20%, 28% 20%, 28% 70%, 
+        35% 70%, 35% 40%, 45% 40%, 45% 65%, 52% 65%, 52% 15%, 62% 15%, 62% 55%, 70% 55%, 70% 35%, 
+        80% 35%, 80% 75%, 88% 75%, 88% 25%, 96% 25%, 96% 100%
+    );
+}
+
+/* Grande Arena de Chegada (Aparece ao completar 60 pontos) */
+#pixel-stage-entrance {
+    width: 180px;
+    height: 160px;
+    background: linear-gradient(to top, #ff007f, transparent);
+    border-left: 4px solid #00ffff;
+    border-right: 4px solid #00ffff;
+    box-shadow: 0 0 25px #ff007f;
+    position: absolute;
+    bottom: 0;
+    left: 850px;
+    z-index: 4;
 }
 
 .game-hud {
@@ -214,7 +240,7 @@ body {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    font-size: 15px; /* HUD AMPLIADO */
+    font-size: 15px; 
 }
 
 .hud-block { font-weight: bold; letter-spacing: 1px; }
@@ -227,12 +253,12 @@ body {
     color: #00ffff;
     border: 2px solid #00ffff;
     padding: 12px 24px;
-    font-size: 12px; /* FONTE AMPLIADA */
+    font-size: 12px; 
     cursor: default;
     border-radius: 4px;
 }
 
-/* ================= SPRITE ULTRA MINIMALISTA COM COQUE LOIRO ================= */
+/* ================= CORREÇÃO DO AVATAR PIXEL ART ADAPTADO ================= */
 #madonna-player {
     width: 65px;
     height: 85px;
@@ -250,30 +276,30 @@ body {
     100% { transform: translateY(-5px) rotate(3deg); }
 }
 
-/* Capacete de Hipismo Preto Nobre */
+/* Capacete de Hipismo Miniaturizado e Ajustado */
 .pixel-helmet {
-    width: 24px;
-    height: 10px;
-    background-color: #0a0a0a;
+    width: 18px;
+    height: 6px;
+    background-color: #0c0c0c;
     position: absolute;
-    top: 2px;
-    left: 12px;
-    border-radius: 4px 4px 0 0;
+    top: 5px;
+    left: 16px;
+    border-radius: 2px 2px 0 0;
     z-index: 12;
-    box-shadow: 4px 2px 0 #222;
+    box-shadow: 2px 1px 0 #333;
 }
 
-/* Coque Loiro por Trás (Cabelo Amarrado Visível Ocultando as Laterais) */
+/* Coque Loiro Robustecido e Altamente Visível na Nuca */
 .pixel-hair-bun {
-    width: 8px;
-    height: 8px;
+    width: 14px;
+    height: 14px;
     background-color: #ffd700;
     position: absolute;
     top: 10px;
-    left: 8px; /* Posicionado atrás da nuca */
-    border-radius: 2px;
-    z-index: 10;
-    box-shadow: -2px 1px 0 #d4b200;
+    left: 5px; /* Recuado estrategicamente para destacar o penteado */
+    border-radius: 4px;
+    z-index: 9;
+    box-shadow: -2px 2px 0 #c2a300, inset -2px -2px 0 #e6c300;
 }
 
 /* Rosto Compacto */
@@ -316,7 +342,7 @@ body {
     border-top: 3px solid #ffffff;
 }
 
-/* Novo Design Detalhado do Cavalo */
+/* Design Detalhado do Cavalo */
 .pixel-horse {
     width: 56px;
     height: 28px;
@@ -378,7 +404,7 @@ body {
 }
 
 .professor-specifications-panel h2 {
-    font-size: 16px; /* FONTE AMPLIADA */
+    font-size: 16px; 
     color: #00ffff;
     margin-bottom: 20px;
     letter-spacing: 1px;
@@ -400,13 +426,13 @@ body {
 
 .spec-card strong {
     display: block;
-    font-size: 13px; /* FONTE AMPLIADA */
+    font-size: 13px; 
     color: #ff007f;
     margin-bottom: 8px;
 }
 
 .spec-card p {
-    font-size: 12px; /* FONTE AMPLIADA */
+    font-size: 12px; 
     line-height: 1.8;
     color: #cccccc;
 }
@@ -414,9 +440,6 @@ body {
 /* Animações e Brilhos Neon */
 .text-cyan { color: #00ffff; text-shadow: 0 0 8px rgba(0, 255, 255, 0.6); }
 .text-pink { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.6); }
-.pulsate { animation: glowEffect 1.2s infinite alternate ease-in-out; }
+.pulsate { animation
 
-@keyframes glowEffect {
-    from { box-shadow: 0 0 12px rgba(255, 0, 127, 0.4); transform: scale(1); }
-    to { box-shadow: 0 0 24px rgba(255, 0, 127, 0.85); transform: scale(1.02); }
-}
+          
