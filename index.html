@@ -3,76 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Confessions Tour: Jump Game - Desafio Web</title>
-    <!-- Importação de fontes estilo arcade/retro -->
+    <title>The Confessions Tour: Jump Game</title>
+    <!-- Fontes no estilo clássico de fliperama -->
     <link rel="preconnect" href="googleapis.com">
     <link rel="preconnect" href="gstatic.com" crossorigin>
     <link href="googleapis.com" rel="stylesheet">
-    <!-- Vinculação com o arquivo CSS externo -->
+    <!-- Arquivo de estilo externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Elemento de áudio em loop (inicia com clique do jogador) -->
+    <!-- Música de fundo retro-pop -->
     <audio id="game-audio" loop>
         <source src="musica-retro-madonna.mp3" type="audio/mpeg">
     </audio>
 
     <div class="arcade-cabinet">
-        <!-- ================= TELA 1: LANDING PAGE / ENTRADA REFINADA ================= -->
+        <!-- ================= TELA 1: ENTRADA DO JOGO ================= -->
         <section id="screen-start" class="game-screen active">
-            <!-- Título chamativo e criativo exigido pelo professor -->
             <h1 class="game-main-title pulse-effect">THE CONFESSIONS TOUR:<br><span class="text-cyan">JUMP GAME</span></h1>
             
-            <!-- Espaço reservado para o arquivo PNG da Logo -->
+            <!-- Espaço reservado para a logo em formato PNG -->
             <div class="logo-png-area">
-                <span>[ ESPAÇO RESERVADO PARA O PNG DA LOGO DO JOGO ]</span>
+                <span>[ COLOQUE A LOGO DO SEU JOGO AQUI ]</span>
             </div>
             
-            <!-- Botão de entrada com gatilho de áudio -->
             <button class="btn-arcade-neon" onclick="changeToStoryScreen()">CLIQUE AQUI PARA JOGAR</button>
-            
-            <div class="arcade-subtext">
-                <p>RECUPERAÇÃO DE PROGRAMAÇÃO WEB • VALOR: 80 PONTOS</p>
-            </div>
         </section>
 
-        <!-- ================= TELA 2: STORYBOARD INICIAL (HISTÓRIA E CARACTERÍSTICAS) ================= -->
+        <!-- ================= TELA 2: HISTÓRIA E OBJETIVOS ================= -->
         <section id="screen-story" class="game-screen">
-            <h2 class="text-pink header-title">📜 THE STORYBOARD: INTRODUÇÃO</h2>
+            <h2 class="text-pink header-title">📜 NOSSA MISSÃO</h2>
             
-            <!-- Breve descrição da história e do objetivo do jogo -->
             <div class="story-textbox">
-                <p class="highlight-label">A MISSÃO POP 2005:</p>
-                <p>Leve a rainha <span class="text-cyan">Madonna</span> em segurança até a grande arena para realizar o show histórico da <strong>Confessions Tour</strong>!</p>
-                <p>Montada em seu cavalo de hipismo, ela deve galopar em alta velocidade e saltar com precisão cirúrgica por <strong>60 obstáculos eletrônicos</strong> ritmados.</p>
+                <p class="highlight-label">RUMO AO PALCO:</p>
+                <p>O ano é 2006. Falta muito pouco para o show histórico começar e você precisa guiar a rainha <span class="text-cyan">Madonna</span> até o palco em total segurança!</p>
+                <p>Montada em seu cavalo de hipismo favorito, ela vai correr pelos cenários eletrônicos e precisa desviar de <strong>60 obstáculos</strong> em alta velocidade.</p>
             </div>
 
-            <!-- Seção destacando as características principais do jogo -->
+            <!-- Detalhes e características principais do jogo -->
             <div class="features-box">
-                <h3>🎵 ESPECIFICAÇÕES TÉCNICAS:</h3>
+                <h3>🎵 DETALHES DO JOGO:</h3>
                 <ul>
-                    <li>• Gráficos em Pixel Art Anatômica Clássica</li>
-                    <li>• Trilha Sonora Retro-Pop Sincronizada</li>
-                    <li>• Dificuldade Progressiva (Fases Difíceis)</li>
-                    <li>• Jogabilidade Arcade com Motor de Física Rápido</li>
+                    <li>• Arte clássica desenhada pixel por pixel</li>
+                    <li>• Trilha sonora inspirada nas pistas de dança</li>
+                    <li>• Desafios de reflexo em ritmo acelerado</li>
+                    <li>• Estética puramente inspirada nos anos 80 e 2000</li>
                 </ul>
             </div>
             
-            <div class="navigation-controls">
-                <button class="btn-arcade-neon" onclick="startActiveGameplay()">COMEÇAR DESAFIO 🕹️</button>
-            </div>
+            <button class="btn-arcade-neon" onclick="startActiveGameplay()">COMEÇAR A JOGAR 🕹️</button>
         </section>
 
-        <!-- ================= TELA 3: ARENA DE JOGO ATIVO ================= -->
+        <!-- ================= TELA 3: TELA DE JOGO ATIVO ================= -->
         <section id="screen-game" class="game-screen">
             <div class="game-hud">
                 <div>OBSTÁCULOS: <span id="score-counter" class="text-cyan">0</span> / 60</div>
-                <div>VELOCIDADE: <span id="speed-indicator" class="text-pink">NORMAL</span></div>
+                <div>RITMO: <span id="speed-indicator" class="text-pink">NORMAL</span></div>
             </div>
             
             <div id="game-arena" onclick="triggerMadonnaJump()">
-                <!-- Boneca Pixel da Madonna Baseada em 2005-2006 estruturada via CSS -->
+                <!-- Boneca Pixel da Madonna Montada (Estilo 2005) -->
                 <div id="madonna-player" style="bottom: 0px;">
                     <div class="pixel-hair"></div>
                     <div class="pixel-head">
@@ -89,33 +80,32 @@
                 <div id="game-obstacle" style="left: 800px;"></div>
             </div>
             
-            <p class="controls-hint">Pressione <span class="text-cyan">ESPAÇO</span> ou <span class="text-cyan">CLIQUE NA ARENA</span> para pular.</p>
+            <p class="controls-hint">Pressione a barra de <span class="text-cyan">ESPAÇO</span> ou <span class="text-cyan">CLIQUE NA TELA</span> para pular.</p>
             
-            <!-- Botão de Jogar Agora / Baixar exigido (Apenas Visual) -->
+            <!-- Botão de download puramente visual exigido -->
             <button class="btn-visual-only">JOGAR AGORA / BAIXAR (VISUAL)</button>
         </section>
 
-        <!-- ================= TELA 4: STORYBOARD FINAL (AGRADECIMENTOS E VITÓRIA) ================= -->
+        <!-- ================= TELA 4: AGRADECIMENTO E VITÓRIA ================= -->
         <section id="screen-victory" class="game-screen">
-            <!-- Espaço para GIF no Header solicitado -->
+            <!-- Espaço reservado para GIF no topo da tela final -->
             <div class="gif-header-box">
-                <span>[ ESPAÇO RESERVADO PARA O GIF DE VITÓRIA / SHOW ]</span>
+                <span>[ ESPAÇO RESERVADO PARA UM GIF DO SHOW ]</span>
             </div>
 
-            <h2 class="text-cyan header-title pulse-effect">STAGE CLEAR!</h2>
+            <h2 class="text-cyan header-title pulse-effect">PARABÉNS!</h2>
             
-            <!-- Seção de agradecimento ao jogador -->
             <div class="story-textbox border-pink">
-                <p class="highlight-label text-pink">OBRIGADO, JOGADOR!</p>
-                <p>Você demonstrou reflexos cirúrgicos e superou todos os <strong>60 obstáculos</strong> da turnê!</p>
-                <p>A diva pop chegou com sucesso total na arena e o espetáculo vai começar perfeitamente graças às suas habilidades.</p>
+                <p class="highlight-label text-pink">VOCÊ CONSEGUIU!</p>
+                <p>Muito obrigado por jogar! Com os seus reflexos, a diva conseguiu passar por todos os perigos da pista.</p>
+                <p>Agora a arena inteira está iluminada e o show finalmente vai começar graças a você. Valeu pela ajuda!</p>
             </div>
             
-            <button class="btn-arcade-neon" onclick="resetArcadeToMenu()">REINICIAR JOGO</button>
+            <button class="btn-arcade-neon" onclick="resetArcadeToMenu()">VOLTAR AO INÍCIO</button>
         </section>
     </div>
 
-    <!-- Motor JavaScript integrado para controle de telas e física de hitbox -->
+    <!-- Controle das telas e movimentação do jogo -->
     <script>
         const screenStart = document.getElementById('screen-start');
         const screenStory = document.getElementById('screen-story');
@@ -138,7 +128,7 @@
         function changeToStoryScreen() {
             screenStart.classList.remove('active');
             screenStory.classList.add('active');
-            bgAudio.play().catch(() => console.log("Áudio aguardando clique ativo."));
+            bgAudio.play().catch(() => console.log("O áudio vai tocar assim que o jogador interagir."));
         }
 
         function startActiveGameplay() {
@@ -205,7 +195,7 @@
                 baseGameSpeed += 0.3;
                 
                 if (currentScore > 40) speedIndicator.innerText = "MÁXIMA!";
-                else if (currentScore > 20) speedIndicator.innerText = "RÁPIDO";
+                else if (currentScore > 20) speedIndicator.innerText = "ACELERADO";
                 else if (currentScore > 10) speedIndicator.innerText = "MÉDIO";
 
                 if (currentScore >= 60) {
@@ -218,9 +208,9 @@
 
             let playerCurrentBottom = parseInt(madonnaPlayer.style.bottom) || 0;
             
-            // Verificação matemática precisa da hitbox baseada no posicionamento absoluto
+            // Verificação de proximidade do objeto para reiniciar a pontuação
             if (obstacleXPosition > 80 && obstacleXPosition < 130 && playerCurrentBottom < 50) {
-                alert("Game Over! O contador resetou para o desafio.");
+                alert("Ops! Você acabou esbarrando. Vamos tentar de novo desde o começo?");
                 currentScore = 0;
                 baseGameSpeed = 6;
                 obstacleXPosition = 800;
